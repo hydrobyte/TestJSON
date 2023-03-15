@@ -1,0 +1,40 @@
+{
+  "Selected": "Default",
+  "List": {
+    "Default": {
+      "SpeedGenOn": true,
+      "SpeedSaveOn": true,
+      "SpeedLoadOn": true,
+      "SpeedFindOn": true,
+      "SpeedParseOn": true,
+      "SpeedGen": "50000",
+      "SpeedSave": "..\\..\\..\\test\\speed\\test.json",
+      "SpeedLoad": "..\\..\\..\\test\\speed\\test.json",
+      "SpeedFind": "1000",
+      "SpeedRepOn": true,
+      "SpeedProgOn": true,
+      "SpeedRep": "5",
+      "ValidFolder": "..\\..\\..\\test\\valid",
+      "FOpenFile": "..\\..\\..\\test\\open\\test.json",
+      "ShowProgOn": "",
+      "SpeedClearOn": true
+    },
+    "Debug": {
+      "SpeedGenOn": true,
+      "SpeedSaveOn": true,
+      "SpeedLoadOn": true,
+      "SpeedFindOn": true,
+      "SpeedParseOn": true,
+      "SpeedGen": "5",
+      "SpeedSave": "..\\..\\..\\test\\speed\\test.json",
+      "SpeedLoad": "..\\..\\..\\test\\speed\\test.json",
+      "SpeedFind": "1",
+      "SpeedRepOn": false,
+      "SpeedProgOn": true,
+      "SpeedRep": "5",
+      "ValidFolder": "..\\..\\..\\test\\valid",
+      "FOpenFile": "..\\..\\..\\test\\open\\test.json",
+      "SpeedClearOn": true
+    }
+  }
+}
