@@ -49,7 +49,7 @@ This is a performance test for libraries with the following configuration (selec
 - 5 repetitions.
 - Memory consuption after the `Genereate` sub-test.
 - It is expected that the `Clone/Parse` sub-test consumes twice as memory as the `Generate` or `Load from file` sub-test.
-- See [.\images\Github-02*.png](.\images) images as confirmation.
+- See [images](https://github.com/hydrobyte/TestJSON/tree/main/images) as confirmation.
 
 Library          | Generate  | Save     | Load     | Find     | Parse   | Total      | Memory   |
 :----------------|----------:|---------:|---------:|---------:|--------:|-----------:|---------:|
@@ -138,6 +138,8 @@ JsonP = C_LK(TlkJSON::ParseText( TlkJSON::GenerateText(C_LK(Json)) ));
 Validation tests can demonstrate that even the most modern libraries can have occasional small violations against the standard.
 
 For older versions of `Delphi` and `C++Builder`, the `McJSON` library can be a good choice in terms of compatibility, ease of use and good performance.
+
+Another two libraries were tested, but it was not possible to compile them with `C++Builder`: [XSuperObject](https://github.com/onryldz/x-superobject) and [dwsJSON](https://github.com/EricGrange/DWScript/blob/master/Source/dwsJSON.pas)
 
 This project demonstrates some of the facilities and obstacles encountered by C++Builder developers in using libraries developed for Delphi.
 
