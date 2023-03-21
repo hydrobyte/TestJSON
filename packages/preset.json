@@ -2,8 +2,11 @@
   "Selected": "Default",
   "List": {
     "Default": {
+      "TestType": 0,
+      "LibType": 0,
       "SpeedGenOn": true,
       "SpeedSaveOn": true,
+      "SpeedClearOn": true,
       "SpeedLoadOn": true,
       "SpeedFindOn": true,
       "SpeedParseOn": true,
@@ -11,17 +14,18 @@
       "SpeedSave": "..\\..\\..\\test\\speed\\test.json",
       "SpeedLoad": "..\\..\\..\\test\\speed\\test.json",
       "SpeedFind": "1000",
-      "SpeedRepOn": true,
+      "SpeedRepeatOn": true,
       "SpeedProgOn": true,
       "SpeedRep": "5",
       "ValidFolder": "..\\..\\..\\test\\valid",
-      "FOpenFile": "..\\..\\..\\test\\open\\test.json",
-      "ShowProgOn": "",
-      "SpeedClearOn": true
+      "FOpenFile": "..\\..\\..\\test\\open\\test.json"
     },
     "Debug": {
+      "TestType": 0,
+      "LibType": 0,
       "SpeedGenOn": true,
       "SpeedSaveOn": true,
+      "SpeedClearOn": true,
       "SpeedLoadOn": true,
       "SpeedFindOn": true,
       "SpeedParseOn": true,
@@ -29,12 +33,11 @@
       "SpeedSave": "..\\..\\..\\test\\speed\\test.json",
       "SpeedLoad": "..\\..\\..\\test\\speed\\test.json",
       "SpeedFind": "1",
-      "SpeedRepOn": false,
+      "SpeedRepeatOn": false,
       "SpeedProgOn": true,
       "SpeedRep": "5",
       "ValidFolder": "..\\..\\..\\test\\valid",
-      "FOpenFile": "..\\..\\..\\test\\open\\test.json",
-      "SpeedClearOn": true
+      "FOpenFile": "..\\..\\..\\test\\open\\test.json"
     }
   }
 }

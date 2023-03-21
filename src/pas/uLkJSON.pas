@@ -157,7 +157,7 @@ unit uLkJSON;
 
 interface
 
-{$DEFINE USE_D2009}
+{.$DEFINE USE_D2009}
 {.$DEFINE KOL}
 {.$define DOTNET}
 {$DEFINE THREADSAFE}
@@ -2348,15 +2348,15 @@ end;
 class function TlkJSONstreamed.LoadFromStream(src: TStream):
   TlkJSONbase;
 var
-  ws: string;
+  us: UTF8String;
   len: int64;
 begin
   result := nil;
   if not assigned(src) then exit;
   len := src.Size - src.Position;
-  SetLength(ws, len);
-  src.Read(pchar(ws)^, len*sizeof(char));
-  result := ParseText(ws);
+  SetLength(us, len);
+  src.Read(PChar(us)^, len{*sizeof(char)});
+  result := ParseText(us);
 end;
 
 class procedure TlkJSONstreamed.SaveToFile(obj: TlkJSONbase;
@@ -2376,12 +2376,12 @@ end;
 class procedure TlkJSONstreamed.SaveToStream(obj: TlkJSONbase;
   dst: TStream);
 var
-  ws: string;
+  us: UTF8String;
 begin
   if not assigned(obj) then exit;
   if not assigned(dst) then exit;
-  ws := GenerateText(obj);
-  dst.Write(pchar(ws)^, length(ws)*sizeof(char));
+  us := GenerateText(obj);
+  dst.Write(PChar(us)^, length(us){*sizeof(char)});
 end;
 
 {$ENDIF}
