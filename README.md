@@ -162,20 +162,20 @@ This test will be used in a future update with very large JSON files (+ 100 MiB 
 
 
 ## Conclusions
-All `Speed Run` tests with `Delphi` version are twice as fast as with `C++Builder`.
+1. All `Speed Run` tests with `Delphi` version are twice as fast as with `C++Builder`.
 
-For JSON structures with less than 5000 objects, the choice of libraries can be screened not only based on performance. Standard/Compiler compatibility and ease of use should have priority in terms of choice criterion. 
+2. For JSON structures with less than 5000 objects, the choice of libraries can be screened not only based on performance. Standard/Compiler compatibility and ease of use should have priority in terms of choice criterion. 
 
-`LkJson` has great performance and the lowest memory consumption among all tested libraries. Some changes are needed to use it with Delphi and C++Builder 10.2 in order to save and load UTF-8 encoded files. For some, an obstacle can be that their interfaces are more verbose for C++ usage. For example:
+3. `LkJson` has great performance and the lowest memory consumption among all tested libraries. Some changes are needed to use it with Delphi and C++Builder 10.2 in order to save and load UTF-8 encoded files. For some, an obstacle can be that their interfaces are more verbose for C++ usage. For example:
 ````cpp
 JsonP = dynamic_cast<TlkJSONObject*>(TlkJSON::ParseText(TlkJSON::GenerateText(Json)))
 ````
 
-The `Validation` tests can demonstrate that even the most modern libraries can have occasional small violations against the standard.
+4. The `Validation` tests can demonstrate that even the most modern libraries can have occasional small violations against the standard.
 
-For older versions of `Delphi` and `C++Builder`, the `McJSON` library can be a good choice in terms of compatibility, ease of use and good performance.
+5. For older versions of `Delphi` and `C++Builder`, the `McJSON` library can be a good choice in terms of compatibility, ease of use and good performance.
 
-This project demonstrates some of the facilities and obstacles encountered by C++Builder developers in using libraries developed for Delphi.
+6. This project demonstrates some of the facilities and obstacles encountered by C++Builder developers in using libraries developed for Delphi.
 
 
 ## Know issues
