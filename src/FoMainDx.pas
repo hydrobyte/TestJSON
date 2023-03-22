@@ -110,6 +110,7 @@ begin
   RbgLib.Items.Add('X-SuperObject'  );
   RbgLib.Items.Add('JsonTools'      );
   RbgLib.Items.Add('Json4Delphi'    );
+  RbgLib.Items.Add('Grijjy.Bson'    );
   // tabs
   PageControl.ActivePageIndex := 0;
   RbgLib.ItemIndex := 0;

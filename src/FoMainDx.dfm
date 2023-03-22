@@ -2552,6 +2552,10 @@ object FormMain: TFormMain
     object TabConfig: TTabSheet
       Caption = 'Tests'
       ImageIndex = 1
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       DesignSize = (
         579
         311)
@@ -2713,6 +2717,10 @@ object FormMain: TFormMain
           TabOrder = 1
           object TabSpeed: TTabSheet
             Caption = 'TabSpeed'
+            ExplicitLeft = 0
+            ExplicitTop = 0
+            ExplicitWidth = 0
+            ExplicitHeight = 0
             object Bevel: TBevel
               Left = 3
               Top = 174
@@ -2858,6 +2866,10 @@ object FormMain: TFormMain
           object TabValid: TTabSheet
             Caption = 'TabValid'
             ImageIndex = 1
+            ExplicitLeft = 0
+            ExplicitTop = 0
+            ExplicitWidth = 0
+            ExplicitHeight = 0
             DesignSize = (
               383
               212)
@@ -2889,6 +2901,10 @@ object FormMain: TFormMain
           object TabFOpen: TTabSheet
             Caption = 'TabFOpen'
             ImageIndex = 2
+            ExplicitLeft = 0
+            ExplicitTop = 0
+            ExplicitWidth = 0
+            ExplicitHeight = 0
             DesignSize = (
               383
               212)
@@ -2924,6 +2940,10 @@ object FormMain: TFormMain
     end
     object TabRun: TTabSheet
       Caption = 'Run'
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object Memo: TMemo
         AlignWithMargins = True
         Left = 3
