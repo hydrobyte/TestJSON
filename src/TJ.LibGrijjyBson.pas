@@ -40,8 +40,6 @@ end;
 
 destructor TLibGrijjyBson.Destroy;
 begin
-//  fJson.Free;
-//  fJsonClone.Free;
   inherited Destroy;
 end;
 

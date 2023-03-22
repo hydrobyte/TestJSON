@@ -96,7 +96,7 @@ const
 procedure TFormMain.FormCreate(Sender: TObject);
 begin
   // version
-  LbVersion.Caption := 'Test JSON 0.9.1 - Delphi 10.1 Berlin (Starter)';
+  LbVersion.Caption := 'Test JSON 0.9.2 - Delphi 10.1 Berlin (Starter)';
   FEventsFreezed := false;
   // statistics clock
   TestClock := TTestClock.Create;
@@ -111,6 +111,7 @@ begin
   RbgLib.Items.Add('JsonTools'      );
   RbgLib.Items.Add('Json4Delphi'    );
   RbgLib.Items.Add('Grijjy.Bson'    );
+  RbgLib.Items.Add('Neslib.Json'    );
   // tabs
   PageControl.ActivePageIndex := 0;
   RbgLib.ItemIndex := 0;

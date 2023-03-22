@@ -57,7 +57,7 @@ end;
 
 procedure TLibMcJSON.Save(const aFileName: string);
 begin
-  fJson.SaveToFile(aFileName);
+  fJson.SaveToFile(aFileName, False);
 end;
 
 procedure TLibMcJSON.Clear;

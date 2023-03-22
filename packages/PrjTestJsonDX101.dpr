@@ -26,7 +26,9 @@ uses
   TJ.Lib in '..\src\TJ.Lib.pas',
   TJ.LibJDO in '..\src\TJ.LibJDO.pas',
   Grijjy.Bson in '..\src\pas\Grijjy.Bson.pas',
-  TJ.LibGrijjyBson in '..\src\TJ.LibGrijjyBson.pas';
+  TJ.LibGrijjyBson in '..\src\TJ.LibGrijjyBson.pas',
+  Neslib.Json in '..\src\pas\Neslib.Json.pas',
+  TJ.LibNeslibJson in '..\src\TJ.LibNeslibJson.pas';
 
 {$R *.res}
 
