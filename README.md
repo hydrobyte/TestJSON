@@ -103,7 +103,7 @@ This validation test should be analyzed carefully. Some libraries have violation
 - `.\test\valid` files extracted from [MJPA/SimpleJSON](https://github.com/MJPA/SimpleJSON)
 - These are not valid JSON files because first line has a text as description.
 
-### Results with Delphi and C++Builder
+### Results with Delphi
 
 Library          | Expected to Fail but Passed                      | Expected to Pass but Failed   |
 :----------------|-------------------------------------------------:|------------------------------:|
@@ -115,6 +115,7 @@ Library          | Expected to Fail but Passed                      | Expected t
 `X-SuperObject`  |     fail(01, 06, 08, 15, 16, 17, 18, 19, 20, 21) |              pass(01, 04, 05) |
 `JsonTools`      |                             fail(01, 16, 20, 21) |                  pass(04, 05) |
 `Json4Delphi`    |                                                - |      pass(01, 03, 04, 05, 06) |
+`Grijjy.Bson`    |                                     fail(15, 20) |          pass(01, 02, 04, 05) |
 
 ### Results with C++Builder
 

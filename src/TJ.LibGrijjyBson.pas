@@ -88,9 +88,9 @@ begin
   Result := False;
   try
     jTmp   := TgoBsonDocument.Parse(aCode);
-    Result := jTmp.IsNil;
-  finally
-    ;
+    Result := True;
+  except
+    Result := False;
   end;
 end;
 
