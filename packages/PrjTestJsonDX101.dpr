@@ -24,7 +24,9 @@ uses
   TJ.LibJson4Delphi in '..\src\TJ.LibJson4Delphi.pas',
   TJ.TestFOpen in '..\src\TJ.TestFOpen.pas',
   TJ.Lib in '..\src\TJ.Lib.pas',
-  TJ.LibJDO in '..\src\TJ.LibJDO.pas';
+  TJ.LibJDO in '..\src\TJ.LibJDO.pas',
+  Grijjy.Bson in '..\src\pas\Grijjy.Bson.pas',
+  TJ.LibGrijjyBson in '..\src\TJ.LibGrijjyBson.pas';
 
 {$R *.res}
 

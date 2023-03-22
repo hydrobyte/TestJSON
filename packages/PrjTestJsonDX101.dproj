@@ -122,6 +122,8 @@
         <DCCReference Include="..\src\TJ.TestFOpen.pas"/>
         <DCCReference Include="..\src\TJ.Lib.pas"/>
         <DCCReference Include="..\src\TJ.LibJDO.pas"/>
+        <DCCReference Include="..\src\pas\Grijjy.Bson.pas"/>
+        <DCCReference Include="..\src\TJ.LibGrijjyBson.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

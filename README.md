@@ -19,6 +19,7 @@ Library          | Delphi | C++Builder |
 [X-SuperObject](https://github.com/onryldz/x-superobject)                                  | ✓ |   |
 [JsonTools](https://github.com/sysrpl/JsonTools)                                           | ✓ | ✓ |
 [Json4Delphi](https://github.com/MaiconSoft/json4delphi)                                   | ✓ | ✓ |
+[GrijjyBson](https://github.com/grijjy/GrijjyFoundation)                                   | ✓ |   |
 
 
 ## Compilers and computer
@@ -59,6 +60,7 @@ This is a performance test with the following configuration (select `Default` in
 
 Library          | Generate  | Save     | Load     | Find     | Parse    | Total     | Memory    |
 :----------------|----------:|---------:|---------:|---------:|---------:|----------:|----------:|
+`Grijjy.Bson`    |     .05 s |    .04 s |    .05 s |    .00 s |    .07 s |    0.26 s |  7.48 MiB |  
 `McJSON`         |     .02 s |    .07 s |    .03 s |    .21 s |    .08 s |    0.46 s |  9.74 MiB |  
 `LkJson`         |     .07 s |    .05 s |    .11 s |    .01 s |    .15 s |    0.49 s |  2.88 MiB |
 `SuperObject`    |     .13 s |   1.15 s |    .04 s |    .01 s |    .06 s |    1.46 s |  9.63 MiB |
@@ -101,7 +103,7 @@ This validation test should be analyzed carefully. Some libraries have violation
 - `.\test\valid` files extracted from [MJPA/SimpleJSON](https://github.com/MJPA/SimpleJSON)
 - These are not valid JSON files because first line has a text as description.
 
-### Results with Delphi and C++Builder
+### Results with Delphi
 
 Library          | Expected to Fail but Passed                      | Expected to Pass but Failed   |
 :----------------|-------------------------------------------------:|------------------------------:|
@@ -113,6 +115,7 @@ Library          | Expected to Fail but Passed                      | Expected t
 `X-SuperObject`  |     fail(01, 06, 08, 15, 16, 17, 18, 19, 20, 21) |              pass(01, 04, 05) |
 `JsonTools`      |                             fail(01, 16, 20, 21) |                  pass(04, 05) |
 `Json4Delphi`    |                                                - |      pass(01, 03, 04, 05, 06) |
+`Grijjy.Bson`    |                                     fail(15, 20) |          pass(01, 02, 04, 05) |
 
 ### Results with C++Builder
 
@@ -166,19 +169,22 @@ This test will be used in a future update with very large JSON files (+ 100 MiB 
 
 2. For JSON structures with less than 5000 objects, the choice of libraries can be screened not only based on performance. Standard/Compiler compatibility and ease of use should have priority in terms of choice criterion. 
 
-3. `LkJson` has great performance and the lowest memory consumption among all tested libraries. Some changes are needed to use it with Delphi and C++Builder 10.2 in order to save and load UTF-8 encoded files. For some, an obstacle can be that their interfaces are more verbose for C++ usage. For example:
+3. `Grijjy.Bson` is the fastest library tested until now. 
+
+4. `LkJson` has great performance and the lowest memory consumption among all tested libraries. Some changes are needed to use it with Delphi and C++Builder 10.2 in order to save and load UTF-8 encoded files. For some, an obstacle can be that their interfaces are more verbose for C++ usage. For example:
 ````cpp
 JsonP = dynamic_cast<TlkJSONObject*>(TlkJSON::ParseText(TlkJSON::GenerateText(Json)))
 ````
 
-4. The `Validation` tests can demonstrate that even the most modern libraries can have occasional small violations against the standard.
+5. The `Validation` tests can demonstrate that even the most modern libraries can have occasional small violations against the standard.
 
-5. For older versions of `Delphi` and `C++Builder`, the `McJSON` library can be a good choice in terms of compatibility, ease of use and good performance.
+6. For older versions of `Delphi` and `C++Builder`, the `McJSON` library can be a good choice in terms of compatibility, ease of use and good performance.
 
-6. This project demonstrates some of the facilities and obstacles encountered by C++Builder developers in using libraries developed for Delphi.
+7. This project demonstrates some of the facilities and obstacles encountered by C++Builder developers in using libraries developed for Delphi.
 
 
 ## Know issues
+- `TgoBsonDocument.LoadFromJsonFile()` failed.
 - `SuperObject` compiles but it is not working with C++Builder. Any help getting `SuperObject` working with C++Builder is appreciated.
 - `JsonTools` had problems saving to file: it was truncated at object `"key25412"`.
 - `JsonTools` gave a error `Root node must be an array or object` trying to load form a UTF-8 file with 50k items file from other sub-tests.
