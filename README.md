@@ -21,6 +21,7 @@ Library          | Delphi | C++Builder |
 [Json4Delphi](https://github.com/MaiconSoft/json4delphi)                                   | ✓ | ✓ |
 [Grijjy.Bson](https://github.com/grijjy/GrijjyFoundation)                                  | ✓ |   |
 [Neslib.Json](https://github.com/neslib/Neslib.Json)                                       | ✓ |   |
+[dwsJSON](https://github.com/EricGrange/DWScript)                                          | ✓ |   |
 
 
 ## Compilers and computer
@@ -67,6 +68,7 @@ Library          | Generate  | Save     | Load     | Find     | Parse    | Total
 `LkJson`         |     .07 s |    .05 s |    .11 s |    .01 s |    .15 s |    0.49 s |  2.88 MiB |
 `SuperObject`    |     .13 s |   1.15 s |    .04 s |    .01 s |    .06 s |    1.46 s |  9.63 MiB |
 `System.JSON`    |     .03 s |    .05 s |    .24 s |    .88 s |    .28 s |    1.55 s |  9.39 MiB |
+`dwsJSON`        |     .02 s |    .02 s |   1.02 s |    .02 s |   1.01 s |    2.13 s |  9.88 MiB |
 `JsonDataObjects`|    5.86 s |    .01 s |    .10 s |    .11 s |    .10 s |    6.22 s |  8.92 MiB |
 `JsonTools`      |   11.10 s |        - |        - |    .23 s |  10.00 s |   21.37 s |  7.77 MiB |
 `Json4Delphi`    |     .03 s |    .06 s |  37.43 s |    .47 s |  37.20 s |   75.24 s | 11.46 MiB |
@@ -119,6 +121,7 @@ Library          | Expected to Fail but Passed                      | Expected t
 `Json4Delphi`    |                                                - |      pass(01, 03, 04, 05, 06) |
 `Grijjy.Bson`    |                                     fail(15, 20) |          pass(01, 02, 04, 05) |
 `Neslib.Json`    |                 fail(07, 15, 16, 18, 19, 20, 21) |                  pass(04, 05) |
+`dwsJSON`        |                             fail(16, 18, 19, 21) |                             - |
 
 ### Results with C++Builder
 
@@ -204,6 +207,6 @@ There were necessary modifications in order to compile and run some libraries wi
   - `TlkJSONstreamed.LoadFromStream();`
   - `TlkJSONstreamed.SaveToStream();`
 - `SuperObject`: 
-  - `defined(VER290) or defined(VER300) or defined(VER310) or defined(VER320)`
+  - `defined(VER290) or defined(VER300) or defined(VER310) or defined(VER320) or defined(VER330) or defined(VER340)`
   - `procedure FromInterface;`
 
