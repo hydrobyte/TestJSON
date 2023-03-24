@@ -175,7 +175,7 @@ This test will be used in a future update with very large JSON files (+ 100 MiB 
 
 2. For JSON structures with less than 5000 objects, the choice of libraries can be screened not only based on performance. Standard/Compiler compatibility and ease of use should have priority in terms of choice criterion. 
 
-3. `Grijjy.Bson` is the fastest library tested until now. 
+3. `Neslib.Json` is the fastest library tested until now, closely followed `Grijjy.Bson`. 
 
 4. `LkJson` has great performance and the lowest memory consumption among all tested libraries. Some changes are needed to use it with Delphi and C++Builder 10.2 in order to save and load UTF-8 encoded files. For some, an obstacle can be that their interfaces are more verbose for C++ usage. For example:
 ````cpp
