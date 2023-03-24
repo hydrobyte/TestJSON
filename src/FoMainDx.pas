@@ -96,7 +96,7 @@ const
 procedure TFormMain.FormCreate(Sender: TObject);
 begin
   // version
-  LbVersion.Caption := 'Test JSON 0.9.3 - Delphi 10.4 Sydney (CE)';
+  LbVersion.Caption := 'Test JSON 0.9.4 - Delphi 10.4 Sydney (CE)';
   FEventsFreezed := false;
   // statistics clock
   TestClock := TTestClock.Create;
@@ -113,6 +113,7 @@ begin
   RbgLib.Items.Add('Grijjy.Bson'    );
   RbgLib.Items.Add('Neslib.Json'    );
   RbgLib.Items.Add('dwsJSON'        );
+  RbgLib.Items.Add('chimera.json'   );
   // tabs
   PageControl.ActivePageIndex := 0;
   RbgLib.ItemIndex := 0;

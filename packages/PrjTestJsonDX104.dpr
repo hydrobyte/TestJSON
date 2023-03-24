@@ -30,7 +30,9 @@ uses
   Neslib.Json in '..\src\pas\Neslib.Json.pas',
   TJ.LibNeslibJson in '..\src\TJ.LibNeslibJson.pas',
   dwsJSON in '..\src\pas\dwsJSON.pas',
-  TJ.LibDwsJSON in '..\src\TJ.LibDwsJSON.pas';
+  TJ.LibDwsJSON in '..\src\TJ.LibDwsJSON.pas',
+  chimera.json in '..\src\pas\chimera.json.pas',
+  TJ.LibChimeraJson in '..\src\TJ.LibChimeraJson.pas';
 
 {$R *.res}
 

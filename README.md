@@ -22,10 +22,11 @@ Library          | Delphi | C++Builder |
 [Grijjy.Bson](https://github.com/grijjy/GrijjyFoundation)                                  | ✓ |   |
 [Neslib.Json](https://github.com/neslib/Neslib.Json)                                       | ✓ |   |
 [dwsJSON](https://github.com/EricGrange/DWScript)                                          | ✓ |   |
+[chimera.json](https://bitbucket.org/sivv/chimera/src/develop/)                            | ✓ |   |
 
 
 ## Compilers and computer
-- `Delphi` VCL 32 bits project built with version `10.1` (Berlin/Starter).
+- `Delphi` VCL 32 bits project built with version `10.4` (Sydney/CE).
 - `C++Builder` VCL 32 bits project built with version `10.2` (Tokyo).
 - Old 64 bits machine: AMD A12-9700P RADEON R7, 10 COMPUTE CORES 4C+6G - 2.50 GHz - 16 GB RAM.
 
@@ -63,7 +64,8 @@ This is a performance test with the following configuration (select `Default` in
 Library          | Generate  | Save     | Load     | Find     | Parse    | Total     | Memory    |
 :----------------|----------:|---------:|---------:|---------:|---------:|----------:|----------:|
 `Neslib.Json`    |     .03 s |    .03 s |    .03 s |    .00 s |    .04 s |    0.18 s | 10.16 MiB |  
-`Grijjy.Bson`    |     .05 s |    .04 s |    .05 s |    .00 s |    .07 s |    0.26 s |  7.48 MiB |  
+`Grijjy.Bson`    |     .05 s |    .04 s |    .05 s |    .00 s |    .07 s |    0.26 s |  7.48 MiB |
+`chimera.json`   |     .06 s |    .03 s |    .08 s |    .01 s |    .09 s |    0.35 s |  8.77 MiB |  
 `McJSON`         |     .02 s |    .07 s |    .03 s |    .21 s |    .08 s |    0.46 s |  9.74 MiB |  
 `LkJson`         |     .07 s |    .05 s |    .11 s |    .01 s |    .15 s |    0.49 s |  2.88 MiB |
 `SuperObject`    |     .13 s |   1.15 s |    .04 s |    .01 s |    .06 s |    1.46 s |  9.63 MiB |
@@ -122,6 +124,7 @@ Library          | Expected to Fail but Passed                      | Expected t
 `Grijjy.Bson`    |                                     fail(15, 20) |          pass(01, 02, 04, 05) |
 `Neslib.Json`    |                 fail(07, 15, 16, 18, 19, 20, 21) |                  pass(04, 05) |
 `dwsJSON`        |                             fail(16, 18, 19, 21) |                             - |
+`chimera.json`   |         fail(01, 08, 10, 16, 18, 19, 20, 21, 23) |                             - |
 
 ### Results with C++Builder
 
@@ -194,6 +197,7 @@ JsonP = dynamic_cast<TlkJSONObject*>(TlkJSON::ParseText(TlkJSON::GenerateText(Js
 - `SuperObject` compiles but it is not working with C++Builder. Any help getting `SuperObject` working with C++Builder is appreciated.
 - `JsonTools` had problems saving to file: it was truncated at object `"key25412"`.
 - `JsonTools` gave a error `Root node must be an array or object` trying to load form a UTF-8 file with 50k items file from other sub-tests.
+- `chimera.json` seems to completelly break Delphi 10.4's code completion.
 
 These libraries were tested:
 - [XSuperObject](https://github.com/onryldz/x-superobject) does not compile with `C++Builder` 10.2.

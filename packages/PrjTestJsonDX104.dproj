@@ -166,6 +166,8 @@
         <DCCReference Include="..\src\TJ.LibNeslibJson.pas"/>
         <DCCReference Include="..\src\pas\dwsJSON.pas"/>
         <DCCReference Include="..\src\TJ.LibDwsJSON.pas"/>
+        <DCCReference Include="..\src\pas\chimera.json.pas"/>
+        <DCCReference Include="..\src\TJ.LibChimeraJson.pas"/>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

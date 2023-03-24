@@ -8,7 +8,7 @@ uses
 type
   TLibType = (ljMcJSON, ljLkJSON, ljSystemJSON, ljJdoJSON, ljSuperObject,
               ljXSuperObject, ljJsonTools, ljJson4Delphi, ljGrijjyBson,
-              ljNeslibJson, ljDwsJSON);
+              ljNeslibJson, ljDwsJSON, ljChimeraJson);
 
   ILib = interface
   ['{BC59958C-81A8-4C5B-9847-2E51C3C6BCF2}']
@@ -36,7 +36,7 @@ implementation
 uses
   TJ.LibMcJSON, TJ.LibLkJSON, TJ.LibSystemJSON, TJ.LibJDO, TJ.LibSuperObject,
   TJ.LibXSuperObject, TJ.LibJsonTools, TJ.LibJson4Delphi, TJ.LibGrijjyBson,
-  TJ.LibNeslibJson, TJ.LibDwsJSON;
+  TJ.LibNeslibJson, TJ.LibDwsJSON, TJ.LibChimeraJson;
 
 class function TLibFactory.CreateLib(aType: TLibType): ILib;
 begin
@@ -51,6 +51,7 @@ begin
   else if (aType = ljGrijjyBson  ) then Result := TLibGrijjyBson.Create()
   else if (aType = ljNeslibJson  ) then Result := TLibNeslibJson.Create()
   else if (aType = ljDwsJSON     ) then Result := TLibDwsJSON.Create()
+  else if (aType = ljChimeraJson ) then Result := TLibChimeraJson.Create()
   else                                  Result := nil;
 end;
 
