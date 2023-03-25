@@ -66,7 +66,7 @@ Library          | Generate  | Save     | Load     | Find     | Parse    | Total
 `Neslib.Json`    |     .03 s |    .03 s |    .03 s |    .00 s |    .04 s |    0.18 s | 10.16 MiB |  
 `Grijjy.Bson`    |     .05 s |    .04 s |    .05 s |    .00 s |    .07 s |    0.26 s |  7.48 MiB |
 `chimera.json`   |     .06 s |    .03 s |    .08 s |    .01 s |    .09 s |    0.35 s |  8.77 MiB |  
-`McJSON`         |     .02 s |    .07 s |    .03 s |    .21 s |    .08 s |    0.46 s |  9.74 MiB |  
+`McJSON`         |     .02 s |    .06 s |    .03 s |    .20 s |    .07 s |    0.42 s |  9.84 MiB |  
 `LkJson`         |     .07 s |    .05 s |    .11 s |    .01 s |    .15 s |    0.49 s |  2.88 MiB |
 `SuperObject`    |     .13 s |   1.15 s |    .04 s |    .01 s |    .06 s |    1.46 s |  9.63 MiB |
 `System.JSON`    |     .03 s |    .05 s |    .24 s |    .88 s |    .28 s |    1.55 s |  9.39 MiB |
@@ -197,7 +197,7 @@ JsonP = dynamic_cast<TlkJSONObject*>(TlkJSON::ParseText(TlkJSON::GenerateText(Js
 - `SuperObject` compiles but it is not working with C++Builder. Any help getting `SuperObject` working with C++Builder is appreciated.
 - `JsonTools` had problems saving to file: it was truncated at object `"key25412"`.
 - `JsonTools` gave a error `Root node must be an array or object` trying to load form a UTF-8 file with 50k items file from other sub-tests.
-- `chimera.json` seems to completelly break Delphi 10.4's code completion.
+- `chimera.json` seems to completelly break Delphi 10.4's code completion (Code insight manager = LSP).
 
 These libraries were tested:
 - [XSuperObject](https://github.com/onryldz/x-superobject) does not compile with `C++Builder` 10.2.
