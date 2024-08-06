@@ -26,9 +26,9 @@ Library          | Delphi | C++Builder |
 
 
 ## Compilers and computer
-- `Delphi` VCL 32 bits project built with version `10.4` (Sydney/CE).
+- `Delphi` VCL 32 bits project built with version `11.3` (Alexandria/CE).
 - `C++Builder` VCL 32 bits project built with version `10.2` (Tokyo).
-- Old 64 bits machine: AMD A12-9700P RADEON R7, 10 COMPUTE CORES 4C+6G - 2.50 GHz - 16 GB RAM.
+- Old 64 bits machine: AMD A12-9700P RADEON R7, 10 COMPUTE CORES 4C+6G - 2.50 GHz - 12 GB RAM.
 
 
 ## Tests
@@ -211,6 +211,6 @@ There were necessary modifications in order to compile and run some libraries wi
   - `TlkJSONstreamed.LoadFromStream();`
   - `TlkJSONstreamed.SaveToStream();`
 - `SuperObject`: 
-  - `defined(VER290) or defined(VER300) or defined(VER310) or defined(VER320) or defined(VER330) or defined(VER340)`
+  - `defined(VER290) or defined(VER300) or defined(VER310) or defined(VER320) or defined(VER330) or defined(VER340) or defined(VER350)`
   - `procedure FromInterface;`
 

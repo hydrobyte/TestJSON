@@ -128,7 +128,6 @@ end;
 procedure TMcParam.DeleteByName(aName: string);
 var
   PrsList: TMcJsonItem;
-  Pos: Integer;
 begin
   PrsList := FParam.O[C_Param_LIST];
   PrsList.Delete(aName);

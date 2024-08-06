@@ -96,7 +96,7 @@ const
 procedure TFormMain.FormCreate(Sender: TObject);
 begin
   // version
-  LbVersion.Caption := 'Test JSON 0.9.4 - Delphi 10.4 Sydney (CE)';
+  LbVersion.Caption := 'Test JSON 0.9.4 - Delphi 11.3 Alexandria (CE)';
   FEventsFreezed := false;
   // statistics clock
   TestClock := TTestClock.Create;

@@ -10,14 +10,12 @@ object FormMain: TFormMain
   Font.Height = -11
   Font.Name = 'Tahoma'
   Font.Style = []
-  OldCreateOrder = False
   Position = poScreenCenter
   OnCreate = FormCreate
   OnDestroy = FormDestroy
   DesignSize = (
     598
     392)
-  PixelsPerInch = 96
   TextHeight = 13
   object ImgLogo: TImage
     Left = 8
@@ -2549,6 +2547,8 @@ object FormMain: TFormMain
     ActivePage = TabConfig
     Anchors = [akLeft, akTop, akRight, akBottom]
     TabOrder = 0
+    ExplicitWidth = 583
+    ExplicitHeight = 338
     object TabConfig: TTabSheet
       Caption = 'Tests'
       ImageIndex = 1
@@ -2564,6 +2564,7 @@ object FormMain: TFormMain
         Caption = 'Libraries'
         TabOrder = 0
         OnClick = CtrlChange
+        ExplicitHeight = 298
       end
       object GbxTestConfig: TGroupBox
         Left = 164
@@ -2573,6 +2574,8 @@ object FormMain: TFormMain
         Anchors = [akLeft, akTop, akRight, akBottom]
         Caption = 'Test Configuration'
         TabOrder = 1
+        ExplicitWidth = 402
+        ExplicitHeight = 298
         DesignSize = (
           406
           299)
@@ -2711,6 +2714,8 @@ object FormMain: TFormMain
           ActivePage = TabSpeed
           Anchors = [akLeft, akTop, akRight, akBottom]
           TabOrder = 1
+          ExplicitWidth = 387
+          ExplicitHeight = 239
           object TabSpeed: TTabSheet
             Caption = 'TabSpeed'
             object Bevel: TBevel
@@ -2919,6 +2924,7 @@ object FormMain: TFormMain
           Anchors = [akLeft, akTop, akRight]
           TabOrder = 2
           OnChange = CbxPresetChange
+          ExplicitWidth = 134
         end
       end
     end
@@ -2951,6 +2957,8 @@ object FormMain: TFormMain
     Caption = 'Run'
     TabOrder = 1
     OnClick = BtRunClick
+    ExplicitLeft = 425
+    ExplicitTop = 356
   end
   object BtClose: TButton
     Left = 520
@@ -2961,5 +2969,7 @@ object FormMain: TFormMain
     Caption = 'Close'
     TabOrder = 2
     OnClick = BtCloseClick
+    ExplicitLeft = 516
+    ExplicitTop = 356
   end
 end
