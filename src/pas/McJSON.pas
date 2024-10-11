@@ -2,7 +2,7 @@
 
   The MIT License (MIT)
 
-  Copyright (c) 2021 - 2023,  HydroByte Software
+  Copyright (c) 2021 - 2024,  HydroByte Software
 
   Permission is hereby granted, free of charge, to any person obtaining a copy
   of this software and associated documentation files (the "Software"), to deal
@@ -98,8 +98,8 @@ type
     procedure parse(const aCode: string; aSpeed: Boolean); overload;
     function parse(const aCode: string; aPos, aLen: Integer; aSpeed: Boolean): Integer; overload;
     // read methods used by parse
-    function readString (const aCode: string; out aStr:string; aPos, aLen: Integer): Integer;
-    function readChar   (const aCode: string; aChar: Char; aPos, aLen: Integer): Integer;
+    function readString (const aCode: string; var aStr:string; aPos, aLen: Integer): Integer;
+    function readChar   (const aCode: string; aChar: Char; aPos: Integer): Integer;
     function readKeyword(const aCode, aKeyword: string; aPos, aLen: Integer): Integer;
     function readValue  (const aCode: string; aPos, aLen: Integer): Integer;
     function readObject (const aCode: string; aPos, aLen: Integer; aSpeed: Boolean): Integer;
@@ -118,7 +118,7 @@ type
 
   public
     property Count   : Integer    read fGetCount;
-    property Key     : string     read fKey;
+    property Key     : string     read fKey     write fKey;
     property Value   : string     read fValue;
     property ItemType: TJItemType read fGetType write fSetType;
 
@@ -199,7 +199,7 @@ type
 
   // TMcJsonItemEnumerator
   TMcJsonItemEnumerator = class
-  strict private
+  private
     fItem : TMcJsonItem;
     fIndex: Integer;
   public
@@ -208,6 +208,9 @@ type
     function MoveNext: Boolean;
     property Current: TMcJsonItem read GetCurrent;
   end;
+
+  // Silence W1050 warning (D2009 and up).
+  TMySysCharSet = set of AnsiChar;
 
   // Auxiliary escape types and functions
   TJEscapeType = (jetNormal , // #8 #9 #10 #12 #13 " \
@@ -223,7 +226,7 @@ type
 
 implementation
 
-const C_MCJSON_VERSION = '1.0.9';
+const C_MCJSON_VERSION = '1.1.4';
 const C_EMPTY_KEY      = '__a3mptyStr__';
 
 resourcestring
@@ -235,14 +238,14 @@ resourcestring
   SIndexInvalid      = 'Invalid index: %s';
 
 const
-  WHITESPACE: set of Char = [#9, #10, #13, #32]; // \t(ab), \n(LF), \r(CR), spc
-  LINEBREAK:  set of Char = [#10, #13];
-  ESCAPES:    set of Char = ['b', 't', 'n', 'f', 'r', '"', '/', '\', 'u' ];
-  DIGITS:     set of Char = ['0'..'9'];
-  SIGNS:      set of Char = ['+', '-'];
-  CLOSES:     set of Char = ['}', ']'];
-  HEXA:       set of Char = ['0'..'9', 'A'..'F', 'a'..'f'];
-  PATHSEPS:   set of Char = ['\', '/', '.'];
+  WHITESPACE: set of AnsiChar = [#9, #10, #13, #32]; // \t(ab), \n(LF), \r(CR), spc
+  LINEBREAK:  set of AnsiChar = [#10, #13];
+  ESCAPES:    set of AnsiChar = ['b', 't', 'n', 'f', 'r', '"', '/', '\', 'u' ];
+  DIGITS:     set of AnsiChar = ['0'..'9'];
+  SIGNS:      set of AnsiChar = ['+', '-'];
+  CLOSES:     set of AnsiChar = ['}', ']'];
+  HEXA:       set of AnsiChar = ['0'..'9', 'A'..'F', 'a'..'f'];
+  PATHSEPS:   set of AnsiChar = ['\', '/', '.'];
   // escape chars names
   CHAR_ESCAPE    = '\';
   CHAR_BACKSPACE = 'b';
@@ -269,7 +272,17 @@ const
 { Auxiliary private functions }
 { ---------------------------------------------------------------------------- }
 
-function escapeChar(const aStr: string; aPos, aLen: Integer; out aUnk: Boolean): Integer;
+function myCharInSet(const aChar: Char; const aSet: TMySysCharSet): Boolean;
+begin
+  {$IFNDEF UNICODE}
+  Result := aChar in aSet;
+  {$ELSE}
+  Result := CharInSet(aChar, aSet);
+  {$ENDIF}
+end;
+
+
+function escapeChar(const aStr: string; aPos, aLen: Integer; var aUnk: Boolean): Integer;
 var
   n: Integer;
 begin
@@ -278,8 +291,8 @@ begin
   if (aStr[aPos] = '\') then
   begin
     // check next char is escapable
-    if (aPos < aLen) and
-       (aStr[aPos+1] in ESCAPES) then
+    if ( (aPos < aLen) and
+          myCharInSet(aStr[aPos+1], ESCAPES) ) then
     begin
       // one char escapes
       if (aStr[aPos+1] <> 'u') then
@@ -287,11 +300,11 @@ begin
       else
       //  u+(4 hexa) escape
       begin
-        if (aLen-aPos-1  >  4   ) and
-           (aStr[aPos+2] in HEXA) and
-           (aStr[aPos+3] in HEXA) and
-           (aStr[aPos+4] in HEXA) and
-           (aStr[aPos+5] in HEXA)
+        if ( ( (aLen-aPos-1) > 4            ) and
+              myCharInSet(aStr[aPos+2], HEXA) and
+              myCharInSet(aStr[aPos+3], HEXA) and
+              myCharInSet(aStr[aPos+4], HEXA) and
+              myCharInSet(aStr[aPos+5], HEXA) )
           then n := 6        // \u1234 (6 chars)
           else aUnk := True; // bad \u escape
       end
@@ -309,7 +322,8 @@ var
 begin
   c := aPos;
   n := 0;
-  while (c <= aLen) and (aStr[c] in WHITESPACE) do
+  while ( (c <= aLen) and
+           myCharInSet(aStr[c], WHITESPACE) ) do
   begin
     Inc(c);
     Inc(n);
@@ -341,7 +355,7 @@ begin
     if (n = 1) and (aStr[i] = '"') then
       opn := not opn;
     // ignore whitespaces chars
-    if not (opn) and (aStr[i] in WHITESPACE) then
+    if not (opn) and myCharInSet(aStr[i], WHITESPACE) then
       Inc(i)
     else
     // copy n chars from aStr to sRes and move on
@@ -545,9 +559,9 @@ begin
   // try to convert
   try
     case fValType of
-      jvtBoolean: Ans := Boolean(fValue = 'true') ; // expected
-      jvtString : Ans := Boolean(StrToInt(fValue)); // convertion
-      jvtNumber : Ans := Boolean(StrToInt(fValue)); // convertion
+      jvtBoolean: Ans := Boolean(fValue = 'true'  ); // expected
+      jvtString : Ans := Boolean(StrToBool(fValue)); // convertion
+      jvtNumber : Ans := Boolean(StrToInt(fValue) ); // convertion
       else        Aux := -1;
     end;
   except
@@ -861,8 +875,10 @@ begin
       Error(SItemNil, 'out of memory with ' + IntToStr(CountItems) + ' items');
   end;
   // valid-JSON
-  if (c < len) then
+  if (len = 0) then
     Error(SParsingError, 'bad json', IntToStr(len));
+  if (c < len) then
+    Error(SParsingError, 'bad json', IntToStr(c)  );
 end;
 
 function TMcJsonItem.parse(const aCode: string; aPos, aLen: Integer; aSpeed: Boolean): Integer;
@@ -912,7 +928,7 @@ begin
   begin
     // parse ','
     if (not first) then
-      c := readChar(aCode, ',', c, aLen);
+      c := readChar(aCode, ',', c);
     first := False;
     // escape white spaces
     Inc(c, escapeWS(aCode, c, aLen));
@@ -936,7 +952,7 @@ begin
     // escape white spaces
     Inc(c, escapeWS(aCode, c, aLen));
     // parse ':'
-    c := readChar(aCode, ':', c, aLen);
+    c := readChar(aCode, ':', c);
     // escape white spaces
     Inc(c, escapeWS(aCode, c, aLen));
     // parsing a value (recursive)
@@ -972,7 +988,7 @@ begin
   begin
     // parse ','
     if (not first) then
-      c := readChar(aCode, ',', c, aLen);
+      c := readChar(aCode, ',', c);
     first := False;
     // escape white spaces
     Inc(c, escapeWS(aCode, c, aLen));
@@ -994,7 +1010,7 @@ begin
   Result := c+1;
 end;
 
-function TMcJsonItem.readString(const aCode: string; out aStr:string; aPos, aLen: Integer): Integer;
+function TMcJsonItem.readString(const aCode: string; var aStr:string; aPos, aLen: Integer): Integer;
 var
   c: Integer;
   unk: Boolean;
@@ -1009,7 +1025,7 @@ begin
       // do escapes
       Inc(c, escapeChar(aCode, c, aLen, unk));
       // Valid-JSON: break lines
-      if (c > aLen) or (aCode[c] in LINEBREAK) then
+      if ( (c > aLen) or myCharInSet(aCode[c], LINEBREAK) ) then
         Error(SParsingError, 'line break', IntToStr(c));
       // Valid-JSON: unknown escape
       if (unk) then
@@ -1024,8 +1040,9 @@ begin
   Result := c;
 end;
 
-function TMcJsonItem.readChar(const aCode: string; aChar: Char; aPos, aLen: Integer): Integer;
+function TMcJsonItem.readChar(const aCode: string; aChar: Char; aPos: Integer): Integer;
 begin
+  // Valid-JSON: unexpected char
   if ( aCode[aPos] <> aChar ) then
     Error(SParsingError, 'expected ' + aChar + ' got ' + aCode[aPos], IntToStr(aPos));
   // stop next to aChar
@@ -1037,11 +1054,14 @@ var
   len: Integer;
   sAux: string;
 begin
-  len  := Length(aKeyword);
+  len := Length(aKeyword);
+  // valid-JSON
+  if (aPos+len > aLen) then
+    Error(SParsingError, 'bad reserved keyword', IntToStr(aLen));
   sAux := System.Copy(aCode, aPos, len);
   // valid-JSON
   if (Lowercase(sAux) <> aKeyword) then
-    Error(SParsingError, 'invalid keyword ' + sAux, IntToStr(aPos));
+    Error(SParsingError, 'invalid reserved keyword ' + sAux, IntToStr(aPos));
   // stop next to keyword last char
   Result := aPos + len;
 end;
@@ -1073,25 +1093,25 @@ begin
   // we got here because current symbol was '+/-' or Digit
   c := aPos;
   // 1. sign (optional)
-  if aCode[c] in SIGNS
+  if ( myCharInSet(aCode[c], SIGNS) )
     then Inc(c);
   // 2. some digits but not leading zeros
-  while (aCode[c] in DIGITS) do
+  while ( myCharInSet(aCode[c], DIGITS) ) do
     Inc(c);
   // 3. decimal dot (optional)
   if aCode[c] = '.'
     then Inc(c);
   // 4. fractional digits (optional)
-  while (aCode[c] in DIGITS) do
+  while ( myCharInSet(aCode[c], DIGITS) ) do
     Inc(c);
   // 5. scientific notation ...E-01
   if LowerCase(aCode[c]) = 'e' then
   begin
     ePos := c;
     Inc(c);
-    if aCode[c] in SIGNS
+    if ( myCharInSet(aCode[c], SIGNS) )
       then Inc(c);
-    while (aCode[c] in DIGITS) do
+    while ( myCharInSet(aCode[c], DIGITS) ) do
       Inc(c);
     // valid-JSON: bad scientific number
     if (ePos+1 = c) then
@@ -1106,8 +1126,8 @@ begin
   // escape white spaces
   Inc(c, escapeWS(aCode, c, aLen));
   // valid-JSON: not a number
-  if not ((aCode[c] = ','    ) or
-          (aCode[c] in CLOSES)) then
+  if not ( (aCode[c] = ','              ) or
+            myCharInSet(aCode[c], CLOSES) ) then
     Error(SParsingError, 'not a number', IntToStr(c));
   // valid-JSON: leading zero
   if (aCode[aPos]   =  '0') and (aPos < aLen) and (cEnd-aPos > 1) and
@@ -1348,19 +1368,37 @@ end;
 function TMcJsonItem.IndexOf(const aKey: string): Integer;
 var
   k, idx: Integer;
+  item: TMcJsonItem;
 begin
   idx    := -1;
   Result := idx;
   // check
   if (Self = nil) then Error(SItemNil, 'index of');
   if (not Assigned(fChild)) then Exit;
-  // looking for an element
-  for k := 0 to (fChild.Count - 1) do
+  // if self is an object
+  if (Self.fType = jitObject) then
   begin
-    if (TMcJsonItem(fChild[k]).fKey = aKey) then
+    // looking for an child element
+    for k := 0 to (fChild.Count - 1) do
     begin
-      idx := k;
-      Break;
+      if (TMcJsonItem(fChild[k]).fKey = aKey) then
+      begin
+        idx := k;
+        Break;
+      end;
+    end;
+  end
+  else if (Self.fType = jitArray) then
+  begin
+    // looking for an child element: arrays items are "empty objects"
+    for k := 0 to (fChild.Count - 1) do
+    begin
+      item := TMcJsonItem(fChild[k]).Items[0];
+      if (TMcJsonItem(item).fKey = aKey) then
+      begin
+        idx := k;
+        Break;
+      end;
     end;
   end;
   // return the Result
@@ -1377,10 +1415,10 @@ function TMcJsonItem.Path(const aPath: string): TMcJsonItem;
   begin
     Result := '';
     // check start with sep
-    if (aPath[aPos] in PATHSEPS) then
+    if ( myCharInSet(aPath[aPos], PATHSEPS) ) then
       Inc(aPos);
     c := aPos;
-    while (c <= aLen) and not (aPath[c] in PATHSEPS) do
+    while ( (c <= aLen) and not myCharInSet(aPath[c], PATHSEPS) ) do
     begin
       Inc(c);
     end;
@@ -1401,12 +1439,17 @@ begin
   // parse path of keys using seps
   c   := 1;
   len := Length(aPath);
-  while (c < len) do
+  while ( (aItem <> nil) and
+          (c     <= len) ) do
   begin
     // get by key
     sKey := GetKeyByPath(aPath, c, len);
     if (sKey <> '') then
-      aItem := aItem.fGetItemByKey(sKey);
+    begin
+      if ( aItem.HasKey(sKey) )
+        then aItem := aItem.fGetItemByKey(sKey)
+        else aItem := nil;
+    end;
   end;
   // result aItem to permit chain
   Result := aItem;
@@ -1706,18 +1749,18 @@ begin
   // asUTF8 has difference in behavior in Delphi(true)/Lazarus(false).
   if (asUTF8)
     then Self.AsJSON := Utf8ToAnsi(sCode) // UTF-8 to ANSI
-    else Self.AsJSON := sCode;            // keep as read
+    else Self.AsJSON := string(sCode);    // keep as read
 end;
 
 procedure TMcJsonItem.SaveToStream(Stream: TStream; asHuman, asUTF8: Boolean);
 var
-  sCode: AnsiString;
+  sCode: UTF8String;
   len  : Int64;
 begin
-  sCode := Self.ToString(asHuman);
+  sCode := UTF8String(Self.ToString(asHuman)); // Why UTF8String cast? See W1057.
   // asUTF8 has difference in behavior in Delphi(true)/Lazarus(false).
-  if (asUTF8) then 
-    sCode := AnsiToUtf8(sCode);
+  if (asUTF8) then
+    sCode := AnsiToUtf8(string(sCode));        // Why string cast? See W1057.
   len := Length(sCode);
   Stream.Write(Pointer(sCode)^, len);
 end;
@@ -1845,21 +1888,24 @@ end;
 
 function McJsonEscapeString(const aStr: string; aEsc: TJEscapeType): string;
 var
+  i, len: Integer;
   c: Char;
 begin
   Result := '';
-  for c in aStr do
+  len := Length(aStr);
+  for i := 1 to len do
   begin
+    c := aStr[i];
     case c of
-      ID_BACKSPACE: Result := Result + CHAR_ESCAPE + ID_BACKSPACE;
-      ID_H_TAB    : Result := Result + CHAR_ESCAPE + ID_H_TAB    ;
-      ID_NEW_LINE : Result := Result + CHAR_ESCAPE + ID_NEW_LINE ;
-      ID_FORM_FEED: Result := Result + CHAR_ESCAPE + ID_FORM_FEED;
-      ID_C_RETURN : Result := Result + CHAR_ESCAPE + ID_C_RETURN ;
-      ID_Q_MARK   : Result := Result + CHAR_ESCAPE + ID_Q_MARK   ;
-      ID_R_SOLIDUS: Result := Result + CHAR_ESCAPE + ID_R_SOLIDUS;
+      ID_BACKSPACE: Result := Result + CHAR_ESCAPE + CHAR_BACKSPACE;
+      ID_H_TAB    : Result := Result + CHAR_ESCAPE + CHAR_H_TAB    ;
+      ID_NEW_LINE : Result := Result + CHAR_ESCAPE + CHAR_NEW_LINE ;
+      ID_FORM_FEED: Result := Result + CHAR_ESCAPE + CHAR_FORM_FEED;
+      ID_C_RETURN : Result := Result + CHAR_ESCAPE + CHAR_C_RETURN ;
+      ID_Q_MARK   : Result := Result + CHAR_ESCAPE + CHAR_Q_MARK   ;
+      ID_R_SOLIDUS: Result := Result + CHAR_ESCAPE + CHAR_R_SOLIDUS;
       ID_SOLIDUS  : if (aEsc >= jetStrict)
-                      then Result := Result + CHAR_ESCAPE + ID_SOLIDUS
+                      then Result := Result + CHAR_ESCAPE + CHAR_SOLIDUS
                       else Result := Result + c;
       else
       begin
@@ -1917,10 +1963,12 @@ begin
         Inc(cs);
       end
       // unescape u+(4 hexa) escaped chars
-      else if (aStr[cs]  = CHAR_U_HEX) and
-              (len-cs   >= 4         ) and
-              (aStr[cs+1] in HEXA) and (aStr[cs+2] in HEXA) and
-              (aStr[cs+3] in HEXA) and (aStr[cs+1] in HEXA) then
+      else if ( (aStr[cs]  = CHAR_U_HEX      ) and
+                (len-cs   >= 4               ) and
+                 myCharInSet(aStr[cs+1], HEXA) and
+                 myCharInSet(aStr[cs+2], HEXA) and
+                 myCharInSet(aStr[cs+3], HEXA) and
+                 myCharInSet(aStr[cs+1], HEXA) ) then
       begin
         try
           ans[cd] := Chr( StrToInt('$' + Copy(aStr, cs+1, 4)) );
