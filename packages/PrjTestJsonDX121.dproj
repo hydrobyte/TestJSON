@@ -169,6 +169,12 @@
         <DCCReference Include="..\src\TJ.LibEasyJson.pas"/>
         <DCCReference Include="..\src\pas\DynamicDataObjects\DataObjects2.pas"/>
         <DCCReference Include="..\src\pas\DynamicDataObjects\DataObjects2JSON.pas"/>
+        <DCCReference Include="..\src\pas\DynamicDataObjects\DataObjects2Streamers.pas"/>
+        <DCCReference Include="..\src\pas\DynamicDataObjects\DataObjects2Utils.pas"/>
+        <DCCReference Include="..\src\pas\DynamicDataObjects\StreamCache.pas"/>
+        <DCCReference Include="..\src\pas\DynamicDataObjects\StringBTree.pas"/>
+        <DCCReference Include="..\src\pas\DynamicDataObjects\VarInt.pas"/>
+        <DCCReference Include="..\src\TJ.LibJsonDoc.pas"/>
         <DCCReference Include="..\src\pas\DWScript\dwsJSON.pas"/>
         <DCCReference Include="..\src\pas\chimera\chimera.json.pas"/>
         <DCCReference Include="..\src\pas\Grijjy\Grijjy.Bson.pas"/>
@@ -176,6 +182,7 @@
         <DCCReference Include="..\src\pas\superobject\superobject.pas"/>
         <DCCReference Include="..\src\pas\XSuperObject\XSuperObject.pas"/>
         <DCCReference Include="..\src\pas\Json4Delphi\Jsons.pas"/>
+        <DCCReference Include="..\src\pas\jsonDoc.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
