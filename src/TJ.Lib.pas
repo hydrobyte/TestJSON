@@ -8,8 +8,8 @@ uses
 type
   TLibType = (ljMcJSON, ljLkJSON, ljSystemJSON, ljJdoJSON, ljSuperObject,
               ljXSuperObject, ljJsonTools, ljJson4Delphi, ljGrijjyBson,
-              ljNeslibJson, ljDwsJSON, ljJsonDoc, ljChimeraJson, ljDDObjects,
-              ljEasyJson);
+              ljNeslibJson, ljDwsJSON, ljChimeraJson, ljDDObjects,
+              ljEasyJson, ljJsonDoc);
 
   ILib = interface
   ['{BC59958C-81A8-4C5B-9847-2E51C3C6BCF2}']
@@ -37,8 +37,8 @@ implementation
 uses
   TJ.LibMcJSON, TJ.LibLkJSON, TJ.LibSystemJSON, TJ.LibJDO, TJ.LibSuperObject,
   TJ.LibXSuperObject, TJ.LibJsonTools, TJ.LibJson4Delphi, TJ.LibGrijjyBson,
-  TJ.LibNeslibJson, TJ.LibDwsJSON, TJ.LibJsonDoc, TJ.LibChimeraJson,
-  TJ.LibDynamicDataObjects, TJ.LibEasyJson;
+  TJ.LibNeslibJson, TJ.LibDwsJSON, TJ.LibChimeraJson,
+  TJ.LibDynamicDataObjects, TJ.LibEasyJson, TJ.LibJsonDoc;
 
 class function TLibFactory.CreateLib(aType: TLibType): ILib;
 begin
@@ -53,10 +53,10 @@ begin
   else if (aType = ljGrijjyBson  ) then Result := TLibGrijjyBson.Create()
   else if (aType = ljNeslibJson  ) then Result := TLibNeslibJson.Create()
   else if (aType = ljDwsJSON     ) then Result := TLibDwsJSON.Create()
-  else if (aType = ljJsonDoc     ) then Result := TLibJsonDoc.Create()
   else if (aType = ljChimeraJson ) then Result := TLibChimeraJson.Create()
   else if (aType = ljDDObjects   ) then Result := TLibDynamicDataObjects.Create()
   else if (aType = ljEasyJson    ) then Result := TLibEasyJson.Create()
+  else if (aType = ljJsonDoc     ) then Result := TLibJsonDoc.Create()
   else                                  Result := nil;
 end;
 

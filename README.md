@@ -22,11 +22,12 @@ Library          | Delphi | C++Builder |
 [Grijjy.Bson](https://github.com/grijjy/GrijjyFoundation)                                  | ✓ |   |
 [Neslib.Json](https://github.com/neslib/Neslib.Json)                                       | ✓ |   |
 [dwsJSON](https://github.com/EricGrange/DWScript)                                          | ✓ |   |
-[jsonDoc](http://github.com/stijnsanders/jsonDoc#jsonDoc)                                  | ✓ |   |
 [chimera.json](https://bitbucket.org/sivv/chimera/src/develop/)                            | ✓ |   |
 [DynamicDataObjects](https://github.com/SeanSolberg/DynamicDataObjects)                    | ✓ |   |
 [EasyJson](https://github.com/tinyBigGAMES/EasyJson)                                       | ✓ |   |
+[jsonDoc](http://github.com/stijnsanders/jsonDoc#jsonDoc)                                  | ✓ |   |
 
+Note: in order of inclusion.
 
 ## Compilers and computer
 - `Delphi` VCL 32-bits project built with version `12.1` (Athens Community Edition).
@@ -64,7 +65,7 @@ This is a performance test with the following configuration (select `Default` in
 
 ### Results with Delphi
 
-Library             | Generate  | Save     | Load     | Find     | Parse    | Total     | Memory    |
+Library             | Generate  | Save     | Load     | Find     | Parse    | [Total]   | Memory    |
 :-------------------|----------:|---------:|---------:|---------:|---------:|----------:|----------:|
 `Neslib.Json`       |     .03 s |    .03 s |    .03 s |    .00 s |    .04 s |    0.18 s | 10.19 MiB |  
 `Grijjy.Bson`       |     .03 s |    .04 s |    .04 s |    .00 s |    .06 s |    0.23 s |  7.52 MiB |
@@ -73,6 +74,7 @@ Library             | Generate  | Save     | Load     | Find     | Parse    | To
 `System.JSON`       |     .02 s |    .01 s |    .06 s |    .22 s |    .06 s |    0.43 s | 11.38 MiB |
 `EasyJson`          |     .02 s |    .01 s |    .06 s |    .23 s |    .07 s |    0.45 s | 11.38 MiB |  
 `LkJson`            |     .06 s |    .05 s |    .10 s |    .01 s |    .14 s |    0.45 s |  2.99 MiB |
+`JsonDoc`           |     .18 s |    .07 s |    .11 s |    .01 s |    .27 s |    0.70 s |  6.14 MiB |
 `SuperObject`       |     .13 s |   1.21 s |    .05 s |    .00 s |    .06 s |    1.53 s |  9.68 MiB |
 `dwsJSON`           |     .01 s |    .01 s |   0.92 s |    .03 s |   0.91 s |    1.92 s |  9.88 MiB |
 `JsonDataObjects`   |    5.61 s |    .01 s |    .09 s |    .11 s |    .10 s |    5.97 s |  8.98 MiB |
@@ -136,6 +138,7 @@ Library             | Expected to Fail but Passed                      | Expecte
 `chimera.json`      |         fail(01, 08, 10, 16, 18, 19, 20, 21, 23) |                             - |
 `DynamicDataObjects`|     fail(05, 06, 07, 09, 16, 17, 18, 19, 20, 21) |                  pass(01, 05) |
 `EasyJson`          |                                         fail(07) |                  pass(04, 05) |
+`JsonDoc`           |                                 fail(15, 20, 21) |          pass(01, 02, 04, 05) |
 
 ### Results with C++Builder1
 

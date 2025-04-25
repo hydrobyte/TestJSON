@@ -113,10 +113,10 @@ begin
   RbgLib.Items.Add('Grijjy.Bson'       );
   RbgLib.Items.Add('Neslib.Json'       );
   RbgLib.Items.Add('dwsJSON'           );
-  RbgLib.Items.Add('jsonDoc'           );
   RbgLib.Items.Add('chimera.json'      );
   RbgLib.Items.Add('DynamicDataObjects');
-  RbgLib.Items.Add('EasyJson'          ); // If edit, see also: TJ.Lib.pas
+  RbgLib.Items.Add('EasyJson'          );
+  RbgLib.Items.Add('jsonDoc'           ); // If edit, see also: TJ.Lib.pas
   // tabs
   PageControl.ActivePageIndex := 0;
   RbgLib.ItemIndex := 0;
