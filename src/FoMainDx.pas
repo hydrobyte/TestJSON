@@ -96,24 +96,26 @@ const
 procedure TFormMain.FormCreate(Sender: TObject);
 begin
   // version
-  LbVersion.Caption := 'Test JSON 0.9.4 - Delphi 11.3 Alexandria (CE)';
+  LbVersion.Caption := 'Test JSON 0.9.5 - Delphi 12.1 Athens (CE)';
   FEventsFreezed := false;
   // statistics clock
   TestClock := TTestClock.Create;
   // libraries.
   RbgLib.Items.Clear;
-  RbgLib.Items.Add('McJSON'         );
-  RbgLib.Items.Add('LkJSON'         );
-  RbgLib.Items.Add('System.JSON'    );
-  RbgLib.Items.Add('JsonDataObjects');
-  RbgLib.Items.Add('SuperObject'    );
-  RbgLib.Items.Add('X-SuperObject'  );
-  RbgLib.Items.Add('JsonTools'      );
-  RbgLib.Items.Add('Json4Delphi'    );
-  RbgLib.Items.Add('Grijjy.Bson'    );
-  RbgLib.Items.Add('Neslib.Json'    );
-  RbgLib.Items.Add('dwsJSON'        );
-  RbgLib.Items.Add('chimera.json'   );
+  RbgLib.Items.Add('McJSON'            );
+  RbgLib.Items.Add('LkJSON'            );
+  RbgLib.Items.Add('System.JSON'       );
+  RbgLib.Items.Add('JsonDataObjects'   );
+  RbgLib.Items.Add('SuperObject'       );
+  RbgLib.Items.Add('X-SuperObject'     );
+  RbgLib.Items.Add('JsonTools'         );
+  RbgLib.Items.Add('Json4Delphi'       );
+  RbgLib.Items.Add('Grijjy.Bson'       );
+  RbgLib.Items.Add('Neslib.Json'       );
+  RbgLib.Items.Add('dwsJSON'           );
+  RbgLib.Items.Add('chimera.json'      );
+  RbgLib.Items.Add('DynamicDataObjects');
+  RbgLib.Items.Add('EasyJson'          ); // If edit, see also: TJ.Lib.pas
   // tabs
   PageControl.ActivePageIndex := 0;
   RbgLib.ItemIndex := 0;

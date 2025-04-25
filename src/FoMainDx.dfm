@@ -2,7 +2,7 @@ object FormMain: TFormMain
   Left = 0
   Top = 0
   Caption = 'Test JSON Libraries'
-  ClientHeight = 392
+  ClientHeight = 428
   ClientWidth = 598
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -15,11 +15,11 @@ object FormMain: TFormMain
   OnDestroy = FormDestroy
   DesignSize = (
     598
-    392)
+    428)
   TextHeight = 13
   object ImgLogo: TImage
     Left = 8
-    Top = 354
+    Top = 390
     Width = 32
     Height = 32
     Anchors = [akLeft, akBottom]
@@ -2516,10 +2516,11 @@ object FormMain: TFormMain
       6C34D0FE6732D2FE6330D4FE5E2DD6FE592BD8FE5429D6FE4F269CFE4B241500
       00AC410000AC410000AC410000AC410000AC410000AC410000AC410000AC4100
       00AC410000AC410000AC410000AC410000AC410000AC410000AC410000AC41}
+    ExplicitTop = 354
   end
   object LbVersion: TLabel
     Left = 48
-    Top = 354
+    Top = 390
     Width = 55
     Height = 13
     Anchors = [akLeft, akBottom]
@@ -2530,55 +2531,55 @@ object FormMain: TFormMain
     Font.Name = 'Tahoma'
     Font.Style = [fsBold]
     ParentFont = False
+    ExplicitTop = 354
   end
   object LbTM: TLabel
     Left = 48
-    Top = 369
+    Top = 405
     Width = 113
     Height = 13
     Anchors = [akLeft, akBottom]
     Caption = 'by HydroByte Software'
+    ExplicitTop = 369
   end
   object PageControl: TPageControl
     Left = 8
     Top = 8
     Width = 587
-    Height = 339
+    Height = 375
     ActivePage = TabConfig
     Anchors = [akLeft, akTop, akRight, akBottom]
     TabOrder = 0
-    ExplicitWidth = 583
-    ExplicitHeight = 338
+    ExplicitHeight = 339
     object TabConfig: TTabSheet
       Caption = 'Tests'
       ImageIndex = 1
       DesignSize = (
         579
-        311)
+        347)
       object RbgLib: TRadioGroup
         Left = 8
         Top = 3
         Width = 150
-        Height = 299
+        Height = 335
         Anchors = [akLeft, akTop, akBottom]
         Caption = 'Libraries'
         TabOrder = 0
         OnClick = CtrlChange
-        ExplicitHeight = 298
+        ExplicitHeight = 299
       end
       object GbxTestConfig: TGroupBox
         Left = 164
         Top = 3
         Width = 406
-        Height = 299
+        Height = 335
         Anchors = [akLeft, akTop, akRight, akBottom]
         Caption = 'Test Configuration'
         TabOrder = 1
-        ExplicitWidth = 402
-        ExplicitHeight = 298
+        ExplicitHeight = 299
         DesignSize = (
           406
-          299)
+          335)
         object LbType: TLabel
           Left = 8
           Top = 24
@@ -2710,12 +2711,11 @@ object FormMain: TFormMain
           Left = 8
           Top = 48
           Width = 391
-          Height = 240
+          Height = 276
           ActivePage = TabSpeed
           Anchors = [akLeft, akTop, akRight, akBottom]
           TabOrder = 1
-          ExplicitWidth = 387
-          ExplicitHeight = 239
+          ExplicitHeight = 240
           object TabSpeed: TTabSheet
             Caption = 'TabSpeed'
             object Bevel: TBevel
@@ -2865,7 +2865,7 @@ object FormMain: TFormMain
             ImageIndex = 1
             DesignSize = (
               383
-              212)
+              248)
             object LbValidFolder: TLabel
               Left = 4
               Top = 12
@@ -2896,7 +2896,7 @@ object FormMain: TFormMain
             ImageIndex = 2
             DesignSize = (
               383
-              212)
+              248)
             object LbOpenFile: TLabel
               Left = 4
               Top = 12
@@ -2924,7 +2924,6 @@ object FormMain: TFormMain
           Anchors = [akLeft, akTop, akRight]
           TabOrder = 2
           OnChange = CbxPresetChange
-          ExplicitWidth = 134
         end
       end
     end
@@ -2935,7 +2934,7 @@ object FormMain: TFormMain
         Left = 3
         Top = 3
         Width = 573
-        Height = 305
+        Height = 341
         Align = alClient
         Font.Charset = ANSI_CHARSET
         Font.Color = clWindowText
@@ -2950,26 +2949,24 @@ object FormMain: TFormMain
   end
   object BtRun: TButton
     Left = 429
-    Top = 357
+    Top = 393
     Width = 75
     Height = 25
     Anchors = [akRight, akBottom]
     Caption = 'Run'
     TabOrder = 1
     OnClick = BtRunClick
-    ExplicitLeft = 425
-    ExplicitTop = 356
+    ExplicitTop = 357
   end
   object BtClose: TButton
     Left = 520
-    Top = 357
+    Top = 393
     Width = 75
     Height = 25
     Anchors = [akRight, akBottom]
     Caption = 'Close'
     TabOrder = 2
     OnClick = BtCloseClick
-    ExplicitLeft = 516
-    ExplicitTop = 356
+    ExplicitTop = 357
   end
 end

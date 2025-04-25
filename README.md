@@ -23,12 +23,14 @@ Library          | Delphi | C++Builder |
 [Neslib.Json](https://github.com/neslib/Neslib.Json)                                       | ✓ |   |
 [dwsJSON](https://github.com/EricGrange/DWScript)                                          | ✓ |   |
 [chimera.json](https://bitbucket.org/sivv/chimera/src/develop/)                            | ✓ |   |
+[DynamicDataObjects](https://github.com/SeanSolberg/DynamicDataObjects)                    | ✓ |   |
+[EasyJson](https://github.com/tinyBigGAMES/EasyJson)                                       | ✓ |   |
 
 
 ## Compilers and computer
-- `Delphi` VCL 32 bits project built with version `11.3` (Alexandria/CE).
-- `C++Builder` VCL 32 bits project built with version `10.2` (Tokyo).
-- Old 64 bits machine: AMD A12-9700P RADEON R7, 10 COMPUTE CORES 4C+6G - 2.50 GHz - 12 GB RAM.
+- `Delphi` VCL 32-bits project built with version `12.1` (Athens Community Edition).
+- `C++Builder` VCL 32-bits project built with version `10.2` (Tokyo).
+- Old 64-bits machine: AMD A12-9700P RADEON R7, 10 COMPUTE CORES 4C+6G - 2.50 GHz - 12 GB RAM.
 
 
 ## Tests
@@ -61,20 +63,26 @@ This is a performance test with the following configuration (select `Default` in
 
 ### Results with Delphi
 
-Library          | Generate  | Save     | Load     | Find     | Parse    | Total     | Memory    |
-:----------------|----------:|---------:|---------:|---------:|---------:|----------:|----------:|
-`Neslib.Json`    |     .03 s |    .03 s |    .03 s |    .00 s |    .04 s |    0.18 s | 10.16 MiB |  
-`Grijjy.Bson`    |     .05 s |    .04 s |    .05 s |    .00 s |    .07 s |    0.26 s |  7.48 MiB |
-`chimera.json`   |     .06 s |    .03 s |    .08 s |    .01 s |    .09 s |    0.35 s |  8.77 MiB |  
-`McJSON`         |     .02 s |    .06 s |    .03 s |    .20 s |    .07 s |    0.42 s |  9.84 MiB |  
-`LkJson`         |     .07 s |    .05 s |    .11 s |    .01 s |    .15 s |    0.49 s |  2.88 MiB |
-`SuperObject`    |     .13 s |   1.15 s |    .04 s |    .01 s |    .06 s |    1.46 s |  9.63 MiB |
-`System.JSON`    |     .03 s |    .05 s |    .24 s |    .88 s |    .28 s |    1.55 s |  9.39 MiB |
-`dwsJSON`        |     .02 s |    .02 s |   1.02 s |    .02 s |   1.01 s |    2.13 s |  9.88 MiB |
-`JsonDataObjects`|    5.86 s |    .01 s |    .10 s |    .11 s |    .10 s |    6.22 s |  8.92 MiB |
-`JsonTools`      |   11.10 s |        - |        - |    .23 s |  10.00 s |   21.37 s |  7.77 MiB |
-`Json4Delphi`    |     .03 s |    .06 s |  37.43 s |    .47 s |  37.20 s |   75.24 s | 11.46 MiB |
-`X-SuperObject`  |  5.18 min |    .06 s | 1.77 min |   6.18 s | 1.76 min |  8.81 min | 11.48 MiB |
+Library             | Generate  | Save     | Load     | Find     | Parse    | Total     | Memory    |
+:-------------------|----------:|---------:|---------:|---------:|---------:|----------:|----------:|
+`Neslib.Json`       |     .03 s |    .03 s |    .03 s |    .00 s |    .04 s |    0.18 s | 10.19 MiB |  
+`Grijjy.Bson`       |     .03 s |    .04 s |    .04 s |    .00 s |    .06 s |    0.23 s |  7.52 MiB |
+`chimera.json`      |     .04 s |    .03 s |    .08 s |    .01 s |    .08 s |    0.30 s |  8.78 MiB |  
+`McJSON`            |     .02 s |    .06 s |    .02 s |    .18 s |    .08 s |    0.41 s |  9.85 MiB |
+`System.JSON`       |     .02 s |    .01 s |    .06 s |    .22 s |    .06 s |    0.43 s | 11.38 MiB |
+`EasyJson`          |     .02 s |    .01 s |    .06 s |    .23 s |    .07 s |    0.45 s | 11.38 MiB |  
+`LkJson`            |     .06 s |    .05 s |    .10 s |    .01 s |    .14 s |    0.45 s |  2.99 MiB |
+`SuperObject`       |     .13 s |   1.21 s |    .05 s |    .00 s |    .06 s |    1.53 s |  9.68 MiB |
+`dwsJSON`           |     .01 s |    .01 s |   0.92 s |    .03 s |   0.91 s |    1.92 s |  9.88 MiB |
+`JsonDataObjects`   |    5.61 s |    .01 s |    .09 s |    .11 s |    .10 s |    5.97 s |  8.98 MiB |
+`JsonTools`         |   10.36 s |        - |        - |    .22 s |   8.55 s |   19.18 s |  7.88 MiB |
+`Json4Delphi`       |     .02 s |    .06 s |  35.00 s |    .40 s |  35.71 s |   71.23 s | 11.57 MiB |
+`DynamicDataObjects`|   28.73 s |    .02 s |  30.24 s |    .58 s |  29.25 s |   88.88 s | 11.51 MiB |
+`X-SuperObject`     |  5.18 min |    .06 s | 1.77 min |   6.18 s | 1.76 min |  8.81 min | 11.48 MiB |
+
+Notes: 
+- See [Conclusions](#Conclusions) about the `EasyJson` and `System.JSON`.
+- See [Know issues](#know-issues) about the incomplete test for `JsonTools`.
 
 ### Results with C++Builder
 
@@ -111,22 +119,24 @@ This validation test should be analyzed carefully. Some libraries have violation
 
 ### Results with Delphi
 
-Library          | Expected to Fail but Passed                      | Expected to Pass but Failed   |
-:----------------|-------------------------------------------------:|------------------------------:|
-`McJSON`         |                                                - |                             - |
-`LkJson`         |             fail(01, 07, 08, 16, 18, 19, 20, 21) |                             - |
-`System.JSON`    |                                         fail(07) |                      pass(04) |
-`JsonDataObjects`|                     fail(01, 05, 08, 15, 18, 19) |                  pass(04, 05) |
-`SuperObject`    | fail(01, 06, 07, 08, 10, 11, 16, 18, 19, 20, 21) |                             - |
-`X-SuperObject`  |     fail(01, 06, 08, 15, 16, 17, 18, 19, 20, 21) |              pass(01, 04, 05) |
-`JsonTools`      |                             fail(01, 16, 20, 21) |                  pass(04, 05) |
-`Json4Delphi`    |                                                - |      pass(01, 03, 04, 05, 06) |
-`Grijjy.Bson`    |                                     fail(15, 20) |          pass(01, 02, 04, 05) |
-`Neslib.Json`    |                 fail(07, 15, 16, 18, 19, 20, 21) |                  pass(04, 05) |
-`dwsJSON`        |                             fail(16, 18, 19, 21) |                             - |
-`chimera.json`   |         fail(01, 08, 10, 16, 18, 19, 20, 21, 23) |                             - |
+Library             | Expected to Fail but Passed                      | Expected to Pass but Failed   |
+:-------------------|-------------------------------------------------:|------------------------------:|
+`McJSON`            |                                                - |                             - |
+`LkJson`            |             fail(01, 07, 08, 16, 18, 19, 20, 21) |                             - |
+`System.JSON`       |                                         fail(07) |                      pass(04) |
+`JsonDataObjects`   |                     fail(01, 05, 08, 15, 18, 19) |                  pass(04, 05) |
+`SuperObject`       | fail(01, 06, 07, 08, 10, 11, 16, 18, 19, 20, 21) |                             - |
+`X-SuperObject`     |     fail(01, 06, 08, 15, 16, 17, 18, 19, 20, 21) |              pass(01, 04, 05) |
+`JsonTools`         |                             fail(01, 16, 20, 21) |                  pass(04, 05) |
+`Json4Delphi`       |                                                - |      pass(01, 03, 04, 05, 06) |
+`Grijjy.Bson`       |                                     fail(15, 20) |          pass(01, 02, 04, 05) |
+`Neslib.Json`       |                 fail(07, 15, 16, 18, 19, 20, 21) |                  pass(04, 05) |
+`dwsJSON`           |                             fail(16, 18, 19, 21) |                             - |
+`chimera.json`      |         fail(01, 08, 10, 16, 18, 19, 20, 21, 23) |                             - |
+`DynamicDataObjects`|     fail(05, 06, 07, 09, 16, 17, 18, 19, 20, 21) |                  pass(01, 05) |
+`EasyJson`          |                                         fail(07) |                  pass(04, 05) |
 
-### Results with C++Builder
+### Results with C++Builder1
 
 Library          | Expected to Fail but Passed          | Expected to Pass but Failed   |
 :----------------|-------------------------------------:|------------------------------:|
@@ -139,7 +149,7 @@ Library          | Expected to Fail but Passed          | Expected to Pass but F
 
 List of test files names and description
 - `fail01.json = \x is not a valid escape character`
-- `fail02.json = Objects require colon between name/value`
+- `fail02.json = Objects require colon between name/value`1111111
 - `fail03.json = Objects do not have comma separators`
 - `fail04.json = Arrays don't have colon separators`
 - `fail05.json = Truth is not a valid boolean value`
@@ -168,6 +178,7 @@ List of test files names and description
 - `pass05.json = Unicode character string`
 - `pass06.json = From https://json.org/example.html`
 
+
 ## Open File test
 This is a simple test to open files with any library included into this project.
 This test will be used in a future update with very large JSON files (+ 100 MiB in size).
@@ -184,19 +195,20 @@ This test will be used in a future update with very large JSON files (+ 100 MiB 
 ````cpp
 JsonP = dynamic_cast<TlkJSONObject*>(TlkJSON::ParseText(TlkJSON::GenerateText(Json)))
 ````
-
 5. The `Validation` tests can demonstrate that even the most modern libraries can have occasional small violations against the standard.
 
 6. For older versions of `Delphi` and `C++Builder`, the `McJSON` library can be a good choice in terms of compatibility, ease of use and good performance.
 
 7. This project demonstrates some of the facilities and obstacles encountered by C++Builder developers in using libraries developed for Delphi.
 
+8. `EasyJson` uses `System.JSON` internally, so it is expected to see similar results.
+
 
 ## Know issues
 - `TgoBsonDocument.LoadFromJsonFile()` failed.
 - `SuperObject` compiles but it is not working with C++Builder. Any help getting `SuperObject` working with C++Builder is appreciated.
-- `JsonTools` had problems saving to file: it was truncated at object `"key25412"`.
-- `JsonTools` gave a error `Root node must be an array or object` trying to load form a UTF-8 file with 50k items file from other sub-tests.
+- `JsonTools` had problems saving to file: it was truncated at object `"key25412"`. So, `Speed Run` tests were ran without the `Clear` and `Load from file` steps.
+- `JsonTools` gave an error `Root node must be an array or object` trying to load form a UTF-8 file with 50k items file from other sub-tests.
 - `chimera.json` seems to completelly break Delphi 10.4's code completion (Code insight manager = LSP).
 
 These libraries were tested:
@@ -211,6 +223,6 @@ There were necessary modifications in order to compile and run some libraries wi
   - `TlkJSONstreamed.LoadFromStream();`
   - `TlkJSONstreamed.SaveToStream();`
 - `SuperObject`: 
-  - `defined(VER290) or defined(VER300) or defined(VER310) or defined(VER320) or defined(VER330) or defined(VER340) or defined(VER350)`
+  - `defined(VER290) or defined(VER300) or defined(VER310) or defined(VER320) or defined(VER330) or defined(VER340) or defined(VER350) or defined(VER360)`
   - `procedure FromInterface;`
 
