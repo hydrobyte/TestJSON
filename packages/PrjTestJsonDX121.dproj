@@ -108,6 +108,7 @@
         <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
         <DCC_RemoteDebug>false</DCC_RemoteDebug>
         <AppDPIAwarenessMode>PerMonitor</AppDPIAwarenessMode>
+        <BT_BuildType>Debug</BT_BuildType>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win64)'!=''">
         <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
@@ -179,6 +180,8 @@
         <DCCReference Include="..\src\pas\DynamicDataObjects\StreamCache.pas"/>
         <DCCReference Include="..\src\pas\DynamicDataObjects\StringBTree.pas"/>
         <DCCReference Include="..\src\pas\DynamicDataObjects\VarInt.pas"/>
+        <DCCReference Include="..\src\pas\jsonDoc.pas"/>
+        <DCCReference Include="..\src\TJ.LibJsonDoc.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
@@ -209,6 +212,12 @@
                 <Platform value="Win64">False</Platform>
             </Platforms>
             <Deployment Version="4">
+                <DeployFile LocalName="Win32\Debug\PrjTestJsonDX121.exe" Configuration="Debug" Class="ProjectOutput">
+                    <Platform Name="Win32">
+                        <RemoteName>PrjTestJsonDX121.exe</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
                 <DeployFile LocalName="Win32\Release\PrjTestJsonDX113.exe" Configuration="Release" Class="ProjectOutput"/>
                 <DeployFile LocalName="Win32\Release\PrjTestJsonDX121.exe" Configuration="Release" Class="ProjectOutput">
                     <Platform Name="Win32">

@@ -42,7 +42,9 @@ uses
   DataObjects2Utils in '..\src\pas\DynamicDataObjects\DataObjects2Utils.pas',
   StreamCache in '..\src\pas\DynamicDataObjects\StreamCache.pas',
   StringBTree in '..\src\pas\DynamicDataObjects\StringBTree.pas',
-  VarInt in '..\src\pas\DynamicDataObjects\VarInt.pas';
+  VarInt in '..\src\pas\DynamicDataObjects\VarInt.pas',
+  jsonDoc in '..\src\pas\jsonDoc.pas',
+  TJ.LibJsonDoc in '..\src\TJ.LibJsonDoc.pas';
 
 {$R *.res}
 

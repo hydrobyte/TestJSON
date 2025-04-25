@@ -22,6 +22,7 @@ Library          | Delphi | C++Builder |
 [Grijjy.Bson](https://github.com/grijjy/GrijjyFoundation)                                  | ✓ |   |
 [Neslib.Json](https://github.com/neslib/Neslib.Json)                                       | ✓ |   |
 [dwsJSON](https://github.com/EricGrange/DWScript)                                          | ✓ |   |
+[jsonDoc](http://github.com/stijnsanders/jsonDoc#jsonDoc)                                  | ✓ |   |
 [chimera.json](https://bitbucket.org/sivv/chimera/src/develop/)                            | ✓ |   |
 [DynamicDataObjects](https://github.com/SeanSolberg/DynamicDataObjects)                    | ✓ |   |
 [EasyJson](https://github.com/tinyBigGAMES/EasyJson)                                       | ✓ |   |
