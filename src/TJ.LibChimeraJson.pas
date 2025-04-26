@@ -11,7 +11,7 @@ type
   
   TLibChimeraJson = class (TInterfacedObject, ILib)
   public
-    constructor Create;
+    procedure AfterConstruction; override;
     destructor  Destroy; override;
     procedure Add(const aKey, aValue: string);
     function  Count: Integer;
@@ -30,9 +30,9 @@ type
 
 implementation
 
-constructor TLibChimeraJson.Create;
+procedure TLibChimeraJson.AfterConstruction;
 begin
-  inherited Create;
+  inherited;
   fName := 'chimera.json';
   fJson      := TJSON.New;
   fJsonClone := TJSON.New;
@@ -102,4 +102,6 @@ begin
   Result := fName;
 end;
 
+initialization
+  RegisterTJLib('chimera.json', TLibChimeraJson);
 end.

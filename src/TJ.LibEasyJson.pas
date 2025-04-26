@@ -8,10 +8,10 @@ uses
   EasyJson;
 
 type
-  
+
   TLibEasyJson = class (TInterfacedObject, ILib)
   public
-    constructor Create;
+    procedure AfterConstruction; override;
     destructor  Destroy; override;
     procedure Add(const aKey, aValue: string);
     function  Count: Integer;
@@ -30,9 +30,9 @@ type
 
 implementation
 
-constructor TLibEasyJson.Create;
+procedure TLibEasyJson.AfterConstruction;
 begin
-  inherited Create;
+  inherited;
   fName := 'EasyJson';
   fJson      := TEasyJson.Create;
   fJsonClone := TEasyJson.Create;
@@ -105,4 +105,6 @@ begin
   Result := fName;
 end;
 
+initialization
+  RegisterTJLib('EasyJson', TLibEasyJson);
 end.

@@ -84,8 +84,6 @@
         <VerInfo_Locale>1033</VerInfo_Locale>
         <UWP_DelphiLogo44>$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_44.png</UWP_DelphiLogo44>
         <UWP_DelphiLogo150>$(BDS)\bin\Artwork\Windows\UWP\delphi_UwpDefault_150.png</UWP_DelphiLogo150>
-        <DCC_UnitSearchPath>..\src\pas\chimera;..\src\pas\DWScript;..\src\pas\DynamicDataObjects;..\src\pas\Grijjy;..\src\pas\Json4Delphi;..\src\pas\Neslib;..\src\pas\superobject;..\src\pas\XSuperObject;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
-        <AppDPIAwarenessMode>none</AppDPIAwarenessMode>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Base_Win64)'!=''">
         <DCC_Namespace>Winapi;System.Win;Data.Win;Datasnap.Win;Web.Win;Soap.Win;Xml.Win;$(DCC_Namespace)</DCC_Namespace>
@@ -107,6 +105,7 @@
         <Icon_MainIcon>..\images\TestJSON.ico</Icon_MainIcon>
         <VerInfo_Locale>1033</VerInfo_Locale>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
+        <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
         <DCC_RemoteDebug>false</DCC_RemoteDebug>
         <AppDPIAwarenessMode>PerMonitor</AppDPIAwarenessMode>
         <BT_BuildType>Debug</BT_BuildType>
@@ -141,10 +140,13 @@
             <Form>FormMain</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="..\src\TJ.Lib.pas"/>
         <DCCReference Include="..\src\pas\JsonDataObjects.pas"/>
+        <DCCReference Include="..\src\pas\Jsons.pas"/>
         <DCCReference Include="..\src\pas\JsonTools.pas"/>
         <DCCReference Include="..\src\pas\McJSON.pas"/>
         <DCCReference Include="..\src\pas\McUtils.pas"/>
+        <DCCReference Include="..\src\pas\superobject.pas"/>
         <DCCReference Include="..\src\pas\uLkJSON.pas"/>
         <DCCReference Include="..\src\Mc.Param.pas"/>
         <DCCReference Include="..\src\TJ.TestSpeedRun.pas"/>
@@ -154,15 +156,19 @@
         <DCCReference Include="..\src\TJ.TestValid.pas"/>
         <DCCReference Include="..\src\TJ.LibSystemJSON.pas"/>
         <DCCReference Include="..\src\TJ.LibSuperObject.pas"/>
+        <DCCReference Include="..\src\pas\XSuperObject.pas"/>
         <DCCReference Include="..\src\TJ.LibXSuperObject.pas"/>
         <DCCReference Include="..\src\TJ.LibJsonTools.pas"/>
         <DCCReference Include="..\src\TJ.LibJson4Delphi.pas"/>
         <DCCReference Include="..\src\TJ.TestFOpen.pas"/>
-        <DCCReference Include="..\src\TJ.Lib.pas"/>
         <DCCReference Include="..\src\TJ.LibJDO.pas"/>
+        <DCCReference Include="..\src\pas\Grijjy.Bson.pas"/>
         <DCCReference Include="..\src\TJ.LibGrijjyBson.pas"/>
+        <DCCReference Include="..\src\pas\Neslib.Json.pas"/>
         <DCCReference Include="..\src\TJ.LibNeslibJson.pas"/>
+        <DCCReference Include="..\src\pas\dwsJSON.pas"/>
         <DCCReference Include="..\src\TJ.LibDwsJSON.pas"/>
+        <DCCReference Include="..\src\pas\chimera.json.pas"/>
         <DCCReference Include="..\src\TJ.LibChimeraJson.pas"/>
         <DCCReference Include="..\src\TJ.LibDynamicDataObjects.pas"/>
         <DCCReference Include="..\src\pas\EasyJson.pas"/>
@@ -174,15 +180,8 @@
         <DCCReference Include="..\src\pas\DynamicDataObjects\StreamCache.pas"/>
         <DCCReference Include="..\src\pas\DynamicDataObjects\StringBTree.pas"/>
         <DCCReference Include="..\src\pas\DynamicDataObjects\VarInt.pas"/>
-        <DCCReference Include="..\src\TJ.LibJsonDoc.pas"/>
-        <DCCReference Include="..\src\pas\DWScript\dwsJSON.pas"/>
-        <DCCReference Include="..\src\pas\chimera\chimera.json.pas"/>
-        <DCCReference Include="..\src\pas\Grijjy\Grijjy.Bson.pas"/>
-        <DCCReference Include="..\src\pas\Neslib\Neslib.Json.pas"/>
-        <DCCReference Include="..\src\pas\superobject\superobject.pas"/>
-        <DCCReference Include="..\src\pas\XSuperObject\XSuperObject.pas"/>
-        <DCCReference Include="..\src\pas\Json4Delphi\Jsons.pas"/>
         <DCCReference Include="..\src\pas\jsonDoc.pas"/>
+        <DCCReference Include="..\src\TJ.LibJsonDoc.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
@@ -204,8 +203,8 @@
                     <Source Name="MainSource">PrjTestJsonDX121.dpr</Source>
                 </Source>
                 <Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\dcloffice2k290.bpl">Microsoft Office 2000 Sample Automation Server Wrapper Components</Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\dclofficexp290.bpl">Microsoft Office XP Sample Automation Server Wrapper Components</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\dclfmxstd240.bpl">Embarcadero FMX Standard Components</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\fmxstyledesigner240.bpl">Embarcadero Style Designer Package</Excluded_Packages>
                 </Excluded_Packages>
             </Delphi.Personality>
             <Platforms>

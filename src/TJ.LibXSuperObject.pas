@@ -8,10 +8,10 @@ uses
   XSuperObject;
 
 type
-  
+
   TLibXSuperObject = class (TInterfacedObject, ILib)
   public
-    constructor Create;
+    procedure AfterConstruction; override;
     destructor  Destroy; override;
     procedure Add(const aKey, aValue: string);
     function  Count: Integer;
@@ -29,9 +29,9 @@ type
 
 implementation
 
-constructor TLibXSuperObject.Create;
+procedure TLibXSuperObject.AfterConstruction;
 begin
-  inherited Create;
+  inherited;
   fName := 'X-SuperObject';
   fJson      := SO;
   fJsonClone := SO;
@@ -90,4 +90,6 @@ begin
   Result := fName;
 end;
 
+initialization
+  RegisterTJLib('X-SuperObject', TLibXSuperObject);
 end.

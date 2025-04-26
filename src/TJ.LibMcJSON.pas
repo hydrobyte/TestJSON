@@ -11,7 +11,7 @@ type
   
   TLibMcJSON = class (TInterfacedObject, ILib)
   public
-    constructor Create;
+    procedure AfterConstruction; override;
     destructor  Destroy; override;
     procedure Add(const aKey, aValue: string);
     function  Count: Integer;
@@ -30,9 +30,9 @@ type
 
 implementation
 
-constructor TLibMcJSON.Create;
+procedure TLibMcJSON.AfterConstruction;
 begin
-  inherited Create;
+  inherited;
   fName := 'McJSON';
   fJson      := TMcJsonItem.Create;
   fJsonClone := TMcJsonItem.Create;
@@ -96,4 +96,6 @@ begin
   Result := fName;
 end;
 
+initialization
+  RegisterTJLib('McJSON', TLibMcJSON);
 end.

@@ -11,7 +11,7 @@ type
   
   TLibSuperObject = class (TInterfacedObject, ILib)
   public
-    constructor Create;
+    procedure AfterConstruction; override;
     destructor  Destroy; override;
     procedure Add(const aKey, aValue: string);
     function  Count: Integer;
@@ -30,9 +30,9 @@ type
 
 implementation
 
-constructor TLibSuperObject.Create;
+procedure TLibSuperObject.AfterConstruction;
 begin
-  inherited Create;
+  inherited;
   fName := 'SuperObject';
   fJson      := SO;
   fJsonClone := SO;
@@ -101,4 +101,6 @@ begin
   Result := fName;
 end;
 
+initialization
+  RegisterTJLib('SuperObject', TLibSuperObject);
 end.

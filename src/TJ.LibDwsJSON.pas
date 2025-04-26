@@ -11,7 +11,7 @@ type
   
   TLibDwsJSON = class (TInterfacedObject, ILib)
   public
-    constructor Create;
+    procedure AfterConstruction; override;
     destructor  Destroy; override;
     procedure Add(const aKey, aValue: string);
     function  Count: Integer;
@@ -30,9 +30,9 @@ type
 
 implementation
 
-constructor TLibDwsJSON.Create;
+procedure TLibDwsJSON.AfterConstruction;
 begin
-  inherited Create;
+  inherited;
   fName := 'dwsJSON';
   fJson      := TdwsJSONObject.Create;
   fJsonClone := TdwsJSONObject.Create;
@@ -106,4 +106,6 @@ begin
   Result := fName;
 end;
 
+initialization
+  RegisterTJLib('dwsJSON', TLibDwsJSON);
 end.

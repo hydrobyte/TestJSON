@@ -11,7 +11,7 @@ type
   
   TLibDynamicDataObjects = class (TInterfacedObject, ILib)
   public
-    constructor Create;
+    procedure AfterConstruction; override;
     destructor  Destroy; override;
     procedure Add(const aKey, aValue: string);
     function  Count: Integer;
@@ -29,9 +29,9 @@ type
 
 implementation
 
-constructor TLibDynamicDataObjects.Create;
+procedure TLibDynamicDataObjects.AfterConstruction;
 begin
-  inherited Create;
+  inherited;
   fName := 'DynamicDataObjects';
   fJson      := TDataObj.Create;
   fJsonClone := TDataObj.Create;
@@ -104,4 +104,6 @@ begin
   Result := fName;
 end;
 
+initialization
+  RegisterTJLib('DynamicDataObjects', TLibDynamicDataObjects);
 end.
