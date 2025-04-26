@@ -26,30 +26,32 @@ type
   TLibFactory = class of TInterfacedObject;
 
 const
-  TJLibRegistryMax=20;
+  C_LIB_REGISTRY_MAX = 20;
+
 var
-  TJLibRegistryCount:integer;
-  TJLibRegistry: array[0..TJLibRegistryMax-1] of record
-    Name: string;
+  TJLibRegistryCount: Integer;
+  TJLibRegistry: array[0..C_LIB_REGISTRY_MAX-1] of record
+    Name   : string;
     Factory: TLibFactory;
   end;
 
-procedure RegisterTJLib(const LibName: string; LibFactory: TLibFactory);
+procedure RegisterTJLib(const aLibName: string; aLibFactory: TLibFactory);
 
 implementation
 
 uses
   System.SysUtils;
 
-procedure RegisterTJLib(const LibName: string; LibFactory: TLibFactory);
+procedure RegisterTJLib(const aLibName: string; aLibFactory: TLibFactory);
 begin
-  if TJLibRegistryCount=TJLibRegistryMax then
-    raise Exception.Create('Too many TJLib, raise TJLibRegistryMax');
-  TJLibRegistry[TJLibRegistryCount].Name:=LibName;
-  TJLibRegistry[TJLibRegistryCount].Factory:=LibFactory;
-  inc(TJLibRegistryCount);
+  if (TJLibRegistryCount = C_LIB_REGISTRY_MAX) then
+    raise Exception.Create('Too many TJLib, raise C_LIB_REGISTRY_MAX');
+  // See TJ.Lib<name> initialization section.
+  TJLibRegistry[TJLibRegistryCount].Name   := aLibName;
+  TJLibRegistry[TJLibRegistryCount].Factory:= aLibFactory;
+  Inc(TJLibRegistryCount);
 end;
 
 initialization
-  TJLibRegistryCount:=0;
+  TJLibRegistryCount := 0;
 end.

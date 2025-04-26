@@ -102,7 +102,7 @@ begin
   FEventsFreezed := false;
   // statistics clock
   TestClock := TTestClock.Create;
-  // libraries.
+  // libraries: see RegisterTJLib in TJ.Lib.
   RbgLib.Items.Clear;
   for i:=0 to TJLibRegistryCount-1 do
     RbgLib.Items.Add(TJLibRegistry[i].Name);
