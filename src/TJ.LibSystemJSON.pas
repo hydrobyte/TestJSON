@@ -8,10 +8,10 @@ uses
   System.JSON;
 
 type
-  
+
   TLibSystemJSON = class (TInterfacedObject, ILib)
   public
-    constructor Create;
+    procedure AfterConstruction; override;
     destructor  Destroy; override;
     procedure Add(const aKey, aValue: string);
     function  Count: Integer;
@@ -30,9 +30,9 @@ type
 
 implementation
 
-constructor TLibSystemJSON.Create;
+procedure TLibSystemJSON.AfterConstruction;
 begin
-  inherited Create;
+  inherited;
   fName := 'System.JSON';
   fJson      := TJSONObject.Create;
   fJsonClone := TJSONObject.Create;
@@ -108,4 +108,6 @@ begin
   Result := fName;
 end;
 
+initialization
+  RegisterTJLib('System.JSON', TLibSystemJSON);
 end.

@@ -11,7 +11,7 @@ type
   
   TLibNeslibJson = class (TInterfacedObject, ILib)
   public
-    constructor Create;
+    procedure AfterConstruction; override;
     destructor  Destroy; override;
     procedure Add(const aKey, aValue: string);
     function  Count: Integer;
@@ -30,9 +30,9 @@ type
 
 implementation
 
-constructor TLibNeslibJson.Create;
+procedure TLibNeslibJson.AfterConstruction;
 begin
-  inherited Create;
+  inherited;
   fName := 'Neslib.Json';
   fJson      := TJsonDocument.CreateDictionary;
   fJsonClone := TJsonDocument.CreateDictionary;
@@ -102,4 +102,6 @@ begin
   Result := fName;
 end;
 
+initialization
+  RegisterTJLib('Neslib.Json', TLibNeslibJson);
 end.

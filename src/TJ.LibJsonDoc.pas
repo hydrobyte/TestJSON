@@ -11,7 +11,7 @@ type
 
   TLibJsonDoc = class (TInterfacedObject, ILib)
   public
-    constructor Create;
+    procedure AfterConstruction; override;
     destructor  Destroy; override;
     procedure Add(const aKey, aValue: string);
     function  Count: Integer;
@@ -30,9 +30,9 @@ type
 
 implementation
 
-constructor TLibJsonDoc.Create;
+procedure TLibJsonDoc.AfterConstruction;
 begin
-  inherited Create;
+  inherited;
   fName := 'jsonDoc';
   fJson      := JSON;
   fJsonClone := JSON;
@@ -113,4 +113,6 @@ begin
   Result := fName;
 end;
 
+initialization
+  RegisterTJLib('jsonDoc', TLibJsonDoc);
 end.

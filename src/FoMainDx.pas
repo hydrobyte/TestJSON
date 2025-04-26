@@ -94,6 +94,8 @@ const
   C_PRESET_FILE = '..\\..\\preset.json';
 
 procedure TFormMain.FormCreate(Sender: TObject);
+var
+  i: integer;
 begin
   // version
   LbVersion.Caption := 'Test JSON 0.9.5 - Delphi 12.1 Athens (CE)';
@@ -102,21 +104,8 @@ begin
   TestClock := TTestClock.Create;
   // libraries.
   RbgLib.Items.Clear;
-  RbgLib.Items.Add('McJSON'            );
-  RbgLib.Items.Add('LkJSON'            );
-  RbgLib.Items.Add('System.JSON'       );
-  RbgLib.Items.Add('JsonDataObjects'   );
-  RbgLib.Items.Add('SuperObject'       );
-  RbgLib.Items.Add('X-SuperObject'     );
-  RbgLib.Items.Add('JsonTools'         );
-  RbgLib.Items.Add('Json4Delphi'       );
-  RbgLib.Items.Add('Grijjy.Bson'       );
-  RbgLib.Items.Add('Neslib.Json'       );
-  RbgLib.Items.Add('dwsJSON'           );
-  RbgLib.Items.Add('chimera.json'      );
-  RbgLib.Items.Add('DynamicDataObjects');
-  RbgLib.Items.Add('EasyJson'          );
-  RbgLib.Items.Add('jsonDoc'           ); // If edit, see also: TJ.Lib.pas
+  for i:=0 to TJLibRegistryCount-1 do
+    RbgLib.Items.Add(TJLibRegistry[i].Name);
   // tabs
   PageControl.ActivePageIndex := 0;
   RbgLib.ItemIndex := 0;
@@ -301,7 +290,7 @@ end;
 
 function TFormMain.GetLib: ILib;
 begin
-  Result := TLibFactory.CreateLib(TLibType(RbgLib.ItemIndex));
+  Result := TJLibRegistry[RbgLib.ItemIndex].Factory.Create as ILib;
 end;
 
 function TFormMain.GetTest(aLib: ILib; aMyLog: TMyLog): TTest;

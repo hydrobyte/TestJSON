@@ -8,10 +8,10 @@ uses
   JsonDataObjects;
 
 type
-  
+
   TLibJDO = class (TInterfacedObject, ILib)
   public
-    constructor Create;
+    procedure AfterConstruction; override;
     destructor  Destroy; override;
     procedure Add(const aKey, aValue: string);
     function  Count: Integer;
@@ -30,7 +30,7 @@ type
 
 implementation
 
-constructor TLibJDO.Create;
+procedure TLibJDO.AfterConstruction;
 begin
   inherited Create;
   fName := 'JsonDataObjects';
@@ -105,4 +105,6 @@ begin
   Result := fName;
 end;
 
+initialization
+  RegisterTJLib('JsonDataObjects', TLibJDO);
 end.

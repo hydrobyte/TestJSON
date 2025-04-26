@@ -6,11 +6,6 @@ uses
   System.Classes;
 
 type
-  TLibType = (ljMcJSON, ljLkJSON, ljSystemJSON, ljJdoJSON, ljSuperObject,
-              ljXSuperObject, ljJsonTools, ljJson4Delphi, ljGrijjyBson,
-              ljNeslibJson, ljDwsJSON, ljChimeraJson, ljDDObjects,
-              ljEasyJson, ljJsonDoc);
-
   ILib = interface
   ['{BC59958C-81A8-4C5B-9847-2E51C3C6BCF2}']
     function fGetName: string;
@@ -28,36 +23,33 @@ type
     property Name: string read fGetName;
   end;
 
-  TLibFactory = class
-    class function CreateLib(aType: TLibType): ILib;
+  TLibFactory = class of TInterfacedObject;
+
+const
+  TJLibRegistryMax=20;
+var
+  TJLibRegistryCount:integer;
+  TJLibRegistry: array[0..TJLibRegistryMax-1] of record
+    Name: string;
+    Factory: TLibFactory;
   end;
+
+procedure RegisterTJLib(const LibName: string; LibFactory: TLibFactory);
 
 implementation
 
 uses
-  TJ.LibMcJSON, TJ.LibLkJSON, TJ.LibSystemJSON, TJ.LibJDO, TJ.LibSuperObject,
-  TJ.LibXSuperObject, TJ.LibJsonTools, TJ.LibJson4Delphi, TJ.LibGrijjyBson,
-  TJ.LibNeslibJson, TJ.LibDwsJSON, TJ.LibChimeraJson,
-  TJ.LibDynamicDataObjects, TJ.LibEasyJson, TJ.LibJsonDoc;
+  System.SysUtils;
 
-class function TLibFactory.CreateLib(aType: TLibType): ILib;
+procedure RegisterTJLib(const LibName: string; LibFactory: TLibFactory);
 begin
-  if      (aType = ljMcJSON      ) then Result := TLibMcJSON.Create()
-  else if (aType = ljLkJSON      ) then Result := TLibLkJSON.Create()
-  else if (aType = ljSystemJSON  ) then Result := TLibSystemJSON.Create()
-  else if (aType = ljJdoJSON     ) then Result := TLibJDO.Create()
-  else if (aType = ljSuperObject ) then Result := TLibSuperObject.Create()
-  else if (aType = ljXSuperObject) then Result := TLibXSuperObject.Create()
-  else if (aType = ljJsonTools   ) then Result := TLibJsonTools.Create()
-  else if (aType = ljJson4Delphi ) then Result := TLibJson4Delphi.Create()
-  else if (aType = ljGrijjyBson  ) then Result := TLibGrijjyBson.Create()
-  else if (aType = ljNeslibJson  ) then Result := TLibNeslibJson.Create()
-  else if (aType = ljDwsJSON     ) then Result := TLibDwsJSON.Create()
-  else if (aType = ljChimeraJson ) then Result := TLibChimeraJson.Create()
-  else if (aType = ljDDObjects   ) then Result := TLibDynamicDataObjects.Create()
-  else if (aType = ljEasyJson    ) then Result := TLibEasyJson.Create()
-  else if (aType = ljJsonDoc     ) then Result := TLibJsonDoc.Create()
-  else                                  Result := nil;
+  if TJLibRegistryCount=TJLibRegistryMax then
+    raise Exception.Create('Too many TJLib, raise TJLibRegistryMax');
+  TJLibRegistry[TJLibRegistryCount].Name:=LibName;
+  TJLibRegistry[TJLibRegistryCount].Factory:=LibFactory;
+  inc(TJLibRegistryCount);
 end;
 
+initialization
+  TJLibRegistryCount:=0;
 end.

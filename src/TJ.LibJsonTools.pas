@@ -11,7 +11,7 @@ type
   
   TLibJsonTools = class (TInterfacedObject, ILib)
   public
-    constructor Create;
+    procedure AfterConstruction; override;
     destructor  Destroy; override;
     procedure Add(const aKey, aValue: string);
     function  Count: Integer;
@@ -30,9 +30,9 @@ type
 
 implementation
 
-constructor TLibJsonTools.Create;
+procedure TLibJsonTools.AfterConstruction;
 begin
-  inherited Create;
+  inherited;
   fName := 'JsonTools';
   fJson      := TJsonNode.Create;
   fJsonClone := TJsonNode.Create;
@@ -96,4 +96,6 @@ begin
   Result := fName;
 end;
 
+initialization
+  RegisterTJLib('JsonTools', TLibJsonTools);
 end.

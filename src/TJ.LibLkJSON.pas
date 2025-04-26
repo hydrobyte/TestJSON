@@ -11,7 +11,7 @@ type
   
   TLibLkJSON = class (TInterfacedObject, ILib)
   public
-    constructor Create;
+    procedure AfterConstruction; override;
     destructor  Destroy; override;
     procedure Add(const aKey, aValue: string);
     function  Count: Integer;
@@ -30,9 +30,9 @@ type
 
 implementation
 
-constructor TLibLkJSON.Create;
+procedure TLibLkJSON.AfterConstruction;
 begin
-  inherited Create;
+  inherited;
   fName := 'uLkJSON';
   fJson := TlkJSONobject.Create;
 end;
@@ -107,4 +107,6 @@ begin
   Result := fName;
 end;
 
+initialization
+  RegisterTJLib('uLkJSON', TLibLkJSON);
 end.

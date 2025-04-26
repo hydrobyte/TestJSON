@@ -11,7 +11,7 @@ type
   
   TLibJson4Delphi = class (TInterfacedObject, ILib)
   public
-    constructor Create;
+    procedure AfterConstruction; override;
     destructor  Destroy; override;
     procedure Add(const aKey, aValue: string);
     function  Count: Integer;
@@ -30,9 +30,9 @@ type
 
 implementation
 
-constructor TLibJson4Delphi.Create;
+procedure TLibJson4Delphi.AfterConstruction;
 begin
-  inherited Create;
+  inherited;
   fName := 'Json4Delphi';
   fJson      := TJson.Create;
   fJsonClone := TJson.Create;
@@ -97,4 +97,6 @@ begin
   Result := fName;
 end;
 
+initialization
+  RegisterTJLib('Json4Delphi', TLibJson4Delphi);
 end.
