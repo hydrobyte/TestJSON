@@ -74,7 +74,7 @@ Library             | Generate  | Save     | Load     | Find     | Parse    | [T
 `System.JSON`       |     .02 s |    .01 s |    .06 s |    .22 s |    .06 s |    0.43 s | 11.38 MiB |
 `EasyJson`          |     .02 s |    .01 s |    .06 s |    .23 s |    .07 s |    0.45 s | 11.38 MiB |  
 `LkJson`            |     .06 s |    .05 s |    .10 s |    .01 s |    .14 s |    0.45 s |  2.99 MiB |
-`JsonDoc`           |     .18 s |    .07 s |    .11 s |    .01 s |    .27 s |    0.70 s |  6.14 MiB |
+`JsonDoc`           |     .30 s |    .13 s |    .16 s |    .01 s |    .46 s |    1.13 s |  6.14 MiB |
 `SuperObject`       |     .13 s |   1.21 s |    .05 s |    .00 s |    .06 s |    1.53 s |  9.68 MiB |
 `dwsJSON`           |     .01 s |    .01 s |   0.92 s |    .03 s |   0.91 s |    1.92 s |  9.88 MiB |
 `JsonDataObjects`   |    5.61 s |    .01 s |    .09 s |    .11 s |    .10 s |    5.97 s |  8.98 MiB |
