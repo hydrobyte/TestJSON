@@ -71,7 +71,6 @@ begin
   aCbx.Clear;
   try
   begin
-    //MyLog(ExpandFileName(C_Param_FILE));
     if (not FileExists(FFileName)) then Exit;
     FParam.LoadFromFile(FFileName);
     PrsList := FParam.Values[C_Param_LIST];

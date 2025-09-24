@@ -25,7 +25,7 @@ type
     CbxType: TComboBox;
     PageControlTest: TPageControl;
     TabSpeed: TTabSheet;
-    Bevel: TBevel;
+    BevelSpeed: TBevel;
     ChbSpeedGen: TCheckBox;
     ChbSpeedLoad: TCheckBox;
     ChbSpeedParse: TCheckBox;
@@ -36,7 +36,7 @@ type
     EdSpeedLoad: TEdit;
     EdSpeedGen: TEdit;
     EdSpeedRep: TEdit;
-    ChbSpeedProg: TCheckBox;
+    ChbSpeedVerbose: TCheckBox;
     ChbSpeedRepeat: TCheckBox;
     ChbSpeedClear: TCheckBox;
     TabValid: TTabSheet;
@@ -54,6 +54,10 @@ type
     LbTM: TLabel;
     BtRun: TButton;
     BtClose: TButton;
+    BevelOpen: TBevel;
+    ChbOpenRepeat: TCheckBox;
+    EdOpenRep: TEdit;
+    ChbOpenVerbose: TCheckBox;
     procedure FormCreate(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure BtCloseClick(Sender: TObject);
@@ -78,7 +82,7 @@ type
     procedure SavePreset(aName: string);
     procedure DeletePreset(aName: string);
 
-    procedure MyLog(const S: string);
+    procedure MyLog(IsON: Boolean; const S: string);
 
   public
     { Public declarations }
@@ -98,7 +102,7 @@ var
   i: integer;
 begin
   // version
-  LbVersion.Caption := 'Test JSON 0.9.5 - Delphi 12.1 Athens (CE)';
+  LbVersion.Caption := 'Test JSON 0.9.6 - Delphi 12.1 Athens (CE)';
   FEventsFreezed := false;
   // statistics clock
   TestClock := TTestClock.Create;
@@ -252,7 +256,7 @@ begin
       ATest.Header;
       ATest.Run;
     except on e: Exception do
-      MyLog('  Run test exception: ' + e.Message);
+      MyLog(true, '  Run test exception: ' + e.Message);
     end;
   finally
     ALib := nil;
@@ -272,6 +276,7 @@ begin
     TTestSpeedRun(aTest).IsFindOn     := ChbSpeedFind.Checked;
     TTestSpeedRun(aTest).IsParseOn    := ChbSpeedParse.Checked;
     TTestSpeedRun(aTest).IsRepeatOn   := ChbSpeedRepeat.Checked;
+    TTestSpeedRun(aTest).Verbose      := ChbSpeedVerbose.Checked;
     TTestSpeedRun(aTest).CountGen     := StrToInt(EdSpeedGen.Text);
     TTestSpeedRun(aTest).CountFind    := StrToInt(EdSpeedFind.Text);
     TTestSpeedRun(aTest).SaveFileName := EdSpeedSave.Text;
@@ -285,6 +290,9 @@ begin
   else if (aTest is TTestFOpen) then
   begin
     TTestFOpen(aTest).PathFile        := EdFOpenFile.Text;
+    TTestFOpen(aTest).CountRepeat     := StrToInt(EdOpenRep.Text);
+    TTestFOpen(aTest).IsRepeatOn      := ChbOpenRepeat.Checked;
+    TTestFOpen(aTest).Verbose         := ChbOpenVerbose.Checked;
   end;
 end;
 
@@ -310,26 +318,29 @@ begin
   try
     PrsItem := FMcParam.GetByIndex(aIndex);
     // get preset properties.
-    CbxType.ItemIndex      := PrsItem.I['TestType'     ];
-    RbgLib.ItemIndex       := PrsItem.I['LibType'      ];
+    CbxType.ItemIndex       := PrsItem.I['TestType'     ];
+    RbgLib.ItemIndex        := PrsItem.I['LibType'      ];
     // speed run
-    ChbSpeedGen.Checked    := PrsItem.B['SpeedGenOn'   ];
-    ChbSpeedSave.Checked   := PrsItem.B['SpeedSaveOn'  ];
-    ChbSpeedClear.Checked  := PrsItem.B['SpeedClearOn' ];
-    ChbSpeedLoad.Checked   := PrsItem.B['SpeedLoadOn'  ];
-    ChbSpeedFind.Checked   := PrsItem.B['SpeedFindOn'  ];
-    ChbSpeedParse.Checked  := PrsItem.B['SpeedParseOn' ];
-    EdSpeedGen.Text        := PrsItem.S['SpeedGen'     ];
-    EdSpeedSave.Text       := McJsonUnEscapeString(PrsItem.S['SpeedSave']);
-    EdSpeedLoad.Text       := McJsonUnEscapeString(PrsItem.S['SpeedLoad']);
-    EdSpeedFind.Text       := PrsItem.S['SpeedFind'    ];
-    ChbSpeedRepeat.Checked := PrsItem.B['SpeedRepeatOn'];
-    ChbSpeedProg.Checked   := PrsItem.B['SpeedProgOn'  ];
-    EdSpeedRep.Text        := PrsItem.S['SpeedRep'     ];
+    ChbSpeedGen.Checked     := PrsItem.B['SpeedGenOn'   ];
+    ChbSpeedSave.Checked    := PrsItem.B['SpeedSaveOn'  ];
+    ChbSpeedClear.Checked   := PrsItem.B['SpeedClearOn' ];
+    ChbSpeedLoad.Checked    := PrsItem.B['SpeedLoadOn'  ];
+    ChbSpeedFind.Checked    := PrsItem.B['SpeedFindOn'  ];
+    ChbSpeedParse.Checked   := PrsItem.B['SpeedParseOn' ];
+    EdSpeedGen.Text         := PrsItem.S['SpeedGen'     ];
+    EdSpeedSave.Text        := McJsonUnEscapeString(PrsItem.S['SpeedSave']);
+    EdSpeedLoad.Text        := McJsonUnEscapeString(PrsItem.S['SpeedLoad']);
+    EdSpeedFind.Text        := PrsItem.S['SpeedFind'    ];
+    ChbSpeedRepeat.Checked  := PrsItem.B['SpeedRepeatOn'];
+    ChbSpeedVerbose.Checked := PrsItem.B['SpeedVerbose' ];
+    EdSpeedRep.Text         := PrsItem.S['SpeedRep'     ];
     // validation
-    EdValidFolder.Text     := McJsonUnEscapeString(PrsItem.S['ValidFolder']);
+    EdValidFolder.Text      := McJsonUnEscapeString(PrsItem.S['ValidFolder']);
     // file open
-    EdFOpenFile.Text       := McJsonUnEscapeString(PrsItem.S['FOpenFile'  ]);
+    EdFOpenFile.Text        := McJsonUnEscapeString(PrsItem.S['OpenFile'   ]);
+    ChbOpenRepeat.Checked   := PrsItem.B['OpenRepeatOn'];
+    ChbOpenVerbose.Checked  := PrsItem.B['OpenVerbose' ];
+    EdOpenRep.Text          := PrsItem.S['OpenRep'     ];
   finally
     FEventsFreezed := False;
     CbxTypeChange(nil);
@@ -359,12 +370,15 @@ begin
     PrsItem.S['SpeedLoad'    ] := McJsonEscapeString(EdSpeedLoad.Text);
     PrsItem.S['SpeedFind'    ] := EdSpeedFind.Text;
     PrsItem.B['SpeedRepeatOn'] := ChbSpeedRepeat.Checked;
-    PrsItem.B['SpeedProgOn'  ] := ChbSpeedProg.Checked;
+    PrsItem.B['SpeedVerbose' ] := ChbSpeedVerbose.Checked;
     PrsItem.S['SpeedRep'     ] := EdSpeedRep.Text;
     // validation
     PrsItem.S['ValidFolder'  ] := McJsonEscapeString(EdValidFolder.Text);
     // file open
-    PrsItem.S['FOpenFile'    ] := McJsonEscapeString(EdFOpenFile.Text);
+    PrsItem.S['OpenFile'     ] := McJsonEscapeString(EdFOpenFile.Text);
+    PrsItem.B['OpenRepeatOn' ] := ChbOpenRepeat.Checked;
+    PrsItem.B['OpenVerbose'  ] := ChbOpenVerbose.Checked;
+    PrsItem.S['OpenRep'      ] := EdOpenRep.Text;
 
     // set selected preset
     FMcParam.Selected := aName;
@@ -388,13 +402,13 @@ begin
   end;
 end;
 
-procedure TFormMain.MyLog(const S: string);
+procedure TFormMain.MyLog(IsON: Boolean; const S: string);
 var
   STag: string;
 begin
   TestClock.Now;
   STag   := Format('[%6d/%4d]', [TestClock.DeltaTotal, TestClock.DeltaLast]);
-  if (ChbSpeedProg.Checked) then
+  if (IsON) then
     Memo.Lines.Add(STag + ': ' + S);
 end;
 

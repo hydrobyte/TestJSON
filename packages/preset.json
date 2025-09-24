@@ -15,10 +15,13 @@
       "SpeedLoad": "..\\..\\..\\test\\speed\\test.json",
       "SpeedFind": "1000",
       "SpeedRepeatOn": true,
-      "SpeedProgOn": true,
+      "SpeedVerbose": true,
       "SpeedRep": "5",
       "ValidFolder": "..\\..\\..\\test\\valid",
-      "FOpenFile": "..\\..\\..\\test\\open\\test.json"
+      "OpenFile": "..\\..\\..\\test\\open\\test.json",
+      "OpenRepeatOn": true,
+      "OpenVerbose": false,
+      "OpenRep": "5"
     },
     "Debug": {
       "TestType": 0,
@@ -34,10 +37,13 @@
       "SpeedLoad": "..\\..\\..\\test\\speed\\test.json",
       "SpeedFind": "1",
       "SpeedRepeatOn": false,
-      "SpeedProgOn": true,
-      "SpeedRep": "5",
+      "SpeedVerbose": true,
+      "SpeedRep": "2",
       "ValidFolder": "..\\..\\..\\test\\valid",
-      "FOpenFile": "..\\..\\..\\test\\open\\test.json"
+      "OpenFile": "..\\..\\..\\test\\open\\test.json",
+      "OpenRepeatOn": true,
+      "OpenVerbose": true,
+      "OpenRep": "2"
     }
   }
 }

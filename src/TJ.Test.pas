@@ -11,22 +11,26 @@ uses
 type
   TTestType = (ttSpeedRun, ttValidation, ttFileOpen);
 
-  TMyLog = procedure(const S: string) of object;
+  TMyLog = procedure(IsON: Boolean; const S: string) of object;
 
   TTest = class
   protected
-    fName       : string  ;
-    fLib        : ILib;
-    fCountRepeat: Integer ;
-    fMyLog      : TMyLog  ;
+    fName         : string ;
+    fLib          : ILib   ;
+    fCountRepeat  : Integer;
+    fIsRepeatOn,
+    fVerbose      : Boolean;
+    fMyLog        : TMyLog ;
 
     function IsOKToGo: Boolean; virtual;
 
   public
-    property Name       : string   read fName;
-    property Lib        : ILib     read fLib;
-    property CountRepeat: Integer  read fCountRepeat write fCountRepeat;
-    property MyLog      : TMyLog   read fMyLog;
+    property Name       : string  read fName;
+    property Lib        : ILib    read fLib;
+    property CountRepeat: Integer read fCountRepeat write fCountRepeat;
+    property IsRepeatOn : Boolean read fIsRepeatOn  write fIsRepeatOn;
+    property Verbose    : Boolean read fVerbose     write fVerbose;
+    property MyLog      : TMyLog  read fMyLog;
 
     constructor Create(aLib: ILib; aMyLog: TMyLog); virtual;
 
@@ -35,7 +39,8 @@ type
     procedure Run   ; virtual; abstract;
     procedure Finish; virtual;
 
-    function GetMemAlc: string;
+    function GetMemAlcStr: string;
+    function GetMemAlcRealInKib: Real;
 
   end;
 
@@ -82,21 +87,23 @@ constructor TTest.Create(aLib: ILib; aMyLog: TMyLog);
 begin
   fLib   := aLib;
   fMyLog := aMyLog;
+  fIsRepeatOn := false;
+  fVerbose    := false;
 end;
 
 procedure TTest.Header;
 begin
-  fMyLog('Starting test');
-  fMyLog('  Test   : ' + fName);
-  fMyLog('  Library: ' + fLib.Name);
+  fMyLog(true, 'Starting test');
+  fMyLog(true, '  Test   : ' + fName);
+  fMyLog(true, '  Library: ' + fLib.Name);
 end;
 
 procedure TTest.Finish;
 begin
-  fMyLog('Test finished');
+  fMyLog(true, 'Test finished');
 end;
 
-function TTest.GetMemAlc: string;
+function TTest.GetMemAlcStr: string;
 var
   k, M, G: Integer;
   Mem: Real;
@@ -112,6 +119,17 @@ begin
   else if (Mem < M) then Result := Format('%.2f', [Mem/k]) + ' kiB'
   else if (Mem < G) then Result := Format('%.2f', [Mem/M]) + ' MiB'
   else                   Result := Format('%.2f', [Mem/G]) + ' GiB'  ;
+end;
+
+function TTest.GetMemAlcRealInKib: Real;
+var
+  Mem: Real;
+begin
+  Result := 0.0;
+  // calc memory allocated by memory manager
+  Mem := GetFastMMAllocated;
+  // return memory alloc in kib
+  Result := Mem / 1024;
 end;
 
 { class TTestFactory }

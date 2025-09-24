@@ -2709,12 +2709,12 @@ object FormMain: TFormMain
           Top = 48
           Width = 391
           Height = 276
-          ActivePage = TabSpeed
+          ActivePage = TabFOpen
           Anchors = [akLeft, akTop, akRight, akBottom]
           TabOrder = 1
           object TabSpeed: TTabSheet
             Caption = 'TabSpeed'
-            object Bevel: TBevel
+            object BevelSpeed: TBevel
               Left = 3
               Top = 174
               Width = 369
@@ -2786,7 +2786,7 @@ object FormMain: TFormMain
               OnChange = CtrlChange
             end
             object EdSpeedSave: TEdit
-              Left = 110
+              Left = 108
               Top = 33
               Width = 265
               Height = 21
@@ -2822,12 +2822,12 @@ object FormMain: TFormMain
               Text = '5'
               OnChange = CtrlChange
             end
-            object ChbSpeedProg: TCheckBox
+            object ChbSpeedVerbose: TCheckBox
               Left = 212
               Top = 189
               Width = 95
               Height = 17
-              Caption = 'Show progress'
+              Caption = 'Verbose'
               Checked = True
               State = cbChecked
               TabOrder = 11
@@ -2895,19 +2895,57 @@ object FormMain: TFormMain
               248)
             object LbOpenFile: TLabel
               Left = 4
-              Top = 12
+              Top = 9
               Width = 16
               Height = 13
               Caption = 'File'
             end
+            object BevelOpen: TBevel
+              Left = 3
+              Top = 174
+              Width = 369
+              Height = 4
+              Shape = bsBottomLine
+            end
             object EdFOpenFile: TEdit
               Left = 48
-              Top = 9
+              Top = 6
               Width = 328
               Height = 21
               Anchors = [akLeft, akTop, akRight]
               TabOrder = 0
               Text = '..\..\..\test\open\test.json'
+            end
+            object ChbOpenRepeat: TCheckBox
+              Left = 4
+              Top = 189
+              Width = 62
+              Height = 17
+              Caption = 'Repeat:'
+              Checked = True
+              State = cbChecked
+              TabOrder = 1
+              OnClick = CtrlChange
+            end
+            object EdOpenRep: TEdit
+              Left = 108
+              Top = 187
+              Width = 42
+              Height = 21
+              TabOrder = 2
+              Text = '5'
+              OnChange = CtrlChange
+            end
+            object ChbOpenVerbose: TCheckBox
+              Left = 212
+              Top = 189
+              Width = 95
+              Height = 17
+              Caption = 'Verbose'
+              Checked = True
+              State = cbChecked
+              TabOrder = 3
+              OnClick = CtrlChange
             end
           end
         end
