@@ -36,14 +36,10 @@ begin
   fName := 'SuperObject';
   fJson      := SO;
   fJsonClone := SO;
-//  fJson      := TSuperObject.Create;
-//  fJsonClone := TSuperObject.Create;
 end;
 
 destructor TLibSuperObject.Destroy;
 begin
-//  fJson.Free;
-//  fJsonClone.Free;
   inherited Destroy;
 end;
 
@@ -70,7 +66,6 @@ end;
 
 procedure TLibSuperObject.Load(const aFileName: string);
 begin
-//  fJson.ParseFile(aFileName,true);
   fJson := SO(TFile.ReadAllText(aFileName));
 end;
 
@@ -81,14 +76,12 @@ end;
 
 procedure TLibSuperObject.Parse;
 begin
-//  fJsonClone.ParseString(PChar(fJson.AsJSon), True);
   fJsonClone := SO(fJson.AsJSON);
 end;
 
 function TLibSuperObject.Check(const aCode: string): Boolean;
 begin
   Result := Assigned(TSuperObject.ParseString(PChar(aCode), True));
-//  Result := fJson.Validate( Check(aCode);
 end;
 
 function TLibSuperObject.ToString: string;

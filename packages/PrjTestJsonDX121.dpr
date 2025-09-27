@@ -39,7 +39,19 @@ uses
   DataObjects2 in '..\src\pas\DynamicDataObjects\DataObjects2.pas',
   DataObjects2JSON in '..\src\pas\DynamicDataObjects\DataObjects2JSON.pas',
   EasyJson in '..\src\pas\EasyJson.pas',
-  jsonDoc in '..\src\pas\jsonDoc.pas';
+  jsonDoc in '..\src\pas\jsonDoc.pas',
+  mormot.core.base in '..\src\pas\mORMot\mormot.core.base.pas',
+  mormot.core.buffers in '..\src\pas\mORMot\mormot.core.buffers.pas',
+  mormot.core.data in '..\src\pas\mORMot\mormot.core.data.pas',
+  mormot.core.datetime in '..\src\pas\mORMot\mormot.core.datetime.pas',
+  mormot.core.json in '..\src\pas\mORMot\mormot.core.json.pas',
+  mormot.core.os in '..\src\pas\mORMot\mormot.core.os.pas',
+  mormot.core.os.security in '..\src\pas\mORMot\mormot.core.os.security.pas',
+  mormot.core.rtti in '..\src\pas\mORMot\mormot.core.rtti.pas',
+  mormot.core.text in '..\src\pas\mORMot\mormot.core.text.pas',
+  mormot.core.unicode in '..\src\pas\mORMot\mormot.core.unicode.pas',
+  mormot.core.variants in '..\src\pas\mORMot\mormot.core.variants.pas',
+  TJ.LibMormot in '..\src\TJ.LibMormot.pas';
 
 {$R *.res}
 

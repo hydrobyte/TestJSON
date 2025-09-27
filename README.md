@@ -5,7 +5,7 @@ A simple project to test JSON libraries with Delphi and C++Builder.
 
 
 ## Disclaimer
-This is a *simple* project and not a final product. I know that there are many points that could be better structured. The initial goal was to quickly deploy a single unit "FoMain" kind of project, spending time to include and test the most popular JSON libraries for `Delphi`. The `Delphi` version has a simple structure with `TLib` and `TTest` classes. Also, it is important to mention that the size of JSON objects used in tests here doesn't represent the most common cases of data manipulation in JSON. Finally, the analysis of the results is not intended to detract from any of the tested libraries and should not be seen as any kind of criticism of the authors of the libraries. Knowledge is freedom.
+This is a *simple* project and not a final product. I know that there are many points that could be better structured. The initial goal was to quickly deploy a single unit "FoMain" kind of project, spending time to include and test the most popular JSON libraries for `Delphi`. There is a simple project version to `C++Builder`. The `Delphi` version has a simple structure with `TLib` and `TTest` classes. Also, it is important to mention that the size of JSON objects used in tests here doesn't represent the most common cases of data manipulation in JSON. Finally, the analysis of the results is not intended to detract from any of the tested libraries and should not be seen as any kind of criticism of the authors of the libraries. Knowledge is freedom.
 
 
 ## Tested libraries
@@ -26,6 +26,7 @@ Library          | Delphi | C++Builder |
 [DynamicDataObjects](https://github.com/SeanSolberg/DynamicDataObjects)                    | ✓ |   |
 [EasyJson](https://github.com/tinyBigGAMES/EasyJson)                                       | ✓ |   |
 [jsonDoc](http://github.com/stijnsanders/jsonDoc#jsonDoc)                                  | ✓ |   |
+[mORMot2](https://github.com/synopse/mORMot2/tree/master/src/core)                         | ✓ |   |
 
 Note: in order of inclusion.
 
@@ -69,6 +70,7 @@ Library             | Generate  | Save     | Load     | Find     | Parse    | [T
 :-------------------|----------:|---------:|---------:|---------:|---------:|----------:|----------:|
 `Neslib.Json`       |     .03 s |    .03 s |    .03 s |    .00 s |    .04 s |    0.18 s | 10.19 MiB |  
 `Grijjy.Bson`       |     .03 s |    .04 s |    .04 s |    .00 s |    .06 s |    0.23 s |  7.52 MiB |
+`mORMot2`           |     .02 s |    .01 s |    .02 s |    .12 s |    .02 s |    0.23 s |  7.91 MiB |
 `chimera.json`      |     .04 s |    .03 s |    .08 s |    .01 s |    .08 s |    0.30 s |  8.78 MiB |  
 `McJSON`            |     .02 s |    .06 s |    .02 s |    .18 s |    .08 s |    0.41 s |  9.85 MiB |
 `System.JSON`       |     .02 s |    .01 s |    .06 s |    .22 s |    .06 s |    0.43 s | 11.38 MiB |
@@ -139,6 +141,7 @@ Library             | Expected to Fail but Passed                      | Expecte
 `DynamicDataObjects`|     fail(05, 06, 07, 09, 16, 17, 18, 19, 20, 21) |                  pass(01, 05) |
 `EasyJson`          |                                         fail(07) |                  pass(04, 05) |
 `JsonDoc`           |                                 fail(15, 20, 21) |          pass(01, 02, 04, 05) |
+`mORMot2`           |             fail(01, 07, 10, 11, 15, 18, 19, 21) |                  pass(04, 05) |
 
 ### Results with C++Builder1
 
@@ -153,7 +156,7 @@ Library          | Expected to Fail but Passed          | Expected to Pass but F
 
 List of test files names and description
 - `fail01.json = \x is not a valid escape character`
-- `fail02.json = Objects require colon between name/value`1111111
+- `fail02.json = Objects require colon between name/value`
 - `fail03.json = Objects do not have comma separators`
 - `fail04.json = Arrays don't have colon separators`
 - `fail05.json = Truth is not a valid boolean value`
@@ -210,6 +213,7 @@ Library             |  Memory | Factor    | Load Time | Pitfalls          |
 `Json4Delphi`       |  9505.3 |       10x |    243.60 |                   |
 `chimera.json`      | 12086.7 |       12x |    915.60 |                   |
 `JsonTools`         |       - |         - |         - | Load file fails   |
+`mORMot2`           |       - |         - |         - | Load file fails   |
 
 Notes:
 - Ordered by: Factor, Load Time ASC.
@@ -230,7 +234,7 @@ In general, `JsonDoc` might be considered the best library in respect of memory 
 
 3. Considering JSON files with a larger amount of data, there are significant differences in terms of memory consumption and loading time. The positive highlight is `JsonDoc`.
 
-4. `Neslib.Json` is the fastest library tested until now, closely followed `Grijjy.Bson`. 
+4. `Neslib.Json` is the fastest library tested until now, closely followed `Grijjy.Bson` and `mORMot2` (technical draw). 
 
 5. `LkJson` has great performance and the lowest memory consumption among all tested libraries. Some changes are needed to use it with Delphi and C++Builder 10.2 in order to save and load UTF-8 encoded files. For some, an obstacle can be that their interfaces are more verbose for C++ usage. For example:
 ````cpp

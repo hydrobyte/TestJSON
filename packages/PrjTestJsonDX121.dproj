@@ -178,6 +178,18 @@
         <DCCReference Include="..\src\pas\DynamicDataObjects\DataObjects2JSON.pas"/>
         <DCCReference Include="..\src\pas\EasyJson.pas"/>
         <DCCReference Include="..\src\pas\jsonDoc.pas"/>
+        <DCCReference Include="..\src\pas\mORMot\mormot.core.base.pas"/>
+        <DCCReference Include="..\src\pas\mORMot\mormot.core.buffers.pas"/>
+        <DCCReference Include="..\src\pas\mORMot\mormot.core.data.pas"/>
+        <DCCReference Include="..\src\pas\mORMot\mormot.core.datetime.pas"/>
+        <DCCReference Include="..\src\pas\mORMot\mormot.core.json.pas"/>
+        <DCCReference Include="..\src\pas\mORMot\mormot.core.os.pas"/>
+        <DCCReference Include="..\src\pas\mORMot\mormot.core.os.security.pas"/>
+        <DCCReference Include="..\src\pas\mORMot\mormot.core.rtti.pas"/>
+        <DCCReference Include="..\src\pas\mORMot\mormot.core.text.pas"/>
+        <DCCReference Include="..\src\pas\mORMot\mormot.core.unicode.pas"/>
+        <DCCReference Include="..\src\pas\mORMot\mormot.core.variants.pas"/>
+        <DCCReference Include="..\src\TJ.LibMormot.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

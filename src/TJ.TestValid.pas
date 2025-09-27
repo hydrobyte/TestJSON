@@ -82,7 +82,8 @@ end;
 constructor TTestValid.Create(aLib: ILib; aMyLog: TMyLog);
 begin
   inherited Create(aLib, aMyLog);
-  fName := 'Validation';
+  fName    := 'Validation';
+  fVerbose := true;
 end;
 
 procedure TTestValid.Header;
