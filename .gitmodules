@@ -1,3 +1,6 @@
 [submodule "src/pas/JsonDataObjects"]
 	path = src/pas/JsonDataObjects
 	url = https://github.com/ahausladen/JsonDataObjects.git
+[submodule "src/pas/vsoft.yaml"]
+	path = src/pas/vsoft.yaml
+	url = https://github.com/VSoftTechnologies/VSoft.YAML
