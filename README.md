@@ -129,7 +129,7 @@ Library             | Expected to Fail but Passed                      | Expecte
 `McJSON`            |                                                - |                             - |
 `LkJson`            |             fail(01, 07, 08, 16, 18, 19, 20, 21) |                             - |
 `System.JSON`       |                                         fail(07) |                      pass(04) |
-`JsonDataObjects`   |                     fail(01, 05, 08, 15, 18, 19) |                  pass(04, 05) |
+`JsonDataObjects`   |                                                - |                             - |
 `SuperObject`       | fail(01, 06, 07, 08, 10, 11, 16, 18, 19, 20, 21) |                             - |
 `X-SuperObject`     |     fail(01, 06, 08, 15, 16, 17, 18, 19, 20, 21) |              pass(01, 04, 05) |
 `JsonTools`         |                             fail(01, 16, 20, 21) |                  pass(04, 05) |
@@ -198,7 +198,7 @@ This is a simple test to open files with any library included into this project 
 
 Library             |  Memory | Factor    | Load Time | Pitfalls          |
 :-------------------|--------:|----------:|----------:|------------------:|
-`JsonDataObjects`   |  2032.2 |        2x |      6.40 | Leaks memory      |
+`JsonDataObjects`   |  2143.2 |        2x |     12.20 | Leaks memory      |
 `JsonDoc`           |  1672.9 |        2x |     59.40 |                   |
 `Grijjy.Bson`       |  4313.1 |        4x |     25.20 | Leaks memory      |
 `dwsJSON`           |  4776.2 |        5x |     15.40 |                   |
