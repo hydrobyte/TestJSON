@@ -66,24 +66,24 @@ This is a performance test with the following configuration (select `Default` in
 
 ### Results with Delphi
 
-Library             | Generate  | Save     | Load     | Find     | Parse    | [Total]   | Memory    |
-:-------------------|----------:|---------:|---------:|---------:|---------:|----------:|----------:|
-`Neslib.Json`       |     .03 s |    .03 s |    .03 s |    .00 s |    .04 s |    0.18 s | 10.19 MiB |  
-`Grijjy.Bson`       |     .03 s |    .04 s |    .04 s |    .00 s |    .06 s |    0.23 s |  7.52 MiB |
-`mORMot2`           |     .02 s |    .01 s |    .02 s |    .12 s |    .02 s |    0.23 s |  7.91 MiB |
-`chimera.json`      |     .04 s |    .03 s |    .08 s |    .01 s |    .08 s |    0.30 s |  8.78 MiB |  
-`McJSON`            |     .02 s |    .06 s |    .02 s |    .18 s |    .08 s |    0.41 s |  9.85 MiB |
-`System.JSON`       |     .02 s |    .01 s |    .06 s |    .22 s |    .06 s |    0.43 s | 11.38 MiB |
-`EasyJson`          |     .02 s |    .01 s |    .06 s |    .23 s |    .07 s |    0.45 s | 11.38 MiB |  
-`LkJson`            |     .06 s |    .05 s |    .10 s |    .01 s |    .14 s |    0.45 s |  2.99 MiB |
-`JsonDoc`           |     .30 s |    .13 s |    .16 s |    .01 s |    .46 s |    1.13 s |  6.14 MiB |
-`SuperObject`       |     .13 s |   1.21 s |    .05 s |    .00 s |    .06 s |    1.53 s |  9.68 MiB |
-`dwsJSON`           |     .01 s |    .01 s |   0.92 s |    .03 s |   0.91 s |    1.92 s |  9.88 MiB |
-`JsonDataObjects`   |    5.61 s |    .01 s |    .09 s |    .11 s |    .10 s |    5.97 s |  8.98 MiB |
-`JsonTools`         |   10.36 s |        - |        - |    .22 s |   8.55 s |   19.18 s |  7.88 MiB |
-`Json4Delphi`       |     .02 s |    .06 s |  35.00 s |    .40 s |  35.71 s |   71.23 s | 11.57 MiB |
-`DynamicDataObjects`|   28.73 s |    .02 s |  30.24 s |    .58 s |  29.25 s |   88.88 s | 11.51 MiB |
-`X-SuperObject`     |  5.18 min |    .06 s | 1.77 min |   6.18 s | 1.76 min |  8.81 min | 11.48 MiB |
+Library             | Generate  | Save     | Load     | Find     | Parse    | [Total]   | Memory    | Pitfalls |
+:-------------------|----------:|---------:|---------:|---------:|---------:|----------:|----------:|---------:|
+`JsonDataObjects`   |     .04 s |    .02 s |    .02 s |    .01 s |    .03 s |    0.17 s |  9.08 MiB | Leaks    |
+`Neslib.Json`       |     .03 s |    .03 s |    .03 s |    .00 s |    .04 s |    0.18 s | 10.19 MiB |          |  
+`Grijjy.Bson`       |     .03 s |    .04 s |    .04 s |    .00 s |    .06 s |    0.23 s |  7.52 MiB |          |
+`mORMot2`           |     .02 s |    .01 s |    .02 s |    .12 s |    .02 s |    0.23 s |  7.91 MiB |          |
+`chimera.json`      |     .04 s |    .03 s |    .08 s |    .01 s |    .08 s |    0.30 s |  8.78 MiB |          | 
+`McJSON`            |     .02 s |    .06 s |    .02 s |    .18 s |    .08 s |    0.41 s |  9.85 MiB |          |
+`System.JSON`       |     .02 s |    .01 s |    .06 s |    .22 s |    .06 s |    0.43 s | 11.38 MiB |          |
+`EasyJson`          |     .02 s |    .01 s |    .06 s |    .23 s |    .07 s |    0.45 s | 11.38 MiB |          |  
+`LkJson`            |     .06 s |    .05 s |    .10 s |    .01 s |    .14 s |    0.45 s |  2.99 MiB |          |
+`JsonDoc`           |     .30 s |    .13 s |    .16 s |    .01 s |    .46 s |    1.13 s |  6.14 MiB |          |
+`SuperObject`       |     .13 s |   1.21 s |    .05 s |    .00 s |    .06 s |    1.53 s |  9.68 MiB |          |
+`dwsJSON`           |     .01 s |    .01 s |   0.92 s |    .03 s |   0.91 s |    1.92 s |  9.88 MiB |          |
+`JsonTools`         |   10.36 s |        - |        - |    .22 s |   8.55 s |   19.18 s |  7.88 MiB | Fails    |
+`Json4Delphi`       |     .02 s |    .06 s |  35.00 s |    .40 s |  35.71 s |   71.23 s | 11.57 MiB |          |
+`DynamicDataObjects`|   28.73 s |    .02 s |  30.24 s |    .58 s |  29.25 s |   88.88 s | 11.51 MiB |          |
+`X-SuperObject`     |  5.18 min |    .06 s | 1.77 min |   6.18 s | 1.76 min |  8.81 min | 11.48 MiB |          |
 
 Notes: 
 - See [Conclusions](#Conclusions) about the `EasyJson` and `System.JSON`.

@@ -1,0 +1,3 @@
+[submodule "src/pas/JsonDataObjects"]
+	path = src/pas/JsonDataObjects
+	url = https://github.com/ahausladen/JsonDataObjects.git

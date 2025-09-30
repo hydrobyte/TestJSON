@@ -102,7 +102,7 @@ var
   i: integer;
 begin
   // version
-  LbVersion.Caption := 'Test JSON 0.9.7 - Delphi 12.1 Athens (CE)';
+  LbVersion.Caption := 'Test JSON 0.9.8 - Delphi 12.1 Athens (CE)';
   FEventsFreezed := false;
   // statistics clock
   TestClock := TTestClock.Create;

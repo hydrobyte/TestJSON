@@ -27,7 +27,6 @@ uses
   McJSON in '..\src\pas\McJSON.pas',
   McUtils in '..\src\pas\McUtils.pas',
   uLkJSON in '..\src\pas\uLkJSON.pas',
-  JsonDataObjects in '..\src\pas\JsonDataObjects.pas',
   superobject in '..\src\pas\superobject\superobject.pas',
   XSuperObject in '..\src\pas\XSuperObject\XSuperObject.pas',
   JsonTools in '..\src\pas\JsonTools.pas',
@@ -51,7 +50,8 @@ uses
   mormot.core.text in '..\src\pas\mORMot\mormot.core.text.pas',
   mormot.core.unicode in '..\src\pas\mORMot\mormot.core.unicode.pas',
   mormot.core.variants in '..\src\pas\mORMot\mormot.core.variants.pas',
-  TJ.LibMormot in '..\src\TJ.LibMormot.pas';
+  TJ.LibMormot in '..\src\TJ.LibMormot.pas',
+  JsonDataObjects in '..\src\pas\JsonDataObjects\Source\JsonDataObjects.pas';
 
 {$R *.res}
 

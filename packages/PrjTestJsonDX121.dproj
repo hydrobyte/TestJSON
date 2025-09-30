@@ -165,7 +165,6 @@
         <DCCReference Include="..\src\pas\McJSON.pas"/>
         <DCCReference Include="..\src\pas\McUtils.pas"/>
         <DCCReference Include="..\src\pas\uLkJSON.pas"/>
-        <DCCReference Include="..\src\pas\JsonDataObjects.pas"/>
         <DCCReference Include="..\src\pas\superobject\superobject.pas"/>
         <DCCReference Include="..\src\pas\XSuperObject\XSuperObject.pas"/>
         <DCCReference Include="..\src\pas\JsonTools.pas"/>
@@ -190,6 +189,7 @@
         <DCCReference Include="..\src\pas\mORMot\mormot.core.unicode.pas"/>
         <DCCReference Include="..\src\pas\mORMot\mormot.core.variants.pas"/>
         <DCCReference Include="..\src\TJ.LibMormot.pas"/>
+        <DCCReference Include="..\src\pas\JsonDataObjects\Source\JsonDataObjects.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
