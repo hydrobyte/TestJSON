@@ -234,13 +234,13 @@ In general, `JsonDoc` might be considered the best library in respect of memory 
 
 3. Considering JSON files with a larger amount of data, there are significant differences in terms of memory consumption and loading time. The positive highlight is `JsonDoc`.
 
-4. `Neslib.Json` is the fastest library tested until now, closely followed `Grijjy.Bson` and `mORMot2` (technical draw). 
+4. `JsonDataObjects` is the fastest library tested until now, closely followed `Neslib.Json`, `Grijjy.Bson` and `mORMot2` (technical draw). But `JsonDataObjects` is leaking memory in all tests.
 
-5. `LkJson` has great performance and the lowest memory consumption among all tested libraries. Some changes are needed to use it with Delphi and C++Builder 10.2 in order to save and load UTF-8 encoded files. For some, an obstacle can be that their interfaces are more verbose for C++ usage. For example:
+5. `LkJson` has great performance and the lowest memory consumption among all tested libraries in `Speed` tests. Maybe something related to the `key:value` using small strings. This has a different benchmark in `Open File` tests. Some changes are needed to use it with Delphi and C++Builder 10.2 in order to save and load UTF-8 encoded files. For some, an obstacle can be that their interfaces are more verbose for C++ usage. For example:
 ````cpp
 JsonP = dynamic_cast<TlkJSONObject*>(TlkJSON::ParseText(TlkJSON::GenerateText(Json)))
 ````
-6. The `Validation` tests can demonstrate that even the most modern libraries can have occasional small violations against the standard.
+6. The `Validation` tests can demonstrate that even the most modern libraries can have occasional small violations against the standard. Total clear for `McJSON` and `JsonDataObjects`.
 
 7. The `Open File` tests using a file slightly larger than most common JSON uses demonstrate significant variation in terms of loading time and allocation factor.
 
