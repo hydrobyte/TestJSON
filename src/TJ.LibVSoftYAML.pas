@@ -27,7 +27,6 @@ type
     function fGetName: string;
   end;
 
-
 implementation
 
 uses
@@ -36,40 +35,16 @@ uses
 
 { TLibVSoftYAML }
 
-procedure TLibVSoftYAML.Add(const aKey, aValue: string);
-begin
-  FYAML.AsMapping.AddOrSetValue(aKey, aValue);
-end;
-
 procedure TLibVSoftYAML.AfterConstruction;
 begin
   inherited;
   fName := 'VSoft.YAML';
+  // TYAML pre config.
   TYAML.DefaultParserOptions.DuplicateKeyBehavior := TYAMLDuplicateKeyBehavior.dkError;
   TYAML.DefaultParserOptions.JSONMode := true;
-
   TYAML.DefaultWriterOptions.PrettyPrint := false;
   TYAML.DefaultWriterOptions.Encoding := TEncoding.UTF8;
-
-  FYAML      := TYAML.CreateMapping;
-end;
-
-function TLibVSoftYAML.Check(const aCode: string): Boolean;
-var
-  tmpDoc : IYAMLDocument;
-begin
-  Result := true;
-  tmpDoc   := TYAML.LoadFromString(aCode);
-end;
-
-procedure TLibVSoftYAML.Clear;
-begin
-  FYAML.Root.AsMapping.Clear;
-end;
-
-function TLibVSoftYAML.Count: Integer;
-begin
-  result := FYAML.AsMapping.Count;
+  FYAML := TYAML.CreateMapping;
 end;
 
 destructor TLibVSoftYAML.Destroy;
@@ -78,28 +53,9 @@ begin
   inherited;
 end;
 
-function TLibVSoftYAML.fGetName: string;
+procedure TLibVSoftYAML.Add(const aKey, aValue: string);
 begin
-  result := fName;
-end;
-
-function TLibVSoftYAML.Find(const aKey, aValue: string): Boolean;
-begin
-   Result := FYAML.AsMapping.S[aKey] = aValue;
-end;
-
-procedure TLibVSoftYAML.Load(const aFileName: string);
-begin
-  FYAML := TYAML.LoadFromFile(aFileName);
-//  FYAML := TYAML.LoadFromString(TFile.ReadAllText(aFileName)).AsMapping;
-end;
-
-
-procedure TLibVSoftYAML.Parse;
-var
-  tmpDoc : IYAMLDocument;
-begin
-  tmpDoc := TYAML.LoadFromString(TYAML.WriteToJSONString(FYAML));
+  FYAML.AsMapping.AddOrSetValue(aKey, aValue);
 end;
 
 procedure TLibVSoftYAML.Save(const aFileName: string);
@@ -110,13 +66,53 @@ begin
 //  TFile.WriteAllBytes(aFileName, TEncoding.UTF8.GetBytes(TYAML.WriteToJSONString(FYAML)));
 end;
 
+procedure TLibVSoftYAML.Clear;
+begin
+  FYAML.Root.AsMapping.Clear;
+end;
+
+function TLibVSoftYAML.Count: Integer;
+begin
+  Result := FYAML.AsMapping.Count;
+end;
+
+procedure TLibVSoftYAML.Load(const aFileName: string);
+begin
+  FYAML := TYAML.LoadFromFile(aFileName);
+//  FYAML := TYAML.LoadFromString(TFile.ReadAllText(aFileName)).AsMapping;
+end;
+
+function TLibVSoftYAML.Find(const aKey, aValue: string): Boolean;
+begin
+   Result := FYAML.AsMapping.S[aKey] = aValue;
+end;
+
+procedure TLibVSoftYAML.Parse;
+var
+  tmpDoc : IYAMLDocument;
+begin
+  tmpDoc := TYAML.LoadFromString(TYAML.WriteToJSONString(FYAML));
+end;
+
+function TLibVSoftYAML.Check(const aCode: string): Boolean;
+var
+  tmpDoc : IYAMLDocument;
+begin
+  Result := true;
+  tmpDoc := TYAML.LoadFromString(aCode);
+end;
+
 function TLibVSoftYAML.ToString: string;
 begin
   FYAML.Options.PrettyPrint := false;
-  result := TYAML.WriteToJSONString(FYAML);
+  Result := TYAML.WriteToJSONString(FYAML);
+end;
+
+function TLibVSoftYAML.fGetName: string;
+begin
+  Result := fName;
 end;
 
 initialization
   RegisterTJLib('VSoft.YAML', TLibVSoftYAML);
-
 end.
