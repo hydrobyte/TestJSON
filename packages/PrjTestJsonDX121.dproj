@@ -190,6 +190,20 @@
         <DCCReference Include="..\src\pas\mORMot\mormot.core.variants.pas"/>
         <DCCReference Include="..\src\TJ.LibMormot.pas"/>
         <DCCReference Include="..\src\pas\JsonDataObjects\Source\JsonDataObjects.pas"/>
+        <DCCReference Include="..\src\TJ.LibVSoftYAML.pas"/>
+        <DCCReference Include="..\src\pas\vsoft.yaml\Source\VSoft.YAML.Classes.pas"/>
+        <DCCReference Include="..\src\pas\vsoft.yaml\Source\VSoft.YAML.IO.pas"/>
+        <DCCReference Include="..\src\pas\vsoft.yaml\Source\VSoft.YAML.Lexer.pas"/>
+        <DCCReference Include="..\src\pas\vsoft.yaml\Source\VSoft.YAML.Parser.pas"/>
+        <DCCReference Include="..\src\pas\vsoft.yaml\Source\VSoft.YAML.pas"/>
+        <DCCReference Include="..\src\pas\vsoft.yaml\Source\VSoft.YAML.Path.pas"/>
+        <DCCReference Include="..\src\pas\vsoft.yaml\Source\VSoft.YAML.Polyfills.pas"/>
+        <DCCReference Include="..\src\pas\vsoft.yaml\Source\VSoft.YAML.StreamReader.pas"/>
+        <DCCReference Include="..\src\pas\vsoft.yaml\Source\VSoft.YAML.StreamWriter.pas"/>
+        <DCCReference Include="..\src\pas\vsoft.yaml\Source\VSoft.YAML.TagInfo.pas"/>
+        <DCCReference Include="..\src\pas\vsoft.yaml\Source\VSoft.YAML.Utils.pas"/>
+        <DCCReference Include="..\src\pas\vsoft.yaml\Source\VSoft.YAML.Writer.JSON.pas"/>
+        <DCCReference Include="..\src\pas\vsoft.yaml\Source\VSoft.YAML.Writer.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>

@@ -95,7 +95,7 @@
      defined(VER260) or defined(VER270) or defined(VER280) or
      defined(VER290) or defined(VER300) or defined(VER310) or
      defined(VER320) or defined(VER330) or defined(VER340) or
-     defined(VER350) or defined(VER360) }
+     defined(VER350) or defined(VER360) or defined(VER370)}
   {$define VER210ORGREATER}
   {$define VER230ORGREATER}
 {$ifend}

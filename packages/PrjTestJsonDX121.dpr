@@ -51,7 +51,21 @@ uses
   mormot.core.unicode in '..\src\pas\mORMot\mormot.core.unicode.pas',
   mormot.core.variants in '..\src\pas\mORMot\mormot.core.variants.pas',
   TJ.LibMormot in '..\src\TJ.LibMormot.pas',
-  JsonDataObjects in '..\src\pas\JsonDataObjects\Source\JsonDataObjects.pas';
+  JsonDataObjects in '..\src\pas\JsonDataObjects\Source\JsonDataObjects.pas',
+  TJ.LibVSoftYAML in '..\src\TJ.LibVSoftYAML.pas',
+  VSoft.YAML.Classes in '..\src\pas\vsoft.yaml\Source\VSoft.YAML.Classes.pas',
+  VSoft.YAML.IO in '..\src\pas\vsoft.yaml\Source\VSoft.YAML.IO.pas',
+  VSoft.YAML.Lexer in '..\src\pas\vsoft.yaml\Source\VSoft.YAML.Lexer.pas',
+  VSoft.YAML.Parser in '..\src\pas\vsoft.yaml\Source\VSoft.YAML.Parser.pas',
+  VSoft.YAML in '..\src\pas\vsoft.yaml\Source\VSoft.YAML.pas',
+  VSoft.YAML.Path in '..\src\pas\vsoft.yaml\Source\VSoft.YAML.Path.pas',
+  VSoft.YAML.Polyfills in '..\src\pas\vsoft.yaml\Source\VSoft.YAML.Polyfills.pas',
+  VSoft.YAML.StreamReader in '..\src\pas\vsoft.yaml\Source\VSoft.YAML.StreamReader.pas',
+  VSoft.YAML.StreamWriter in '..\src\pas\vsoft.yaml\Source\VSoft.YAML.StreamWriter.pas',
+  VSoft.YAML.TagInfo in '..\src\pas\vsoft.yaml\Source\VSoft.YAML.TagInfo.pas',
+  VSoft.YAML.Utils in '..\src\pas\vsoft.yaml\Source\VSoft.YAML.Utils.pas',
+  VSoft.YAML.Writer.JSON in '..\src\pas\vsoft.yaml\Source\VSoft.YAML.Writer.JSON.pas',
+  VSoft.YAML.Writer in '..\src\pas\vsoft.yaml\Source\VSoft.YAML.Writer.pas';
 
 {$R *.res}
 
