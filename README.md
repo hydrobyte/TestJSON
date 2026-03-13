@@ -5,7 +5,7 @@ A simple project to test JSON libraries with Delphi and C++Builder.
 
 
 ## Disclaimer
-This is a *simple* project and not a final product. I know that there are many points that could be better structured. The initial goal was to quickly deploy a single unit "FoMain" kind of project, spending time to include and test the most popular JSON libraries for `Delphi`. The `Delphi` version has a simple structure with `TLib` and `TTest` classes. Also, it is important to mention that the size of JSON objects used in tests here doesn't represent the most common cases of data manipulation in JSON. Finally, the analysis of the results is not intended to detract from any of the tested libraries and should not be seen as any kind of criticism of the authors of the libraries. Knowledge is freedom.
+This is a *simple* project and not a final product. I know that there are many points that could be better structured. The initial goal was to quickly deploy a single unit "FoMain" kind of project, spending time to include and test the most popular JSON libraries for `Delphi`. There is a simple project version to `C++Builder`. The `Delphi` version has a simple structure with `TLib` and `TTest` classes. Also, it is important to mention that the size of JSON objects used in tests here doesn't represent the most common cases of data manipulation in JSON. Finally, the analysis of the results is not intended to detract from any of the tested libraries and should not be seen as any kind of criticism of the authors of the libraries. Knowledge is freedom.
 
 
 ## Tested libraries
@@ -26,6 +26,8 @@ Library          | Delphi | C++Builder |
 [DynamicDataObjects](https://github.com/SeanSolberg/DynamicDataObjects)                    | ✓ |   |
 [EasyJson](https://github.com/tinyBigGAMES/EasyJson)                                       | ✓ |   |
 [jsonDoc](http://github.com/stijnsanders/jsonDoc#jsonDoc)                                  | ✓ |   |
+[mORMot2](https://github.com/synopse/mORMot2/tree/master/src/core)                         | ✓ |   |
+[VSoft.YAML](https://github.com/VSoftTechnologies/VSoft.YAML)                              | ✓ |   |
 
 Note: in order of inclusion.
 
@@ -65,25 +67,28 @@ This is a performance test with the following configuration (select `Default` in
 
 ### Results with Delphi
 
-Library             | Generate  | Save     | Load     | Find     | Parse    | [Total]   | Memory    |
-:-------------------|----------:|---------:|---------:|---------:|---------:|----------:|----------:|
-`Neslib.Json`       |     .03 s |    .03 s |    .03 s |    .00 s |    .04 s |    0.18 s | 10.19 MiB |  
-`Grijjy.Bson`       |     .03 s |    .04 s |    .04 s |    .00 s |    .06 s |    0.23 s |  7.52 MiB |
-`chimera.json`      |     .04 s |    .03 s |    .08 s |    .01 s |    .08 s |    0.30 s |  8.78 MiB |  
-`McJSON`            |     .02 s |    .06 s |    .02 s |    .18 s |    .08 s |    0.41 s |  9.85 MiB |
-`System.JSON`       |     .02 s |    .01 s |    .06 s |    .22 s |    .06 s |    0.43 s | 11.38 MiB |
-`EasyJson`          |     .02 s |    .01 s |    .06 s |    .23 s |    .07 s |    0.45 s | 11.38 MiB |  
-`LkJson`            |     .06 s |    .05 s |    .10 s |    .01 s |    .14 s |    0.45 s |  2.99 MiB |
-`JsonDoc`           |     .18 s |    .07 s |    .11 s |    .01 s |    .27 s |    0.70 s |  6.14 MiB |
-`SuperObject`       |     .13 s |   1.21 s |    .05 s |    .00 s |    .06 s |    1.53 s |  9.68 MiB |
-`dwsJSON`           |     .01 s |    .01 s |   0.92 s |    .03 s |   0.91 s |    1.92 s |  9.88 MiB |
-`JsonDataObjects`   |    5.61 s |    .01 s |    .09 s |    .11 s |    .10 s |    5.97 s |  8.98 MiB |
-`JsonTools`         |   10.36 s |        - |        - |    .22 s |   8.55 s |   19.18 s |  7.88 MiB |
-`Json4Delphi`       |     .02 s |    .06 s |  35.00 s |    .40 s |  35.71 s |   71.23 s | 11.57 MiB |
-`DynamicDataObjects`|   28.73 s |    .02 s |  30.24 s |    .58 s |  29.25 s |   88.88 s | 11.51 MiB |
-`X-SuperObject`     |  5.18 min |    .06 s | 1.77 min |   6.18 s | 1.76 min |  8.81 min | 11.48 MiB |
+Library             | Generate  | Save     | Load     | Find     | Parse    | [Total]   | Memory    | Pitfalls |
+:-------------------|----------:|---------:|---------:|---------:|---------:|----------:|----------:|---------:|
+`JsonDataObjects`   |     .04 s |    .02 s |    .02 s |    .01 s |    .03 s |    0.17 s |  9.08 MiB | Leaks*   |
+`Neslib.Json`       |     .03 s |    .03 s |    .03 s |    .00 s |    .04 s |    0.18 s | 10.19 MiB |          |  
+`Grijjy.Bson`       |     .03 s |    .04 s |    .04 s |    .00 s |    .06 s |    0.23 s |  7.52 MiB |          |
+`mORMot2`           |     .02 s |    .01 s |    .02 s |    .12 s |    .02 s |    0.23 s |  7.91 MiB |          |
+`chimera.json`      |     .04 s |    .03 s |    .08 s |    .01 s |    .08 s |    0.30 s |  8.78 MiB |          | 
+`McJSON`            |     .02 s |    .06 s |    .02 s |    .18 s |    .08 s |    0.41 s |  9.85 MiB |          |
+`System.JSON`       |     .02 s |    .01 s |    .06 s |    .22 s |    .06 s |    0.43 s | 11.38 MiB |          |
+`EasyJson`          |     .02 s |    .01 s |    .06 s |    .23 s |    .07 s |    0.45 s | 11.38 MiB |          |  
+`LkJson`            |     .06 s |    .05 s |    .10 s |    .01 s |    .14 s |    0.45 s |  2.99 MiB |          |
+`VSoft.YAML`        |     .04 s |    .08 s |    .14 s |    .00 s |    .19 s |    0.53 s |  7.94 MiB |          |
+`JsonDoc`           |     .30 s |    .13 s |    .16 s |    .01 s |    .46 s |    1.13 s |  6.14 MiB |          |
+`SuperObject`       |     .13 s |   1.21 s |    .05 s |    .00 s |    .06 s |    1.53 s |  9.68 MiB |          |
+`dwsJSON`           |     .01 s |    .01 s |   0.92 s |    .03 s |   0.91 s |    1.92 s |  9.88 MiB |          |
+`JsonTools`         |   10.36 s |        - |        - |    .22 s |   8.55 s |   19.18 s |  7.88 MiB | Fails    |
+`Json4Delphi`       |     .02 s |    .06 s |  35.00 s |    .40 s |  35.71 s |   71.23 s | 11.57 MiB |          |
+`DynamicDataObjects`|   28.73 s |    .02 s |  30.24 s |    .58 s |  29.25 s |   88.88 s | 11.51 MiB |          |
+`X-SuperObject`     |  5.18 min |    .06 s | 1.77 min |   6.18 s | 1.76 min |  8.81 min | 11.48 MiB |          |
 
-Notes: 
+Notes:
+- Leaks memory in `TFormMain.RunTest` as `TLibJDO.Destroy` is not been called (something related to `TInterfacedObject`?). 
 - See [Conclusions](#Conclusions) about the `EasyJson` and `System.JSON`.
 - See [Know issues](#know-issues) about the incomplete test for `JsonTools`.
 
@@ -102,19 +107,6 @@ Notes:
 - See [Know issues](#know-issues) about the incomplete test for `JsonTools`.
 
 
-## Scaling test
-Here are some results just for the `Generate` sub-test increasing `N` using `C++Builder` project.
-
-Library          | 1k        | 5k       | 10k      | 25k      | 50k     |
-:----------------|----------:|---------:|---------:|---------:|--------:|
-`McJSON`         |     .01 s |    .02 s |    .03 s |    .05 s |   .10 s |
-`LkJson`         |     .01 s |    .02 s |    .04 s |    .10 s |   .17 s |
-`System.JSON`    |     .01 s |    .09 s |    .04 s |    .07 s |   .12 s |
-`JsonDataObjects`|     .01 s |    .08 s |    .26 s |   2.76 s | 15.55 s |
-`JsonTools`      |     .02 s |    .12 s |    .43 s |   5.51 s | 23.87 s |
-`Json4Delphi`    |     .01 s |    .02 s |    .03 s |    .06 s |   .11 s |
-
-
 ## Validation test
 This validation test should be analyzed carefully. Some libraries have violations for some sort of self-management in reading JSON data.
 - `.\test\valid` files extracted from [MJPA/SimpleJSON](https://github.com/MJPA/SimpleJSON)
@@ -127,7 +119,7 @@ Library             | Expected to Fail but Passed                      | Expecte
 `McJSON`            |                                                - |                             - |
 `LkJson`            |             fail(01, 07, 08, 16, 18, 19, 20, 21) |                             - |
 `System.JSON`       |                                         fail(07) |                      pass(04) |
-`JsonDataObjects`   |                     fail(01, 05, 08, 15, 18, 19) |                  pass(04, 05) |
+`JsonDataObjects`   |                                                - |                             - |
 `SuperObject`       | fail(01, 06, 07, 08, 10, 11, 16, 18, 19, 20, 21) |                             - |
 `X-SuperObject`     |     fail(01, 06, 08, 15, 16, 17, 18, 19, 20, 21) |              pass(01, 04, 05) |
 `JsonTools`         |                             fail(01, 16, 20, 21) |                  pass(04, 05) |
@@ -139,8 +131,10 @@ Library             | Expected to Fail but Passed                      | Expecte
 `DynamicDataObjects`|     fail(05, 06, 07, 09, 16, 17, 18, 19, 20, 21) |                  pass(01, 05) |
 `EasyJson`          |                                         fail(07) |                  pass(04, 05) |
 `JsonDoc`           |                                 fail(15, 20, 21) |          pass(01, 02, 04, 05) |
+`mORMot2`           |             fail(01, 07, 10, 11, 15, 18, 19, 21) |                  pass(04, 05) |
+`VSoft.YAML`        |                                                - |                             - |
 
-### Results with C++Builder1
+### Results with C++Builder
 
 Library          | Expected to Fail but Passed          | Expected to Pass but Failed   |
 :----------------|-------------------------------------:|------------------------------:|
@@ -153,7 +147,7 @@ Library          | Expected to Fail but Passed          | Expected to Pass but F
 
 List of test files names and description
 - `fail01.json = \x is not a valid escape character`
-- `fail02.json = Objects require colon between name/value`1111111
+- `fail02.json = Objects require colon between name/value`
 - `fail03.json = Objects do not have comma separators`
 - `fail04.json = Arrays don't have colon separators`
 - `fail05.json = Truth is not a valid boolean value`
@@ -184,29 +178,70 @@ List of test files names and description
 
 
 ## Open File test
-This is a simple test to open files with any library included into this project.
-This test will be used in a future update with very large JSON files (+ 100 MiB in size).
+This is a simple test to open files with any library included into this project using a large JSON files (~ 1 MiB in size).
+- Opens file with `Verbose` unchecked.
+- Statistics for memory allocated and loading time.
+- Opens file with `Verbose` checked.
+- Checks JSON was read and processed by `ToString` method.
+- Checks memory leaking when closing the app.
 
+### Results with Delphi
+
+Library             |  Memory | Factor    | Load Time | Pitfalls          |
+:-------------------|--------:|----------:|----------:|------------------:|
+`JsonDataObjects`   |  2143.2 |        2x |     12.20 | Leaks memory      |
+`JsonDoc`           |  1672.9 |        2x |     59.40 |                   |
+`Grijjy.Bson`       |  4313.1 |        4x |     25.20 | Leaks memory      |
+`dwsJSON`           |  4776.2 |        5x |     15.40 |                   |
+`Neslib.Json`       |  4676.6 |        5x |     21.80 |                   |
+`LkJson`            |  6291.7 |        6x |     72.00 |                   |
+`SuperObject`       |  7180.1 |        7x |     68.60 |                   |
+`DynamicDataObjects`|  7529.0 |        8x |     28.40 | ToString fails    |
+`System.JSON`       |  9420.3 |        9x |     40.60 |                   |
+`EasyJson`          |  9420.3 |        9x |     50.20 |                   |
+`McJSON`            | 10385.7 |       10x |     46.80 |                   |
+`X-SuperObject`     | 10388.4 |       10x |    121.80 | ToString fails    |
+`Json4Delphi`       |  9505.3 |       10x |    243.60 |                   |
+`chimera.json`      | 12086.7 |       12x |    915.60 |                   |
+`VSoft.YAML`        | 19845.2 |       19x |    177.80 |                   |
+`JsonTools`         |       - |         - |         - | Load file fails   |
+`mORMot2`           |       - |         - |         - | Load file fails   |
+
+Notes:
+- Ordered by: Factor, Load Time ASC.
+- Memory in kiB.
+- Allocation Factor = Round(Memory in kiB / 1000 kiB).
+- Load time in milliseconds.
+
+The Top-Three libraries with the lowest memory consumption are: `JsonDoc`, `JsonDataObjects` and `Grijjy.Bson`. These last two presented problems of Memory Leaking, but the `TLib` descendant classes use simple Create, LoadFromFile/Parse and Free methods.
+
+The Top-Three fastest libraries in terms of loading time are: `JsonDataObjects`, `dwsJSON` and `Neslib.Json`. This last one keeps consistent with `Speed` tests results.
+
+In general, `JsonDoc` might be considered the best library in respect of memory consumption and loading time tradeoff, highlighting its remarkable low memory and allocation factor without pitfalls. Also, `JsonDataObjects` has a good chance of keeping the top spot once the cause of the memory leak is found.
 
 ## Conclusions
 1. All `Speed Run` tests with `Delphi` version are twice as fast as with `C++Builder`.
 
-2. For JSON structures with less than 5000 objects, the choice of libraries can be screened not only based on performance. Standard/Compiler compatibility and ease of use should have priority in terms of choice criterion. 
+2. `JsonDataObjects` is the fastest library tested until now, closely followed `Neslib.Json`, `Grijjy.Bson` and `mORMot2` (technical draw). But `JsonDataObjects` is leaking memory in all tests.
 
-3. `Neslib.Json` is the fastest library tested until now, closely followed `Grijjy.Bson`. 
+3. The `Validation` tests can demonstrate that even the most modern libraries can have occasional small violations against the standard. Total clear for `McJSON`, `JsonDataObjects` and `VSoft.YAML`.
 
-4. `LkJson` has great performance and the lowest memory consumption among all tested libraries. Some changes are needed to use it with Delphi and C++Builder 10.2 in order to save and load UTF-8 encoded files. For some, an obstacle can be that their interfaces are more verbose for C++ usage. For example:
+4. The `Open File` tests using a file slightly larger than most common JSON uses demonstrate significant variation in terms of loading time and allocation factor.
+
+5. Considering JSON files with a larger amount of data, there are significant differences in terms of memory consumption and loading time. The positive highlight is `JsonDoc`.
+
+6. For JSON structures with less than 5000 objects, the choice of libraries can be screened not only based on performance. Standard/Compiler compatibility and ease of use should have priority in terms of choice criterion.
+
+7. For older versions of `Delphi` and `C++Builder`, the `McJSON` library can be a good choice in terms of compatibility, ease of use and good performance.
+
+8. This project demonstrates some of the facilities and obstacles encountered by C++Builder developers in using libraries developed for Delphi.
+
+9. `EasyJson` uses `System.JSON` internally, so it is expected to see similar results.
+
+10. `LkJson` has great performance and the lowest memory consumption among all tested libraries in `Speed` tests. Maybe something related to the `key:value` using small strings. This has a different benchmark in `Open File` tests. Some changes are needed to use it with Delphi and C++Builder 10.2 in order to save and load UTF-8 encoded files. For some, an obstacle can be that their interfaces are more verbose for C++ usage. For example:
 ````cpp
 JsonP = dynamic_cast<TlkJSONObject*>(TlkJSON::ParseText(TlkJSON::GenerateText(Json)))
 ````
-5. The `Validation` tests can demonstrate that even the most modern libraries can have occasional small violations against the standard.
-
-6. For older versions of `Delphi` and `C++Builder`, the `McJSON` library can be a good choice in terms of compatibility, ease of use and good performance.
-
-7. This project demonstrates some of the facilities and obstacles encountered by C++Builder developers in using libraries developed for Delphi.
-
-8. `EasyJson` uses `System.JSON` internally, so it is expected to see similar results.
-
 
 ## Know issues
 - `TgoBsonDocument.LoadFromJsonFile()` failed.

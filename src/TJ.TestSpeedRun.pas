@@ -14,8 +14,7 @@ type
 
   TTestSpeedRun = class (TTest)
   protected
-    fIsGenOn, fIsSaveOn, fIsClearOn, fIsLoadOn, fIsFindOn, fIsParseOn,
-    fIsRepeatOn: Boolean;
+    fIsGenOn, fIsSaveOn, fIsClearOn, fIsLoadOn, fIsFindOn, fIsParseOn : Boolean;
     fCountGen, fCountFind: Integer;
     fSaveFileName: string;
     fLoadFileName: string;
@@ -32,6 +31,7 @@ type
     procedure DoSubTestParse;
 
     procedure DoStat;
+    procedure InitStat;
     function  CalcAvg(const SPrfx: string; aType: TSubTestType): string;
     procedure UpdateStat(aSTType: TSubTestType; aValue: Real);
 
@@ -42,7 +42,6 @@ type
     property IsLoadOn    : Boolean read fIsLoadOn     write fIsLoadOn    ;
     property IsFindOn    : Boolean read fIsFindOn     write fIsFindOn    ;
     property IsParseOn   : Boolean read fIsParseOn    write fIsParseOn   ;
-    property IsRepeatOn  : Boolean read fIsRepeatOn   write fIsRepeatOn  ;
     property CountGen    : Integer read fCountGen     write fCountGen    ;
     property CountFind   : Integer read fCountFind    write fCountFind   ;
     property SaveFileName: string  read fSaveFileName write fSaveFileName;
@@ -67,7 +66,7 @@ begin
     if (fIsFindOn ) then DoSubTestFind ;
     if (fIsParseOn) then DoSubTestParse;
   except on e: Exception do
-    fMyLog('  Subtest exception: ' + e.Message);
+    fMyLog(true, '  Subtest exception: ' + e.Message);
   end;
 end;
 
@@ -76,7 +75,7 @@ var
   i, Count: Integer;
   SKey, SVal: string;
 begin
-  fMyLog('Generating ' + IntToStr(fCountGen) + ' items...');
+  fMyLog(fVerbose, 'Generating ' + IntToStr(fCountGen) + ' items...');
   for i := 1 to fCountGen do
   begin
     SKey := 'key'   + IntToStr(i);
@@ -84,23 +83,23 @@ begin
     fLib.Add(SKey, SVal);
   end;
   Count := fLib.Count;
-  fMyLog('  Done ' + IntToStr(Count) + ' items: ' + GetMemAlc);
+  fMyLog(fVerbose, '  Done ' + IntToStr(Count) + ' items: ' + GetMemAlcStr);
   UpdateStat(stGene, TestClock.DeltaLast);
 end;
 
 procedure TTestSpeedRun.DoSubTestSave;
 begin
-  fMyLog('Saving to file ' + IntToStr(fLib.Count) + ' items...');
+  fMyLog(fVerbose, 'Saving to file ' + IntToStr(fLib.Count) + ' items...');
   fLib.Save(fSaveFileName);
-  fMyLog('  Done: '  + GetMemAlc);
+  fMyLog(fVerbose, '  Done: '  + GetMemAlcStr);
   UpdateStat(stSave, TestClock.DeltaLast);
 end;
 
 procedure TTestSpeedRun.DoSubTestClear;
 begin
-  fMyLog('Cleaning ' + IntToStr(fLib.Count) + ' items...');
+  fMyLog(fVerbose, 'Cleaning ' + IntToStr(fLib.Count) + ' items...');
   fLib.Clear;
-  fMyLog('  Done: '  + GetMemAlc);
+  fMyLog(fVerbose, '  Done: '  + GetMemAlcStr);
   UpdateStat(stClear, TestClock.DeltaLast);
 end;
 
@@ -108,10 +107,10 @@ procedure TTestSpeedRun.DoSubTestLoad;
 var
   Count: Integer;
 begin
-  fMyLog('Loading from file "' + fLoadFileName + '" ...');
+  fMyLog(fVerbose, 'Loading from file "' + fLoadFileName + '" ...');
   fLib.Load(fSaveFileName);
   Count := fLib.Count;
-  fMyLog('  Done ' + IntToStr(Count) + ' items: ' + GetMemAlc);
+  fMyLog(fVerbose, '  Done ' + IntToStr(Count) + ' items: ' + GetMemAlcStr);
   UpdateStat(stLoad, TestClock.DeltaLast);
 end;
 
@@ -123,7 +122,7 @@ var
 begin
   isOK := True;
   // number of items to find
-  fMyLog('Finding ' + IntToStr(fCountFind) + ' items...');
+  fMyLog(fVerbose, 'Finding ' + IntToStr(fCountFind) + ' items...');
   for i :=0 to fCountFind-1 do
   begin
     Id   := Random(fCountGen) + 1;
@@ -131,32 +130,40 @@ begin
     sVal := 'value' + IntToStr(Id);
     isOK := isOK and fLib.Find(sKey, sVal);
   end;
-  if (isOK) then fMyLog('  Done all found: '     + GetMemAlc())
-  else           fMyLog('  Done NOT all found: ' + GetMemAlc());
+  if (isOK) then fMyLog(fVerbose, '  Done all found: '     + GetMemAlcStr())
+  else           fMyLog(fVerbose, '  Done NOT all found: ' + GetMemAlcStr());
   UpdateStat(stFind, TestClock.DeltaLast);
 end;
 
 procedure TTestSpeedRun.DoSubTestParse;
 begin
-  fMyLog('Clone/Parsing ' + IntToStr(fLib.Count) + ' items...');
+  fMyLog(fVerbose, 'Clone/Parsing ' + IntToStr(fLib.Count) + ' items...');
   fLib.Parse;
-  fMyLog('  Done: ' + GetMemAlc);
+  fMyLog(fVerbose, '  Done: ' + GetMemAlcStr);
   UpdateStat(stParse, TestClock.DeltaLast);
 end;
 
 procedure TTestSpeedRun.DoStat;
 begin
-  fMyLog('');
-  fMyLog('Speed Statistics for ' + fLib.Name);
-  fMyLog('Average of ' + IntToStr(fCountRepeat) + ' repetitions (in ms)');
+  fMyLog(true, '');
+  fMyLog(true, 'Speed Statistics for ' + fLib.Name);
+  fMyLog(true, 'Average of ' + IntToStr(fCountRepeat) + ' repetitions (in ms)');
 
-  if (fIsGenOn  ) then fMyLog(CalcAvg('  Generate', stGene ));
-  if (fIsSaveOn ) then fMyLog(CalcAvg('  Save    ', stSave ));
-  if (fIsClearOn) then fMyLog(CalcAvg('  Clear   ', stClear));
-  if (fIsLoadOn ) then fMyLog(CalcAvg('  Load    ', stLoad ));
-  if (fIsFindOn ) then fMyLog(CalcAvg('  Find    ', stFind ));
-  if (fIsParseOn) then fMyLog(CalcAvg('  Parse   ', stParse));
-  if (True      ) then fMyLog(CalcAvg('  Total   ', stTotal));
+  if (fIsGenOn  ) then fMyLog(true, CalcAvg('  Generate', stGene ));
+  if (fIsSaveOn ) then fMyLog(true, CalcAvg('  Save    ', stSave ));
+  if (fIsClearOn) then fMyLog(true, CalcAvg('  Clear   ', stClear));
+  if (fIsLoadOn ) then fMyLog(true, CalcAvg('  Load    ', stLoad ));
+  if (fIsFindOn ) then fMyLog(true, CalcAvg('  Find    ', stFind ));
+  if (fIsParseOn) then fMyLog(true, CalcAvg('  Parse   ', stParse));
+  if (True      ) then fMyLog(true, CalcAvg('  Total   ', stTotal));
+end;
+
+procedure TTestSpeedRun.InitStat;
+var
+  i: Integer;
+begin
+  for i := 0 to Integer(stTotal) do
+    fStat[i] := 0.0;
 end;
 
 function TTestSpeedRun.CalcAvg(const SPrfx: string; aType: TSubTestType): string;
@@ -206,29 +213,30 @@ var
 begin
   inherited;
   if (not IsOKToGo) then Exit;
+  InitStat;
   if (fIsRepeatOn)
     then NRep := fCountRepeat-1
     else NRep := 0;
   for i := 0 to NRep do
   begin
     Start;
-    fMyLog('');
-    fMyLog('Test #' + IntToStr(i));
-    fMyLog('Memory: ' + GetMemAlc);
+    fMyLog(true, '');
+    fMyLog(true, 'Test #' + IntToStr(i));
+    fMyLog(true, 'Memory: ' + GetMemAlcStr);
     DoTest();
     Finish;
   end;
   UpdateStat(stTotal, TestClock.DeltaTotal);
   DoStat;
-  fMyLog('');
-  fMyLog('All done: '+ GetMemAlc);
+  fMyLog(true, '');
+  fMyLog(true, 'All done: '+ GetMemAlcStr);
 end;
 
 procedure TTestSpeedRun.Finish;
 begin
-  fMyLog('Cleaning library objects...');
+  fMyLog(true, 'Cleaning library objects...');
   fLib.Clear;
-  fMyLog('  Done: ' + GetMemAlc);
+  fMyLog(true, '  Done: ' + GetMemAlcStr);
   inherited;
 end;
 

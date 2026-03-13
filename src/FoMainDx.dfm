@@ -2,7 +2,7 @@ object FormMain: TFormMain
   Left = 0
   Top = 0
   Caption = 'Test JSON Libraries'
-  ClientHeight = 428
+  ClientHeight = 469
   ClientWidth = 598
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -15,11 +15,11 @@ object FormMain: TFormMain
   OnDestroy = FormDestroy
   DesignSize = (
     598
-    428)
+    469)
   TextHeight = 13
   object ImgLogo: TImage
     Left = 8
-    Top = 390
+    Top = 431
     Width = 32
     Height = 32
     Anchors = [akLeft, akBottom]
@@ -2520,7 +2520,7 @@ object FormMain: TFormMain
   end
   object LbVersion: TLabel
     Left = 48
-    Top = 390
+    Top = 431
     Width = 55
     Height = 13
     Anchors = [akLeft, akBottom]
@@ -2535,7 +2535,7 @@ object FormMain: TFormMain
   end
   object LbTM: TLabel
     Left = 48
-    Top = 405
+    Top = 446
     Width = 113
     Height = 13
     Anchors = [akLeft, akBottom]
@@ -2546,37 +2546,40 @@ object FormMain: TFormMain
     Left = 8
     Top = 8
     Width = 587
-    Height = 375
+    Height = 416
     ActivePage = TabConfig
     Anchors = [akLeft, akTop, akRight, akBottom]
     TabOrder = 0
+    ExplicitHeight = 375
     object TabConfig: TTabSheet
       Caption = 'Tests'
       ImageIndex = 1
       DesignSize = (
         579
-        347)
+        388)
       object RbgLib: TRadioGroup
         Left = 8
         Top = 3
         Width = 150
-        Height = 335
+        Height = 376
         Anchors = [akLeft, akTop, akBottom]
         Caption = 'Libraries'
         TabOrder = 0
         OnClick = CtrlChange
+        ExplicitHeight = 335
       end
       object GbxTestConfig: TGroupBox
         Left = 164
         Top = 3
         Width = 406
-        Height = 335
+        Height = 376
         Anchors = [akLeft, akTop, akRight, akBottom]
         Caption = 'Test Configuration'
         TabOrder = 1
+        ExplicitHeight = 335
         DesignSize = (
           406
-          335)
+          376)
         object LbType: TLabel
           Left = 8
           Top = 24
@@ -2708,13 +2711,14 @@ object FormMain: TFormMain
           Left = 8
           Top = 48
           Width = 391
-          Height = 276
-          ActivePage = TabSpeed
+          Height = 317
+          ActivePage = TabFOpen
           Anchors = [akLeft, akTop, akRight, akBottom]
           TabOrder = 1
+          ExplicitHeight = 276
           object TabSpeed: TTabSheet
             Caption = 'TabSpeed'
-            object Bevel: TBevel
+            object BevelSpeed: TBevel
               Left = 3
               Top = 174
               Width = 369
@@ -2786,7 +2790,7 @@ object FormMain: TFormMain
               OnChange = CtrlChange
             end
             object EdSpeedSave: TEdit
-              Left = 110
+              Left = 108
               Top = 33
               Width = 265
               Height = 21
@@ -2822,12 +2826,12 @@ object FormMain: TFormMain
               Text = '5'
               OnChange = CtrlChange
             end
-            object ChbSpeedProg: TCheckBox
+            object ChbSpeedVerbose: TCheckBox
               Left = 212
               Top = 189
               Width = 95
               Height = 17
-              Caption = 'Show progress'
+              Caption = 'Verbose'
               Checked = True
               State = cbChecked
               TabOrder = 11
@@ -2861,7 +2865,7 @@ object FormMain: TFormMain
             ImageIndex = 1
             DesignSize = (
               383
-              248)
+              289)
             object LbValidFolder: TLabel
               Left = 4
               Top = 12
@@ -2892,22 +2896,60 @@ object FormMain: TFormMain
             ImageIndex = 2
             DesignSize = (
               383
-              248)
+              289)
             object LbOpenFile: TLabel
               Left = 4
-              Top = 12
+              Top = 9
               Width = 16
               Height = 13
               Caption = 'File'
             end
+            object BevelOpen: TBevel
+              Left = 3
+              Top = 174
+              Width = 369
+              Height = 4
+              Shape = bsBottomLine
+            end
             object EdFOpenFile: TEdit
               Left = 48
-              Top = 9
+              Top = 6
               Width = 328
               Height = 21
               Anchors = [akLeft, akTop, akRight]
               TabOrder = 0
               Text = '..\..\..\test\open\test.json'
+            end
+            object ChbOpenRepeat: TCheckBox
+              Left = 4
+              Top = 189
+              Width = 62
+              Height = 17
+              Caption = 'Repeat:'
+              Checked = True
+              State = cbChecked
+              TabOrder = 1
+              OnClick = CtrlChange
+            end
+            object EdOpenRep: TEdit
+              Left = 108
+              Top = 187
+              Width = 42
+              Height = 21
+              TabOrder = 2
+              Text = '5'
+              OnChange = CtrlChange
+            end
+            object ChbOpenVerbose: TCheckBox
+              Left = 212
+              Top = 189
+              Width = 95
+              Height = 17
+              Caption = 'Verbose'
+              Checked = True
+              State = cbChecked
+              TabOrder = 3
+              OnClick = CtrlChange
             end
           end
         end
@@ -2945,22 +2987,24 @@ object FormMain: TFormMain
   end
   object BtRun: TButton
     Left = 429
-    Top = 393
+    Top = 434
     Width = 75
     Height = 25
     Anchors = [akRight, akBottom]
     Caption = 'Run'
     TabOrder = 1
     OnClick = BtRunClick
+    ExplicitTop = 393
   end
   object BtClose: TButton
     Left = 520
-    Top = 393
+    Top = 434
     Width = 75
     Height = 25
     Anchors = [akRight, akBottom]
     Caption = 'Close'
     TabOrder = 2
     OnClick = BtCloseClick
+    ExplicitTop = 393
   end
 end

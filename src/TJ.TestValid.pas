@@ -64,9 +64,9 @@ begin
       if (sExc <> '') then
         sMsg := sMsg + ' = [Exception] = ' + sExc;
       // log
-      fMyLog(sMsg);
+      fMyLog(fVerbose, sMsg);
     except on e: Exception do
-      fMyLog('  Validation exception: ' + e.Message);
+      fMyLog(true, '  Validation exception: ' + e.Message);
     end;
   finally
     StrL.Free;
@@ -82,14 +82,15 @@ end;
 constructor TTestValid.Create(aLib: ILib; aMyLog: TMyLog);
 begin
   inherited Create(aLib, aMyLog);
-  fName := 'Validation';
+  fName    := 'Validation';
+  fVerbose := true;
 end;
 
 procedure TTestValid.Header;
 begin
-  fMyLog('Starting test');
-  fMyLog('  Test   : ' + fName);
-  fMyLog('  Library: ' + fLib.Name);
+  fMyLog(true, 'Starting test');
+  fMyLog(true, '  Test   : ' + fName);
+  fMyLog(true, '  Library: ' + fLib.Name);
 end;
 
 procedure TTestValid.Start;
@@ -101,7 +102,7 @@ var
   aFileName: string;
 begin
   Start;
-  fMyLog('');
+  fMyLog(true, '');
   for aFileName in TDirectory.GetFiles(fPathFolder) do
   begin
     DoTest(aFileName);
@@ -111,7 +112,7 @@ end;
 
 procedure TTestValid.Finish;
 begin
-  fMyLog('Test finished');
+  fMyLog(true, 'Test finished');
 end;
 
 end.
