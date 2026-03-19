@@ -34,17 +34,22 @@ procedure TLibJsonDoc.AfterConstruction;
 begin
   inherited;
   fName := 'jsonDoc';
-  fJson      := JSON;
-  fJsonClone := JSON;
+  //fJson := JSON;
+  //fJsonClone := JSON;
+  fJson := nil;
+  fJsonClone := nil;
 end;
 
 destructor TLibJsonDoc.Destroy;
 begin
+  fJson := nil;
+  fJsonClone := nil;
   inherited Destroy;
 end;
 
 procedure TLibJsonDoc.Add(const aKey, aValue: string);
 begin
+  if fJson = nil then fJson := JSON;
   fJson[aKey]:=aValue;
 end;
 
@@ -71,12 +76,15 @@ end;
 
 procedure TLibJsonDoc.Clear;
 begin
-  fJson.Clear;
-  fJsonClone.Clear;
+  //fJson.Clear;
+  //fJsonClone.Clear;
+  fJson := nil;
+  fJsonClone := nil;
 end;
 
 procedure TLibJsonDoc.Load(const aFileName: string);
 begin
+  if fJson = nil then fJson := JSON;
   fJson.Parse(TFile.ReadAllText(aFileName));
 end;
 
@@ -87,6 +95,7 @@ end;
 
 procedure TLibJsonDoc.Parse;
 begin
+  fJsonClone := JSON;
   fJsonClone.Parse(fJson.AsString);
 end;
 
