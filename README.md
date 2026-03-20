@@ -69,7 +69,7 @@ This is a performance test with the following configuration (select `Default` in
 
 Library             | Generate  | Save     | Load     | Find     | Parse    | [Total]   | Memory    | Pitfalls |
 :-------------------|----------:|---------:|---------:|---------:|---------:|----------:|----------:|---------:|
-`JsonDataObjects`   |     .04 s |    .02 s |    .02 s |    .01 s |    .03 s |    0.17 s |  9.08 MiB | Leaks*   |
+`JsonDataObjects`   |     .04 s |    .02 s |    .02 s |    .01 s |    .03 s |    0.17 s |  9.08 MiB | Leaks 1  |
 `Neslib.Json`       |     .03 s |    .03 s |    .03 s |    .00 s |    .04 s |    0.18 s | 10.19 MiB |          |  
 `Grijjy.Bson`       |     .03 s |    .04 s |    .04 s |    .00 s |    .06 s |    0.23 s |  7.52 MiB |          |
 `mORMot2`           |     .02 s |    .01 s |    .02 s |    .12 s |    .02 s |    0.23 s |  7.91 MiB |          |
@@ -78,8 +78,8 @@ Library             | Generate  | Save     | Load     | Find     | Parse    | [T
 `System.JSON`       |     .02 s |    .01 s |    .06 s |    .22 s |    .06 s |    0.43 s | 11.38 MiB |          |
 `EasyJson`          |     .02 s |    .01 s |    .06 s |    .23 s |    .07 s |    0.45 s | 11.38 MiB |          |  
 `LkJson`            |     .06 s |    .05 s |    .10 s |    .01 s |    .14 s |    0.45 s |  2.99 MiB |          |
+`JsonDoc`           |     .11 s |    .05 s |    .12 s |    .01 s |    .17 s |    0.52 s |  7.77 MiB |          |
 `VSoft.YAML`        |     .04 s |    .08 s |    .14 s |    .00 s |    .19 s |    0.53 s |  7.94 MiB |          |
-`JsonDoc`           |     .30 s |    .13 s |    .16 s |    .01 s |    .46 s |    1.13 s |  6.14 MiB |          |
 `SuperObject`       |     .13 s |   1.21 s |    .05 s |    .00 s |    .06 s |    1.53 s |  9.68 MiB |          |
 `dwsJSON`           |     .01 s |    .01 s |   0.92 s |    .03 s |   0.91 s |    1.92 s |  9.88 MiB |          |
 `JsonTools`         |   10.36 s |        - |        - |    .22 s |   8.55 s |   19.18 s |  7.88 MiB | Fails    |
@@ -88,7 +88,7 @@ Library             | Generate  | Save     | Load     | Find     | Parse    | [T
 `X-SuperObject`     |  5.18 min |    .06 s | 1.77 min |   6.18 s | 1.76 min |  8.81 min | 11.48 MiB |          |
 
 Notes:
-- Leaks memory in `TFormMain.RunTest` as `TLibJDO.Destroy` is not been called (something related to `TInterfacedObject`?). 
+- Leaks 1: memory in `TFormMain.RunTest` as `TLibJDO.Destroy` is not been called (something related to `TInterfacedObject`?).
 - See [Conclusions](#Conclusions) about the `EasyJson` and `System.JSON`.
 - See [Know issues](#know-issues) about the incomplete test for `JsonTools`.
 

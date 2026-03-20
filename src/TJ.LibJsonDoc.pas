@@ -34,39 +34,39 @@ procedure TLibJsonDoc.AfterConstruction;
 begin
   inherited;
   fName := 'jsonDoc';
-  //fJson := JSON;
-  //fJsonClone := JSON;
-  fJson := nil;
+  fJson      := nil;
   fJsonClone := nil;
 end;
 
 destructor TLibJsonDoc.Destroy;
 begin
-  fJson := nil;
+  fJson      := nil;
   fJsonClone := nil;
   inherited Destroy;
 end;
 
 procedure TLibJsonDoc.Add(const aKey, aValue: string);
 begin
-  if fJson = nil then fJson := JSON;
+  if fJson = nil then
+    fJson := JSON;
   fJson[aKey]:=aValue;
 end;
 
 function TLibJsonDoc.Count: Integer;
 var
-  e:IJSONEnumerator;
+  e: IJSONEnumerator;
 begin
-  Result:=0;
-  e:=JSONEnum(fJson);
-  while e.Next do inc(Result);
+  Result := 0;
+  e := JSONEnum(fJson);
+  while e.Next do
+    inc(Result);
 end;
 
 procedure TLibJsonDoc.Save(const aFileName: string);
 var
-  e:TEncoding;
+  e: TEncoding;
 begin
-  e:=TUTF8Encoding.Create(true);
+  e := TUTF8Encoding.Create(true);
   try
     TFile.WriteAllText(aFileName,fJson.AsString,e);
   finally
@@ -76,15 +76,14 @@ end;
 
 procedure TLibJsonDoc.Clear;
 begin
-  //fJson.Clear;
-  //fJsonClone.Clear;
-  fJson := nil;
+  fJson      := nil;
   fJsonClone := nil;
 end;
 
 procedure TLibJsonDoc.Load(const aFileName: string);
 begin
-  if fJson = nil then fJson := JSON;
+  if fJson = nil then
+    fJson := JSON;
   fJson.Parse(TFile.ReadAllText(aFileName));
 end;
 
