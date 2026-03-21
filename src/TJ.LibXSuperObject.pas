@@ -31,7 +31,7 @@ implementation
 
 procedure TLibXSuperObject.AfterConstruction;
 begin
-  inherited;
+  inherited AfterConstruction;
   fName := 'X-SuperObject';
   fJson      := SO;
   fJsonClone := SO;

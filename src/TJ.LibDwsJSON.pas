@@ -32,7 +32,7 @@ implementation
 
 procedure TLibDwsJSON.AfterConstruction;
 begin
-  inherited;
+  inherited AfterConstruction;
   fName := 'dwsJSON';
   fJson      := TdwsJSONObject.Create;
   fJsonClone := TdwsJSONObject.Create;

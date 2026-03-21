@@ -32,7 +32,7 @@ implementation
 
 procedure TLibJsonTools.AfterConstruction;
 begin
-  inherited;
+  inherited AfterConstruction;
   fName := 'JsonTools';
   fJson      := TJsonNode.Create;
   fJsonClone := TJsonNode.Create;

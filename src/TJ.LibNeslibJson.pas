@@ -32,7 +32,7 @@ implementation
 
 procedure TLibNeslibJson.AfterConstruction;
 begin
-  inherited;
+  inherited AfterConstruction;
   fName := 'Neslib.Json';
   fJson      := TJsonDocument.CreateDictionary;
   fJsonClone := TJsonDocument.CreateDictionary;

@@ -32,7 +32,7 @@ implementation
 
 procedure TLibChimeraJson.AfterConstruction;
 begin
-  inherited;
+  inherited AfterConstruction;
   fName := 'chimera.json';
   fJson      := TJSON.New;
   fJsonClone := TJSON.New;

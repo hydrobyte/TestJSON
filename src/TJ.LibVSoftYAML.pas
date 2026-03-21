@@ -37,7 +37,7 @@ uses
 
 procedure TLibVSoftYAML.AfterConstruction;
 begin
-  inherited;
+  inherited AfterConstruction;
   fName := 'VSoft.YAML';
   // TYAML pre config.
   TYAML.DefaultParserOptions.DuplicateKeyBehavior := TYAMLDuplicateKeyBehavior.dkError;

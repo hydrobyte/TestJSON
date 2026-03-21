@@ -32,7 +32,7 @@ implementation
 
 procedure TLibSystemJSON.AfterConstruction;
 begin
-  inherited;
+  inherited AfterConstruction;
   fName := 'System.JSON';
   fJson      := TJSONObject.Create;
   fJsonClone := TJSONObject.Create;

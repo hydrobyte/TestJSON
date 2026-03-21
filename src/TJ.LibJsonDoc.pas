@@ -32,7 +32,7 @@ implementation
 
 procedure TLibJsonDoc.AfterConstruction;
 begin
-  inherited;
+  inherited AfterConstruction;
   fName := 'jsonDoc';
   fJson      := nil;
   fJsonClone := nil;

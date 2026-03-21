@@ -33,7 +33,7 @@ implementation
 
 procedure TLibMormotJson.AfterConstruction;
 begin
-  inherited;
+  inherited AfterConstruction;
   fName := 'mORMot JSON';
   fJson      := _Json('');
   fJsonClone := _Json('');

@@ -69,10 +69,10 @@ This is a performance test with the following configuration (select `Default` in
 
 Library             | Generate  | Save     | Load     | Find     | Parse    | [Total]   | Memory    | Pitfalls |
 :-------------------|----------:|---------:|---------:|---------:|---------:|----------:|----------:|---------:|
-`JsonDataObjects`   |     .04 s |    .02 s |    .02 s |    .01 s |    .03 s |    0.17 s |  9.08 MiB | Leaks 1  |
+`JsonDataObjects`   |     .03 s |    .01 s |    .02 s |    .02 s |    .02 s |    0.15 s |  9.39 MiB |          |
 `Neslib.Json`       |     .03 s |    .03 s |    .03 s |    .00 s |    .04 s |    0.18 s | 10.19 MiB |          |  
-`Grijjy.Bson`       |     .03 s |    .04 s |    .04 s |    .00 s |    .06 s |    0.23 s |  7.52 MiB |          |
 `mORMot2`           |     .02 s |    .01 s |    .02 s |    .12 s |    .02 s |    0.23 s |  7.91 MiB |          |
+`Grijjy.Bson`       |     .03 s |    .04 s |    .04 s |    .01 s |    .06 s |    0.24 s |  7.70 MiB |          |
 `chimera.json`      |     .04 s |    .03 s |    .08 s |    .01 s |    .08 s |    0.30 s |  8.78 MiB |          | 
 `McJSON`            |     .02 s |    .06 s |    .02 s |    .18 s |    .08 s |    0.41 s |  9.85 MiB |          |
 `System.JSON`       |     .02 s |    .01 s |    .06 s |    .22 s |    .06 s |    0.43 s | 11.38 MiB |          |
@@ -88,7 +88,6 @@ Library             | Generate  | Save     | Load     | Find     | Parse    | [T
 `X-SuperObject`     |  5.18 min |    .06 s | 1.77 min |   6.18 s | 1.76 min |  8.81 min | 11.48 MiB |          |
 
 Notes:
-- Leaks 1: memory in `TFormMain.RunTest` as `TLibJDO.Destroy` is not been called (something related to `TInterfacedObject`?).
 - See [Conclusions](#Conclusions) about the `EasyJson` and `System.JSON`.
 - See [Know issues](#know-issues) about the incomplete test for `JsonTools`.
 

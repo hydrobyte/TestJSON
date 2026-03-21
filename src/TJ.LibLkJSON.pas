@@ -32,7 +32,7 @@ implementation
 
 procedure TLibLkJSON.AfterConstruction;
 begin
-  inherited;
+  inherited AfterConstruction;
   fName := 'uLkJSON';
   fJson := TlkJSONobject.Create;
 end;

@@ -32,7 +32,7 @@ implementation
 
 procedure TLibEasyJson.AfterConstruction;
 begin
-  inherited;
+  inherited AfterConstruction;
   fName := 'EasyJson';
   fJson      := TEasyJson.Create;
   fJsonClone := TEasyJson.Create;

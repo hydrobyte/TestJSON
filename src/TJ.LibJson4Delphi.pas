@@ -32,7 +32,7 @@ implementation
 
 procedure TLibJson4Delphi.AfterConstruction;
 begin
-  inherited;
+  inherited AfterConstruction;
   fName := 'Json4Delphi';
   fJson      := TJson.Create;
   fJsonClone := TJson.Create;

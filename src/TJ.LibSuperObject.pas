@@ -32,7 +32,7 @@ implementation
 
 procedure TLibSuperObject.AfterConstruction;
 begin
-  inherited;
+  inherited AfterConstruction;
   fName := 'SuperObject';
   fJson      := SO;
   fJsonClone := SO;

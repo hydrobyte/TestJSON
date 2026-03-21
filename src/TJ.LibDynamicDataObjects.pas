@@ -31,7 +31,7 @@ implementation
 
 procedure TLibDynamicDataObjects.AfterConstruction;
 begin
-  inherited;
+  inherited AfterConstruction;
   fName := 'DynamicDataObjects';
   fJson      := TDataObj.Create;
   fJsonClone := TDataObj.Create;

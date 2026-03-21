@@ -32,7 +32,7 @@ implementation
 
 procedure TLibMcJSON.AfterConstruction;
 begin
-  inherited;
+  inherited AfterConstruction;
   fName := 'McJSON';
   fJson      := TMcJsonItem.Create;
   fJsonClone := TMcJsonItem.Create;
