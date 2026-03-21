@@ -32,7 +32,7 @@ implementation
 
 procedure TLibJDO.AfterConstruction;
 begin
-  inherited Create;
+  inherited AfterConstruction;
   fName := 'JsonDataObjects';
   fJson      := TJsonObject.Create;
   fJsonClone := TJsonObject.Create;
@@ -87,6 +87,7 @@ var
  jTmp: TJsonBaseObject;
 begin
   Result := False;
+  jTmp := nil;
   try
     jTmp   := fJson.Parse(aCode);
     Result := Assigned(jTmp);

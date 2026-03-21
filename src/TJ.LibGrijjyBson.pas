@@ -32,7 +32,7 @@ implementation
 
 procedure TLibGrijjyBson.AfterConstruction;
 begin
-  inherited Create;
+  inherited AfterConstruction;
   fName := 'GrijjyBson';
   fJson      := TgoBsonDocument.Create;
   fJsonClone := TgoBsonDocument.Create;
