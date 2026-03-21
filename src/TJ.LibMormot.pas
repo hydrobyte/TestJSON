@@ -83,7 +83,7 @@ end;
 
 function TLibMormotJson.Check(const aCode: string): Boolean;
 var
- jTmp: Variant;
+  jTmp: Variant;
 begin
   Result := False;
   try

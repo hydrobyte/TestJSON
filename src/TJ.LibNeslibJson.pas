@@ -84,6 +84,7 @@ var
  jTmp: IJsonDocument;
 begin
   Result := False;
+  jTmp   := nil;
   try
     jTmp   := TJsonDocument.Parse(aCode);
     Result := Assigned(jTmp);

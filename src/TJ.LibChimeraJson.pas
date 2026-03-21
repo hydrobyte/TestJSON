@@ -84,6 +84,7 @@ var
  jTmp: IJSONObject;
 begin
   Result := False;
+  jTmp   := nil;
   try
     jTmp   := TJSON.From(aCode);
     Result := Assigned(jTmp);

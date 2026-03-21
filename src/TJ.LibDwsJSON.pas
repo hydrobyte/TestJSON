@@ -88,6 +88,7 @@ var
  jTmp: TdwsJSONValue;
 begin
   Result := False;
+  jTmp   := nil;
   try
     jTmp   := fJson.ParseString(aCode);
     Result := Assigned(jTmp);

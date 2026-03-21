@@ -87,6 +87,7 @@ var
   jTmp: TEasyJson;
 begin
   Result := False;
+  jTmp   := nil;
   try
     jTmp := TEasyJson.Create(aCode);
     Result := ( Assigned(jTmp) and (jTmp.Count > 0) );

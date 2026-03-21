@@ -90,6 +90,7 @@ var
  jTmp: TJSONValue;
 begin
   Result := False;
+  jTmp   := nil;
   try
     jTmp   := fJson.ParseJSONValue(aCode);
     Result := Assigned(jTmp);

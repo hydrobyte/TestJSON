@@ -87,7 +87,7 @@ var
  jTmp: TJsonBaseObject;
 begin
   Result := False;
-  jTmp := nil;
+  jTmp   := nil;
   try
     jTmp   := fJson.Parse(aCode);
     Result := Assigned(jTmp);

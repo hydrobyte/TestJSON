@@ -89,6 +89,7 @@ var
   jTmp: TlkJSONbase;
 begin
   Result := False;
+  jTmp   := nil;
   try
     jTmp   := TlkJSON.ParseText(aCode);
     Result := Assigned(jTmp);

@@ -103,6 +103,7 @@ var
   jTmp: IJSONDocument;
 begin
   Result := False;
+  jTmp   := nil;
   try
     jTmp   := JSON(aCode);
     Result := True;
