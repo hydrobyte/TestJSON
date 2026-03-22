@@ -188,10 +188,10 @@ This is a simple test to open files with any library included into this project 
 
 Library             |  Memory | Factor    | Load Time | Pitfalls          |
 :-------------------|--------:|----------:|----------:|------------------:|
-`JsonDataObjects`   |  2143.2 |        2x |     12.20 | Leaks memory      |
-`JsonDoc`           |  1672.9 |        2x |     59.40 |                   |
-`Grijjy.Bson`       |  4313.1 |        4x |     25.20 | Leaks memory      |
+`JsonDataObjects`   |  2143.2 |        2x |     12.20 |                   |
+`Grijjy.Bson`       |  4313.1 |        4x |     28.20 |                   |
 `dwsJSON`           |  4776.2 |        5x |     15.40 |                   |
+`JsonDoc`           |  5024.6 |        5x |     18.80 |                   |
 `Neslib.Json`       |  4676.6 |        5x |     21.80 |                   |
 `LkJson`            |  6291.7 |        6x |     72.00 |                   |
 `SuperObject`       |  7180.1 |        7x |     68.60 |                   |
@@ -212,22 +212,22 @@ Notes:
 - Allocation Factor = Round(Memory in kiB / 1000 kiB).
 - Load time in milliseconds.
 
-The Top-Three libraries with the lowest memory consumption are: `JsonDoc`, `JsonDataObjects` and `Grijjy.Bson`. These last two presented problems of Memory Leaking, but the `TLib` descendant classes use simple Create, LoadFromFile/Parse and Free methods.
+The Top-Three libraries with the lowest memory consumption (allocation factor) are: `JsonDataObjects`, `Grijjy.Bson` and `dwsJSON`. It is worth highlighting the superior performance of the combined factors from `JsonDataObjects`.
 
-The Top-Three fastest libraries in terms of loading time are: `JsonDataObjects`, `dwsJSON` and `Neslib.Json`. This last one keeps consistent with `Speed` tests results.
+The Top-Three fastest libraries in terms of loading time are: `JsonDataObjects`, `dwsJSON` and `JsonDoc`. 
 
-In general, `JsonDoc` might be considered the best library in respect of memory consumption and loading time tradeoff, highlighting its remarkable low memory and allocation factor without pitfalls. Also, `JsonDataObjects` has a good chance of keeping the top spot once the cause of the memory leak is found.
+In general, `JsonDataObjects` might be considered the best library in respect of memory consumption and loading time tradeoff, highlighting its remarkable low memory and allocation factor without pitfalls.
 
 ## Conclusions
 1. All `Speed Run` tests with `Delphi` version are twice as fast as with `C++Builder`.
 
-2. `JsonDataObjects` is the fastest library tested until now, closely followed `Neslib.Json`, `Grijjy.Bson` and `mORMot2` (technical draw). But `JsonDataObjects` is leaking memory in all tests.
+2. `JsonDataObjects` is the fastest library tested until now, closely followed `Neslib.Json`, `mORMot2` and `Grijjy.Bson` (technical draw). 
 
 3. The `Validation` tests can demonstrate that even the most modern libraries can have occasional small violations against the standard. Total clear for `McJSON`, `JsonDataObjects` and `VSoft.YAML`.
 
 4. The `Open File` tests using a file slightly larger than most common JSON uses demonstrate significant variation in terms of loading time and allocation factor.
 
-5. Considering JSON files with a larger amount of data, there are significant differences in terms of memory consumption and loading time. The positive highlight is `JsonDoc`.
+5. Considering JSON files with a larger amount of data, there are significant differences in terms of memory consumption and loading time. The positive highlight is `JsonDataObjects`.
 
 6. For JSON structures with less than 5000 objects, the choice of libraries can be screened not only based on performance. Standard/Compiler compatibility and ease of use should have priority in terms of choice criterion.
 
