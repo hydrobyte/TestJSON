@@ -2550,7 +2550,6 @@ object FormMain: TFormMain
     ActivePage = TabConfig
     Anchors = [akLeft, akTop, akRight, akBottom]
     TabOrder = 0
-    ExplicitHeight = 375
     object TabConfig: TTabSheet
       Caption = 'Tests'
       ImageIndex = 1
@@ -2566,7 +2565,6 @@ object FormMain: TFormMain
         Caption = 'Libraries'
         TabOrder = 0
         OnClick = CtrlChange
-        ExplicitHeight = 335
       end
       object GbxTestConfig: TGroupBox
         Left = 164
@@ -2576,7 +2574,6 @@ object FormMain: TFormMain
         Anchors = [akLeft, akTop, akRight, akBottom]
         Caption = 'Test Configuration'
         TabOrder = 1
-        ExplicitHeight = 335
         DesignSize = (
           406
           376)
@@ -2715,7 +2712,6 @@ object FormMain: TFormMain
           ActivePage = TabFOpen
           Anchors = [akLeft, akTop, akRight, akBottom]
           TabOrder = 1
-          ExplicitHeight = 276
           object TabSpeed: TTabSheet
             Caption = 'TabSpeed'
             object BevelSpeed: TBevel
@@ -2972,7 +2968,7 @@ object FormMain: TFormMain
         Left = 3
         Top = 3
         Width = 573
-        Height = 341
+        Height = 382
         Align = alClient
         Font.Charset = ANSI_CHARSET
         Font.Color = clWindowText
@@ -2994,7 +2990,6 @@ object FormMain: TFormMain
     Caption = 'Run'
     TabOrder = 1
     OnClick = BtRunClick
-    ExplicitTop = 393
   end
   object BtClose: TButton
     Left = 520
@@ -3005,6 +3000,5 @@ object FormMain: TFormMain
     Caption = 'Close'
     TabOrder = 2
     OnClick = BtCloseClick
-    ExplicitTop = 393
   end
 end

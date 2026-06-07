@@ -74,6 +74,7 @@ Library             | Generate  | Save     | Load     | Find     | Parse    | [T
 `mORMot2`           |     .02 s |    .01 s |    .02 s |    .12 s |    .02 s |    0.23 s |  7.91 MiB |          |
 `Grijjy.Bson`       |     .03 s |    .04 s |    .04 s |    .01 s |    .06 s |    0.24 s |  7.70 MiB |          |
 `chimera.json`      |     .04 s |    .03 s |    .08 s |    .01 s |    .08 s |    0.30 s |  8.78 MiB |          | 
+`DynamicDataObjects`|     .07 s |    .04 s |    .08 s |    .01 s |    .09 s |    0.41 s | 14.22 MiB |          |
 `McJSON`            |     .02 s |    .06 s |    .02 s |    .18 s |    .08 s |    0.41 s |  9.85 MiB |          |
 `System.JSON`       |     .02 s |    .01 s |    .06 s |    .22 s |    .06 s |    0.43 s | 11.38 MiB |          |
 `EasyJson`          |     .02 s |    .01 s |    .06 s |    .23 s |    .07 s |    0.45 s | 11.38 MiB |          |  
@@ -81,10 +82,9 @@ Library             | Generate  | Save     | Load     | Find     | Parse    | [T
 `JsonDoc`           |     .11 s |    .05 s |    .12 s |    .01 s |    .17 s |    0.52 s |  7.77 MiB |          |
 `VSoft.YAML`        |     .04 s |    .08 s |    .14 s |    .00 s |    .19 s |    0.53 s |  7.94 MiB |          |
 `SuperObject`       |     .13 s |   1.21 s |    .05 s |    .00 s |    .06 s |    1.53 s |  9.68 MiB |          |
-`dwsJSON`           |     .01 s |    .01 s |   0.92 s |    .03 s |   0.91 s |    1.92 s |  9.88 MiB |          |
+`dwsJSON`           |     .01 s |    .01 s |    .92 s |    .03 s |    .91 s |    1.92 s |  9.88 MiB |          |
 `JsonTools`         |   10.36 s |        - |        - |    .22 s |   8.55 s |   19.18 s |  7.88 MiB | Fails    |
 `Json4Delphi`       |     .02 s |    .06 s |  35.00 s |    .40 s |  35.71 s |   71.23 s | 11.57 MiB |          |
-`DynamicDataObjects`|   28.73 s |    .02 s |  30.24 s |    .58 s |  29.25 s |   88.88 s | 11.51 MiB |          |
 `X-SuperObject`     |  5.18 min |    .06 s | 1.77 min |   6.18 s | 1.76 min |  8.81 min | 11.48 MiB |          |
 
 Notes:
@@ -127,10 +127,10 @@ Library             | Expected to Fail but Passed                      | Expecte
 `Neslib.Json`       |                 fail(07, 15, 16, 18, 19, 20, 21) |                  pass(04, 05) |
 `dwsJSON`           |                             fail(16, 18, 19, 21) |                             - |
 `chimera.json`      |         fail(01, 08, 10, 16, 18, 19, 20, 21, 23) |                             - |
-`DynamicDataObjects`|     fail(05, 06, 07, 09, 16, 17, 18, 19, 20, 21) |                  pass(01, 05) |
+`DynamicDataObjects`|                 fail(05, 06, 17, 18, 19, 21, 23) |                      pass(01) |
 `EasyJson`          |                                         fail(07) |                  pass(04, 05) |
 `JsonDoc`           |                                 fail(15, 20, 21) |          pass(01, 02, 04, 05) |
-`mORMot2`           |             fail(01, 07, 10, 11, 15, 18, 19, 21) |                  pass(04, 05) |
+`mORMot2`           |             fail(05, 06, 10, 11, 15, 18, 19, 21) |                  pass(04, 05) |
 `VSoft.YAML`        |                                                - |                             - |
 
 ### Results with C++Builder
@@ -195,11 +195,11 @@ Library             |  Memory | Factor    | Load Time | Pitfalls          |
 `Neslib.Json`       |  4676.6 |        5x |     21.80 |                   |
 `LkJson`            |  6291.7 |        6x |     72.00 |                   |
 `SuperObject`       |  7180.1 |        7x |     68.60 |                   |
-`DynamicDataObjects`|  7529.0 |        8x |     28.40 | ToString fails    |
+`DynamicDataObjects`|  8871.1 |        9x |     28.20 | ToString() fails  |
 `System.JSON`       |  9420.3 |        9x |     40.60 |                   |
 `EasyJson`          |  9420.3 |        9x |     50.20 |                   |
 `McJSON`            | 10385.7 |       10x |     46.80 |                   |
-`X-SuperObject`     | 10388.4 |       10x |    121.80 | ToString fails    |
+`X-SuperObject`     | 10388.4 |       10x |    121.80 | ToString() fails  |
 `Json4Delphi`       |  9505.3 |       10x |    243.60 |                   |
 `chimera.json`      | 12086.7 |       12x |    915.60 |                   |
 `VSoft.YAML`        | 19845.2 |       19x |    177.80 |                   |
