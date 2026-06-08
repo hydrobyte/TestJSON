@@ -109,29 +109,32 @@ Notes:
 ## Validation test
 This validation test should be analyzed carefully. Some libraries have violations for some sort of self-management in reading JSON data.
 - `.\test\valid` files extracted from [MJPA/SimpleJSON](https://github.com/MJPA/SimpleJSON)
-- These are not valid JSON files because first line has a text as description.
+- These are not valid JSON files because the first line has a text as description.
+- The `shouldNN.json` files test for default behavior flagged as "should" rules, such as the existence of "duplicated keys" (See [Issue 16](https://github.com/hydrobyte/TestJSON/issues/16)).
+- The libraries are presented in the order in which they were added to this project.
+- Ideally, you should have only one "-" as results.
 
 ### Results with Delphi
 
-Library             | Expected to Fail but Passed                      | Expected to Pass but Failed   |
-:-------------------|-------------------------------------------------:|------------------------------:|
-`McJSON`            |                                                - |                             - |
-`LkJson`            |             fail(01, 07, 08, 16, 18, 19, 20, 21) |                             - |
-`System.JSON`       |                                         fail(07) |                      pass(04) |
-`JsonDataObjects`   |                                                - |                             - |
-`SuperObject`       | fail(01, 06, 07, 08, 10, 11, 16, 18, 19, 20, 21) |                             - |
-`X-SuperObject`     |     fail(01, 06, 08, 15, 16, 17, 18, 19, 20, 21) |              pass(01, 04, 05) |
-`JsonTools`         |                             fail(01, 16, 20, 21) |                  pass(04, 05) |
-`Json4Delphi`       |                                                - |      pass(01, 03, 04, 05, 06) |
-`Grijjy.Bson`       |                                     fail(15, 20) |          pass(01, 02, 04, 05) |
-`Neslib.Json`       |                 fail(07, 15, 16, 18, 19, 20, 21) |                  pass(04, 05) |
-`dwsJSON`           |                             fail(16, 18, 19, 21) |                             - |
-`chimera.json`      |         fail(01, 08, 10, 16, 18, 19, 20, 21, 23) |                             - |
-`DynamicDataObjects`|                 fail(05, 06, 17, 18, 19, 21, 23) |                      pass(01) |
-`EasyJson`          |                                         fail(07) |                  pass(04, 05) |
-`JsonDoc`           |                                 fail(15, 20, 21) |          pass(01, 02, 04, 05) |
-`mORMot2`           |             fail(05, 06, 10, 11, 15, 18, 19, 21) |                  pass(04, 05) |
-`VSoft.YAML`        |                                                - |                             - |
+Library             | Expected to Fail but Passed                      | Expected to Pass but Failed | Duplicates Fail |
+:-------------------|-------------------------------------------------:|----------------------------:|:---------------:|
+`McJSON`            |                                                - |                           - | Yes             |
+`LkJson`            |             fail(01, 07, 08, 16, 18, 19, 20, 21) |                           - | No              |
+`System.JSON`       |                                         fail(07) |                    pass(04) | No              |
+`JsonDataObjects`   |                                                - |                           - | No              |
+`SuperObject`       | fail(01, 06, 07, 08, 10, 11, 16, 18, 19, 20, 21) |                           - | No              |
+`X-SuperObject`     |     fail(01, 06, 08, 15, 16, 17, 18, 19, 20, 21) |            pass(01, 04, 05) | No              |
+`JsonTools`         |                             fail(01, 16, 20, 21) |                pass(04, 05) | No              |
+`Json4Delphi`       |                                                - |    pass(01, 03, 04, 05, 06) | Yes             |
+`Grijjy.Bson`       |                                     fail(15, 20) |        pass(01, 02, 04, 05) | Yes             |
+`Neslib.Json`       |                 fail(07, 15, 16, 18, 19, 20, 21) |                pass(04, 05) | No              |
+`dwsJSON`           |                             fail(16, 18, 19, 21) |                           - | No              |
+`chimera.json`      |         fail(01, 08, 10, 16, 18, 19, 20, 21, 23) |                           - | No              |
+`DynamicDataObjects`|                 fail(05, 06, 17, 18, 19, 21, 23) |                    pass(01) | No              |
+`EasyJson`          |                                         fail(07) |                pass(04, 05) | No              |
+`JsonDoc`           |                                 fail(15, 20, 21) |        pass(01, 02, 04, 05) | No              |
+`mORMot2`           |             fail(05, 06, 10, 11, 15, 18, 19, 21) |                pass(04, 05) | No              |
+`VSoft.YAML`        |                                                - |                           - | No              |
 
 ### Results with C++Builder
 
@@ -174,6 +177,7 @@ List of test files names and description
 - `pass04.json = Simple string value`
 - `pass05.json = Unicode character string`
 - `pass06.json = From https://json.org/example.html`
+- `should01.json = The names within an object SHOULD be unique (RFC 8259)`
 
 
 ## Open File test
@@ -183,34 +187,34 @@ This is a simple test to open files with any library included into this project 
 - Opens file with `Verbose` checked.
 - Checks JSON was read and processed by `ToString` method.
 - Checks memory leaking when closing the app.
+- Load time in milliseconds.
 
 ### Results with Delphi
 
-Library             |  Memory | Factor    | Load Time | Pitfalls          |
-:-------------------|--------:|----------:|----------:|------------------:|
-`JsonDataObjects`   |  2143.2 |        2x |     12.20 |                   |
-`Grijjy.Bson`       |  4313.1 |        4x |     28.20 |                   |
-`dwsJSON`           |  4776.2 |        5x |     15.40 |                   |
-`JsonDoc`           |  5024.6 |        5x |     18.80 |                   |
-`Neslib.Json`       |  4676.6 |        5x |     21.80 |                   |
-`LkJson`            |  6291.7 |        6x |     72.00 |                   |
-`SuperObject`       |  7180.1 |        7x |     68.60 |                   |
-`DynamicDataObjects`|  8871.1 |        9x |     28.20 | ToString() fails  |
-`System.JSON`       |  9420.3 |        9x |     40.60 |                   |
-`EasyJson`          |  9420.3 |        9x |     50.20 |                   |
-`McJSON`            | 10385.7 |       10x |     46.80 |                   |
-`X-SuperObject`     | 10388.4 |       10x |    121.80 | ToString() fails  |
-`Json4Delphi`       |  9505.3 |       10x |    243.60 |                   |
-`chimera.json`      | 12086.7 |       12x |    915.60 |                   |
-`VSoft.YAML`        | 19845.2 |       19x |    177.80 |                   |
-`JsonTools`         |       - |         - |         - | Load file fails   |
-`mORMot2`           |       - |         - |         - | Load file fails   |
+Library             |  Memory | Factor  | Load Time | Pitfalls         |
+:-------------------|--------:|--------:|----------:|-----------------:|
+`JsonDataObjects`   |  2143.2 |      2x |     12.20 |                  |
+`Grijjy.Bson`       |  4313.1 |      4x |     28.20 |                  |
+`dwsJSON`           |  4776.2 |      5x |     15.40 |                  |
+`JsonDoc`           |  5024.6 |      5x |     18.80 |                  |
+`Neslib.Json`       |  4676.6 |      5x |     21.80 |                  |
+`LkJson`            |  6291.7 |      6x |     72.00 |                  |
+`SuperObject`       |  7180.1 |      7x |     68.60 |                  |
+`DynamicDataObjects`|  8871.1 |      9x |     28.20 | ToString() fails |
+`System.JSON`       |  9420.3 |      9x |     40.60 |                  |
+`EasyJson`          |  9420.3 |      9x |     50.20 |                  |
+`McJSON`            | 10385.7 |     10x |     46.80 |                  |
+`X-SuperObject`     | 10388.4 |     10x |    121.80 | ToString() fails |
+`Json4Delphi`       |  9505.3 |     10x |    243.60 |                  |
+`chimera.json`      | 12086.7 |     12x |    915.60 |                  |
+`VSoft.YAML`        | 19845.2 |     19x |    177.80 |                  |
+`JsonTools`         |       - |       - |         - | Load file fails  |
+`mORMot2`           |       - |       - |         - | Load file fails  |
 
 Notes:
 - Ordered by: Factor, Load Time ASC.
 - Memory in kiB.
 - Allocation Factor = Round(Memory in kiB / 1000 kiB).
-- Load time in milliseconds.
 
 The Top-Three libraries with the lowest memory consumption (allocation factor) are: `JsonDataObjects`, `Grijjy.Bson` and `dwsJSON`. It is worth highlighting the superior performance of the combined factors from `JsonDataObjects`.
 

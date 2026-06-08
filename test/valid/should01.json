@@ -1,0 +1,2 @@
+The names within an object SHOULD be unique (RFC 8259)
+{"a":1, "a":2}
