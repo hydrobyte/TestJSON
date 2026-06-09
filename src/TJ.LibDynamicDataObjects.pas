@@ -21,6 +21,7 @@ type
     function  Find(const aKey, aValue: string): Boolean;
     procedure Parse;
     function  Check(const aCode: string): Boolean;
+    function  ToString: string; override;
   protected
     fName: string;
     fJson, fJsonClone: TDataObj;
@@ -89,14 +90,29 @@ begin
 end;
 
 function TLibDynamicDataObjects.Check(const aCode: string): Boolean;
+var
+  lStreamer: TJsonStreamer;
 begin
   Result := False;
+  lStreamer := TJsonStreamer.create;
   try
-    TJsonStreamer.JsonToDataObj(aCode, fJson);
+    lStreamer.AllowParsingSymbols           := False;
+    lStreamer.AllowParsingExtendedTypes     := False;
+    lStreamer.AllowSingleQuoteStrings       := False;
+    lStreamer.AllowOverwritingExistingSlots := False;
+    lStreamer.SlotnameIsCaseSensitive       := True;
+    lStreamer.AllowParsingLeadingZeros      := False;
+    lStreamer.JSON := aCode;
+    lStreamer.Decode(fJson);
     Result := True;
-  except
-    Result := False;
+  finally
+    lStreamer.free;
   end;
+end;
+
+function TLibDynamicDataObjects.ToString: string;
+begin
+  Result := fJson.JSON;
 end;
 
 function TLibDynamicDataObjects.fGetName: string;

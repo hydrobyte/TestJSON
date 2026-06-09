@@ -72,9 +72,9 @@ Library             | Generate  | Save     | Load     | Find     | Parse    | [T
 `JsonDataObjects`   |     .03 s |    .01 s |    .02 s |    .02 s |    .02 s |    0.15 s |  9.39 MiB |          |
 `Neslib.Json`       |     .03 s |    .03 s |    .03 s |    .00 s |    .04 s |    0.18 s | 10.19 MiB |          |  
 `mORMot2`           |     .02 s |    .01 s |    .02 s |    .12 s |    .02 s |    0.23 s |  7.91 MiB |          |
+`DynamicDataObjects`|     .03 s |    .02 s |    .04 s |    .00 s |    .05 s |    0.23 s | 14.22 MiB |          |
 `Grijjy.Bson`       |     .03 s |    .04 s |    .04 s |    .01 s |    .06 s |    0.24 s |  7.70 MiB |          |
-`chimera.json`      |     .04 s |    .03 s |    .08 s |    .01 s |    .08 s |    0.30 s |  8.78 MiB |          | 
-`DynamicDataObjects`|     .07 s |    .04 s |    .08 s |    .01 s |    .09 s |    0.41 s | 14.22 MiB |          |
+`chimera.json`      |     .04 s |    .03 s |    .08 s |    .01 s |    .08 s |    0.30 s |  8.78 MiB |          |
 `McJSON`            |     .02 s |    .06 s |    .02 s |    .18 s |    .08 s |    0.41 s |  9.85 MiB |          |
 `System.JSON`       |     .02 s |    .01 s |    .06 s |    .22 s |    .06 s |    0.43 s | 11.38 MiB |          |
 `EasyJson`          |     .02 s |    .01 s |    .06 s |    .23 s |    .07 s |    0.45 s | 11.38 MiB |          |  
@@ -130,7 +130,7 @@ Library             | Expected to Fail but Passed                      | Expecte
 `Neslib.Json`       |                 fail(07, 15, 16, 18, 19, 20, 21) |                pass(04, 05) | No              |
 `dwsJSON`           |                             fail(16, 18, 19, 21) |                           - | No              |
 `chimera.json`      |         fail(01, 08, 10, 16, 18, 19, 20, 21, 23) |                           - | No              |
-`DynamicDataObjects`|                 fail(05, 06, 17, 18, 19, 21, 23) |                    pass(01) | No              |
+`DynamicDataObjects`|                                     fail(18, 19) |                    pass(01) | No              |
 `EasyJson`          |                                         fail(07) |                pass(04, 05) | No              |
 `JsonDoc`           |                                 fail(15, 20, 21) |        pass(01, 02, 04, 05) | No              |
 `mORMot2`           |             fail(05, 06, 10, 11, 15, 18, 19, 21) |                pass(04, 05) | No              |
@@ -200,7 +200,7 @@ Library             |  Memory | Factor  | Load Time | Pitfalls         |
 `Neslib.Json`       |  4676.6 |      5x |     21.80 |                  |
 `LkJson`            |  6291.7 |      6x |     72.00 |                  |
 `SuperObject`       |  7180.1 |      7x |     68.60 |                  |
-`DynamicDataObjects`|  8871.1 |      9x |     28.20 | ToString() fails |
+`DynamicDataObjects`|  8871.1 |      9x |     27.80 |                  |
 `System.JSON`       |  9420.3 |      9x |     40.60 |                  |
 `EasyJson`          |  9420.3 |      9x |     50.20 |                  |
 `McJSON`            | 10385.7 |     10x |     46.80 |                  |
