@@ -8,7 +8,7 @@ uses
   Vcl.Graphics, Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls,
   Vcl.ExtCtrls, Vcl.Buttons, Vcl.ComCtrls,
 
-  McJson, McUtils, Mc.Param,
+  McJSON, McUtils, Mc.Param,
   TJ.Test, TJ.TestSpeedRun, TJ.TestValid, TJ.TestFOpen,
   TJ.Lib;
 
@@ -102,7 +102,11 @@ var
   i: integer;
 begin
   // version
-  LbVersion.Caption := 'Test JSON 0.9.9 - Delphi 12.1 Athens (CE)';
+  {$IFDEF BCB}
+  LbVersion.Caption := 'Test JSON 1.0.0 - C++Builder 12.3 Athens (Pro)';
+  {$ELSE}
+  LbVersion.Caption := 'Test JSON 1.0.0 - Delphi 12.1 Athens (CE)';
+  {$ENDIF}
   FEventsFreezed := false;
   // statistics clock
   TestClock := TTestClock.Create;

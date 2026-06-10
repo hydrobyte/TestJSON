@@ -2550,6 +2550,8 @@ object FormMain: TFormMain
     ActivePage = TabConfig
     Anchors = [akLeft, akTop, akRight, akBottom]
     TabOrder = 0
+    ExplicitWidth = 585
+    ExplicitHeight = 408
     object TabConfig: TTabSheet
       Caption = 'Tests'
       ImageIndex = 1
@@ -2565,6 +2567,7 @@ object FormMain: TFormMain
         Caption = 'Libraries'
         TabOrder = 0
         OnClick = CtrlChange
+        ExplicitHeight = 368
       end
       object GbxTestConfig: TGroupBox
         Left = 164
@@ -2574,6 +2577,8 @@ object FormMain: TFormMain
         Anchors = [akLeft, akTop, akRight, akBottom]
         Caption = 'Test Configuration'
         TabOrder = 1
+        ExplicitWidth = 404
+        ExplicitHeight = 368
         DesignSize = (
           406
           376)
@@ -2712,6 +2717,8 @@ object FormMain: TFormMain
           ActivePage = TabFOpen
           Anchors = [akLeft, akTop, akRight, akBottom]
           TabOrder = 1
+          ExplicitWidth = 389
+          ExplicitHeight = 309
           object TabSpeed: TTabSheet
             Caption = 'TabSpeed'
             object BevelSpeed: TBevel
@@ -2915,6 +2922,7 @@ object FormMain: TFormMain
               Anchors = [akLeft, akTop, akRight]
               TabOrder = 0
               Text = '..\..\..\test\open\test.json'
+              ExplicitWidth = 326
             end
             object ChbOpenRepeat: TCheckBox
               Left = 4
@@ -2958,6 +2966,7 @@ object FormMain: TFormMain
           Anchors = [akLeft, akTop, akRight]
           TabOrder = 2
           OnChange = CbxPresetChange
+          ExplicitWidth = 136
         end
       end
     end
@@ -2990,6 +2999,8 @@ object FormMain: TFormMain
     Caption = 'Run'
     TabOrder = 1
     OnClick = BtRunClick
+    ExplicitLeft = 427
+    ExplicitTop = 426
   end
   object BtClose: TButton
     Left = 520
@@ -3000,5 +3011,7 @@ object FormMain: TFormMain
     Caption = 'Close'
     TabOrder = 2
     OnClick = BtCloseClick
+    ExplicitLeft = 518
+    ExplicitTop = 426
   end
 end
