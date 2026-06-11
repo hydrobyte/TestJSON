@@ -93,8 +93,8 @@
         <UWP_CppLogo44>$(BDS)\bin\Artwork\Windows\UWP\cppreg_UwpDefault_44.png</UWP_CppLogo44>
         <UWP_CppLogo150>$(BDS)\bin\Artwork\Windows\UWP\cppreg_UwpDefault_150.png</UWP_CppLogo150>
         <SanitizedProjectName>PrjTestJsonCXE123</SanitizedProjectName>
-        <IncludePath>..\src\pas\XSuperObject\;..\src\pas\vsoft.yaml\Source\;..\src\pas\superobject\;..\src\pas\Neslib\;..\src\pas\mORMot\;..\src\pas\Json4Delphi\;..\src\pas\Grijjy\;..\src\pas\DynamicDataObjects\;..\src\pas\DWScript\;..\src\pas\chimera\;..\src\pas\;..\src\;$(IncludePath)</IncludePath>
-        <ILINK_LibraryPath>..\src\;..\src\pas\;..\src\pas\chimera\;..\src\pas\DWScript\;..\src\pas\DynamicDataObjects\;..\src\pas\Grijjy\;..\src\pas\Json4Delphi\;..\src\pas\Neslib\;..\src\pas\mORMot\;..\src\pas\superobject\;..\src\pas\vsoft.yaml\Source\;..\src\pas\XSuperObject\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
+        <IncludePath>..\src\pas\QDAC\;..\src\pas\XSuperObject\;..\src\pas\vsoft.yaml\Source\;..\src\pas\superobject\;..\src\pas\Neslib\;..\src\pas\mORMot\;..\src\pas\Json4Delphi\;..\src\pas\Grijjy\;..\src\pas\DynamicDataObjects\;..\src\pas\DWScript\;..\src\pas\chimera\;..\src\pas\QDAC;..\src\pas\;..\src\;$(IncludePath)</IncludePath>
+        <ILINK_LibraryPath>..\src\;..\src\pas\;..\src\pas\chimera\;..\src\pas\DWScript\;..\src\pas\DynamicDataObjects\;..\src\pas\Grijjy\;..\src\pas\Json4Delphi\;..\src\pas\Neslib\;..\src\pas\mORMot\;..\src\pas\superobject\;..\src\pas\vsoft.yaml\Source\;..\src\pas\XSuperObject\;..\src\pas\QDAC\;$(ILINK_LibraryPath)</ILINK_LibraryPath>
         <DCC_UnitSearchPath>..\src;..\src\pas;..\src\pas\chimera;..\src\pas\DWScript;..\src\pas\DynamicDataObjects;..\src\pas\Grijjy;..\src\pas\Json4Delphi;..\src\pas\mORMot;..\src\pas\Neslib;..\src\pas\superobject;..\src\pas\vsoft.yaml\Source;..\src\pas\XSuperObject;$(DCC_UnitSearchPath)</DCC_UnitSearchPath>
         <VerInfo_Locale>1033</VerInfo_Locale>
         <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=1.0.0.0;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProgramID=com.embarcadero.$(MSBuildProjectName);ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=</VerInfo_Keys>
@@ -213,7 +213,7 @@
         <DelphiCompile Include="..\src\FoMainDx.pas">
             <Form>FormMain</Form>
             <FormType>dfm</FormType>
-            <BuildOrder>97</BuildOrder>
+            <BuildOrder>103</BuildOrder>
         </DelphiCompile>
         <DelphiCompile Include="..\src\Mc.Param.pas">
             <BuildOrder>1</BuildOrder>
@@ -377,6 +377,18 @@
         <DelphiCompile Include="..\src\pas\Neslib\Neslib.Utf8.pas">
             <BuildOrder>72</BuildOrder>
         </DelphiCompile>
+        <DelphiCompile Include="..\src\pas\QDAC\qjson.pas">
+            <BuildOrder>100</BuildOrder>
+        </DelphiCompile>
+        <DelphiCompile Include="..\src\pas\QDAC\qrbtree.pas">
+            <BuildOrder>101</BuildOrder>
+        </DelphiCompile>
+        <DelphiCompile Include="..\src\pas\QDAC\QSimplePool.pas">
+            <BuildOrder>102</BuildOrder>
+        </DelphiCompile>
+        <DelphiCompile Include="..\src\pas\QDAC\qstring.pas">
+            <BuildOrder>103</BuildOrder>
+        </DelphiCompile>
         <DelphiCompile Include="..\src\pas\superobject\superdate.pas">
             <BuildOrder>73</BuildOrder>
         </DelphiCompile>
@@ -478,6 +490,9 @@
         </DelphiCompile>
         <DelphiCompile Include="..\src\TJ.LibNeslibJson.pas">
             <BuildOrder>12</BuildOrder>
+        </DelphiCompile>
+        <DelphiCompile Include="..\src\TJ.LibQDAC.pas">
+            <BuildOrder>99</BuildOrder>
         </DelphiCompile>
         <DelphiCompile Include="..\src\TJ.LibSuperObject.pas">
             <BuildOrder>7</BuildOrder>
@@ -610,12 +625,6 @@
                 <DeployFile LocalName=".\Win32\Debug\PrjTestJsonCXE123.exe" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win32">
                         <RemoteName>PrjTestJsonCXE123.exe</RemoteName>
-                        <Overwrite>true</Overwrite>
-                    </Platform>
-                </DeployFile>
-                <DeployFile LocalName=".\Win32\Debug\PrjTestJsonCXE123.tds" Configuration="Debug" Class="DebugSymbols">
-                    <Platform Name="Win32">
-                        <RemoteName>PrjTestJsonCXE123.tds</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>

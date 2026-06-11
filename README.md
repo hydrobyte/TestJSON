@@ -28,7 +28,7 @@ Library          | Delphi | C++Builder |
 [jsonDoc](http://github.com/stijnsanders/jsonDoc#jsonDoc)                                  | ✓ | ✓ |
 [mORMot2](https://github.com/synopse/mORMot2/tree/master/src/core)                         | ✓ | ✓ |
 [VSoft.YAML](https://github.com/VSoftTechnologies/VSoft.YAML)                              | ✓ | ✓ |
-[QDAC](https://github.com/chinawsb/qdac)                                                   | ✓ |   |
+[QDAC](https://github.com/chinawsb/qdac)                                                   | ✓ | ✓ |
 
 Note: in order of inclusion.
 
@@ -102,6 +102,7 @@ Library             | Generate  | Save     | Load     | Find     | Parse    | To
 `mORMot2`           |     .05 s |    .00 s |    .03 s |    .11 s |    .02 s |    0.28 s |     - MiB |          |
 `Grijjy.Bson`       |     .06 s |    .04 s |    .06 s |    .00 s |    .08 s |    0.32 s |     - MiB |          |
 `DynamicDataObjects`|     .07 s |    .02 s |    .05 s |    .00 s |    .06 s |    0.33 s |     - MiB |          |
+`QDAC`              |     .04 s |    .03 s |    .03 s |    .24 s |    .07 s |    0.53 s |     - MiB |          |
 `System.JSON`       |     .03 s |    .01 s |    .07 s |    .25 s |    .07 s |    0.55 s |     - MiB |          |
 `chimera.json`      |     .10 s |    .04 s |    .15 s |    .01 s |    .16 s |    0.56 s |     - MiB |          |
 `JsonDoc`           |     .14 s |    .04 s |    .11 s |    .01 s |    .17 s |    0.57 s |     - MiB |          |

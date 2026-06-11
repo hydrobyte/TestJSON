@@ -4,6 +4,9 @@
 #include <tchar.h>
 
 USEFORMNS("..\src\FoMainDx.pas", Fomaindx, FormMain);
+
+//Error in CX 12.3: looses the line above when adding .pas files. Backup:
+//USEFORMNS("..\src\FoMainDx.pas", Fomaindx, FormMain);
 //---------------------------------------------------------------------------
 #pragma link "IndySystem.bpi"
 #pragma link "IndyCore.bpi"

@@ -103,7 +103,7 @@ var
 begin
   // version
   {$IFDEF BCB}
-  LbVersion.Caption := 'Test JSON 1.0.0 - C++Builder 12.3 Athens (Pro)';
+  LbVersion.Caption := 'Test JSON 1.0.1 - C++Builder 12.3 Athens (Pro)';
   {$ELSE}
   LbVersion.Caption := 'Test JSON 1.0.1 - Delphi 12.1 Athens (CE)';
   {$ENDIF}
