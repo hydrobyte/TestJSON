@@ -2966,7 +2966,6 @@ object FormMain: TFormMain
           Anchors = [akLeft, akTop, akRight]
           TabOrder = 2
           OnChange = CbxPresetChange
-          ExplicitWidth = 136
         end
       end
     end

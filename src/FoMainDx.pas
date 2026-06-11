@@ -105,7 +105,7 @@ begin
   {$IFDEF BCB}
   LbVersion.Caption := 'Test JSON 1.0.0 - C++Builder 12.3 Athens (Pro)';
   {$ELSE}
-  LbVersion.Caption := 'Test JSON 1.0.0 - Delphi 12.1 Athens (CE)';
+  LbVersion.Caption := 'Test JSON 1.0.1 - Delphi 12.1 Athens (CE)';
   {$ENDIF}
   FEventsFreezed := false;
   // statistics clock

@@ -28,6 +28,7 @@ Library          | Delphi | C++Builder |
 [jsonDoc](http://github.com/stijnsanders/jsonDoc#jsonDoc)                                  | ✓ | ✓ |
 [mORMot2](https://github.com/synopse/mORMot2/tree/master/src/core)                         | ✓ | ✓ |
 [VSoft.YAML](https://github.com/VSoftTechnologies/VSoft.YAML)                              | ✓ | ✓ |
+[QDAC](https://github.com/chinawsb/qdac)                                                   | ✓ |   |
 
 Note: in order of inclusion.
 
@@ -51,7 +52,7 @@ There are three test types:
 
 
 ## Procedure
-For each library and test type the app was ran and closed. 
+For each library and test type the app was ran and closed.
 The results of `Speed Run` compute the average time of 5 repetitions.
 The Memory consuption is logged and will be part of some results.
 
@@ -70,14 +71,15 @@ This is a performance test with the following configuration (select `Default` in
 Library             | Generate  | Save     | Load     | Find     | Parse    | [Total]   | Memory    | Pitfalls |
 :-------------------|----------:|---------:|---------:|---------:|---------:|----------:|----------:|---------:|
 `JsonDataObjects`   |     .03 s |    .01 s |    .02 s |    .02 s |    .02 s |    0.15 s |  9.39 MiB |          |
-`Neslib.Json`       |     .03 s |    .03 s |    .03 s |    .00 s |    .04 s |    0.18 s | 10.19 MiB |          |  
+`Neslib.Json`       |     .03 s |    .03 s |    .03 s |    .00 s |    .04 s |    0.18 s | 10.19 MiB |          |
 `mORMot2`           |     .02 s |    .01 s |    .02 s |    .12 s |    .02 s |    0.23 s |  7.91 MiB |          |
 `DynamicDataObjects`|     .03 s |    .02 s |    .04 s |    .00 s |    .05 s |    0.23 s | 14.22 MiB |          |
 `Grijjy.Bson`       |     .03 s |    .04 s |    .04 s |    .01 s |    .06 s |    0.24 s |  7.70 MiB |          |
 `chimera.json`      |     .04 s |    .03 s |    .08 s |    .01 s |    .08 s |    0.30 s |  8.78 MiB |          |
+`QDAC`              |     .02 s |    .03 s |    .03 s |    .21 s |    .05 s |    0.39 s | 11.19 MiB |          |
 `McJSON`            |     .02 s |    .06 s |    .02 s |    .18 s |    .08 s |    0.41 s |  9.85 MiB |          |
 `System.JSON`       |     .02 s |    .01 s |    .06 s |    .22 s |    .06 s |    0.43 s | 11.38 MiB |          |
-`EasyJson`          |     .02 s |    .01 s |    .06 s |    .23 s |    .07 s |    0.45 s | 11.38 MiB |          |  
+`EasyJson`          |     .02 s |    .01 s |    .06 s |    .23 s |    .07 s |    0.45 s | 11.38 MiB |          |
 `LkJson`            |     .06 s |    .05 s |    .10 s |    .01 s |    .14 s |    0.45 s |  2.99 MiB |          |
 `JsonDoc`           |     .11 s |    .05 s |    .12 s |    .01 s |    .17 s |    0.52 s |  7.77 MiB |          |
 `VSoft.YAML`        |     .04 s |    .08 s |    .14 s |    .00 s |    .19 s |    0.53 s |  7.94 MiB |          |
@@ -88,6 +90,7 @@ Library             | Generate  | Save     | Load     | Find     | Parse    | [T
 `X-SuperObject`     |  5.18 min |    .06 s | 1.77 min |   6.18 s | 1.76 min |  8.81 min | 11.48 MiB |          |
 
 Notes:
+- Ordered by [Total] ASC.
 - See [Conclusions](#Conclusions) about the `EasyJson` and `System.JSON`.
 - See [Know issues](#know-issues) about the incomplete test for `JsonTools`.
 
@@ -95,15 +98,15 @@ Notes:
 
 Library             | Generate  | Save     | Load     | Find     | Parse    | Total     | Memory    | Pitfalls |
 :-------------------|----------:|---------:|---------:|---------:|---------:|----------:|----------:|---------:|
-`Neslib.Json`       |     .05 s |    .02 s |    .03 s |    .00 s |    .06 s |    0.24 s |     - MiB |          |  
+`Neslib.Json`       |     .05 s |    .02 s |    .03 s |    .00 s |    .06 s |    0.24 s |     - MiB |          |
 `mORMot2`           |     .05 s |    .00 s |    .03 s |    .11 s |    .02 s |    0.28 s |     - MiB |          |
 `Grijjy.Bson`       |     .06 s |    .04 s |    .06 s |    .00 s |    .08 s |    0.32 s |     - MiB |          |
 `DynamicDataObjects`|     .07 s |    .02 s |    .05 s |    .00 s |    .06 s |    0.33 s |     - MiB |          |
 `System.JSON`       |     .03 s |    .01 s |    .07 s |    .25 s |    .07 s |    0.55 s |     - MiB |          |
 `chimera.json`      |     .10 s |    .04 s |    .15 s |    .01 s |    .16 s |    0.56 s |     - MiB |          |
 `JsonDoc`           |     .14 s |    .04 s |    .11 s |    .01 s |    .17 s |    0.57 s |     - MiB |          |
-`EasyJson`          |     .04 s |    .02 s |    .07 s |    .25 s |    .07 s |    0.60 s |     - MiB |          |  
-`McJSON`            |     .03 s |    .11 s |    .03 s |    .23 s |    .14 s |    0.64 s |     - MiB |          |  
+`EasyJson`          |     .04 s |    .02 s |    .07 s |    .25 s |    .07 s |    0.60 s |     - MiB |          |
+`McJSON`            |     .03 s |    .11 s |    .03 s |    .23 s |    .14 s |    0.64 s |     - MiB |          |
 `VSoft.YAML`        |     .05 s |    .12 s |    .15 s |    .01 s |    .22 s |    0.65 s |     - MiB |          |
 `LkJson`            |     .09 s |    .11 s |    .23 s |    .06 s |    .33 s |    0.91 s |     - MiB |          |
 `SuperObject`       |     .28 s |   1.29 s |    .06 s |    .01 s |    .07 s |    1.83 s |     - MiB |          |
@@ -113,7 +116,8 @@ Library             | Generate  | Save     | Load     | Find     | Parse    | To
 `Json4Delphi`       |     .03 s |    .45 s | 4.43 min |   1.68 s |        - |  4.63 min |     - MiB | Fails    |
 `X-SuperObject`     |  4.47 min |    .25 s | 1.55 min |   5.32 s | 1.54 min |  7.65 min |     - MiB |          |
 
-Notes: 
+Notes:
+- Ordered by [Total] ASC.
 - See [Know issues](#know-issues) about the incomplete test for `JsonTools`.
 
 
@@ -146,6 +150,7 @@ Library             | Expected to Fail but Passed                      | Expecte
 `JsonDoc`           |                                 fail(15, 20, 21) |        pass(01, 02, 04, 05) | No              |
 `mORMot2`           |             fail(05, 06, 10, 11, 15, 18, 19, 21) |                pass(04, 05) | No              |
 `VSoft.YAML`        |                                                - |                           - | No              |
+`QDAC`              |                      fail(01, 06, 07, 08, 15~22) |                    pass(01) | No              |
 
 
 List of test files names and description
@@ -208,6 +213,7 @@ Library             |  Memory | Factor  | Load Time | Pitfalls         |
 `X-SuperObject`     | 10388.4 |     10x |    121.80 | ToString() fails |
 `Json4Delphi`       |  9505.3 |     10x |    243.60 |                  |
 `chimera.json`      | 12086.7 |     12x |    915.60 |                  |
+`QDAC`              | 14302.3 |     14x |     84.20 |                  |
 `VSoft.YAML`        | 19845.2 |     19x |    177.80 |                  |
 `JsonTools`         |       - |       - |         - | Load file fails  |
 `mORMot2`           |       - |       - |         - | Load file fails  |
@@ -219,7 +225,7 @@ Notes:
 
 The Top-Three libraries with the lowest memory consumption (allocation factor) are: `JsonDataObjects`, `Grijjy.Bson` and `dwsJSON`. It is worth highlighting the superior performance of the combined factors from `JsonDataObjects`.
 
-The Top-Three fastest libraries in terms of loading time are: `JsonDataObjects`, `dwsJSON` and `JsonDoc`. 
+The Top-Three fastest libraries in terms of loading time are: `JsonDataObjects`, `dwsJSON` and `JsonDoc`.
 
 In general, `JsonDataObjects` might be considered the best library in respect of memory consumption and loading time tradeoff, highlighting its remarkable low memory and allocation factor without pitfalls.
 
@@ -261,11 +267,13 @@ These libraries were tested:
 
 ## Changes on original source code
 There were necessary modifications in order to compile and run some libraries with C++Builder.
-- `uLkJSON`: 
+- `uLkJSON`:
   - `{$DEFINE USE_D2009}`
   - `TlkJSONstreamed.LoadFromStream();`
   - `TlkJSONstreamed.SaveToStream();`
-- `SuperObject`: 
+- `SuperObject`:
   - `defined(VER290) or defined(VER300) or defined(VER310) or defined(VER320) or defined(VER330) or defined(VER340) or defined(VER350) or defined(VER360)`
   - `procedure FromInterface;`
+- `QDAC`
+  - `*.pas` files converted CharSet from `GB2312(simplified)` to `UTF-8` using Notepad++.
 

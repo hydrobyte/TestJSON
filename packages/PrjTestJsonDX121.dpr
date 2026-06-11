@@ -65,7 +65,11 @@ uses
   VSoft.YAML.TagInfo in '..\src\pas\vsoft.yaml\Source\VSoft.YAML.TagInfo.pas',
   VSoft.YAML.Utils in '..\src\pas\vsoft.yaml\Source\VSoft.YAML.Utils.pas',
   VSoft.YAML.Writer.JSON in '..\src\pas\vsoft.yaml\Source\VSoft.YAML.Writer.JSON.pas',
-  VSoft.YAML.Writer in '..\src\pas\vsoft.yaml\Source\VSoft.YAML.Writer.pas';
+  VSoft.YAML.Writer in '..\src\pas\vsoft.yaml\Source\VSoft.YAML.Writer.pas',
+  qjson in '..\src\pas\QDAC\qjson.pas',
+  qrbtree in '..\src\pas\QDAC\qrbtree.pas',
+  qstring in '..\src\pas\QDAC\qstring.pas',
+  TJ.LibQDAC in '..\src\TJ.LibQDAC.pas';
 
 {$R *.res}
 

@@ -204,6 +204,10 @@
         <DCCReference Include="..\src\pas\vsoft.yaml\Source\VSoft.YAML.Utils.pas"/>
         <DCCReference Include="..\src\pas\vsoft.yaml\Source\VSoft.YAML.Writer.JSON.pas"/>
         <DCCReference Include="..\src\pas\vsoft.yaml\Source\VSoft.YAML.Writer.pas"/>
+        <DCCReference Include="..\src\pas\QDAC\qjson.pas"/>
+        <DCCReference Include="..\src\pas\QDAC\qrbtree.pas"/>
+        <DCCReference Include="..\src\pas\QDAC\qstring.pas"/>
+        <DCCReference Include="..\src\TJ.LibQDAC.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
