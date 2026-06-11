@@ -69,7 +69,8 @@ uses
   qjson in '..\src\pas\QDAC\qjson.pas',
   qrbtree in '..\src\pas\QDAC\qrbtree.pas',
   qstring in '..\src\pas\QDAC\qstring.pas',
-  TJ.LibQDAC in '..\src\TJ.LibQDAC.pas';
+  TJ.LibQDAC in '..\src\TJ.LibQDAC.pas',
+  QSimplePool in '..\src\pas\QDAC\QSimplePool.pas';
 
 {$R *.res}
 

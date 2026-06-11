@@ -208,6 +208,7 @@
         <DCCReference Include="..\src\pas\QDAC\qrbtree.pas"/>
         <DCCReference Include="..\src\pas\QDAC\qstring.pas"/>
         <DCCReference Include="..\src\TJ.LibQDAC.pas"/>
+        <DCCReference Include="..\src\pas\QDAC\QSimplePool.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
